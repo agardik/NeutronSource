@@ -123,12 +123,20 @@
  	
  7- HOW TO START ?
  
+   Create a build folder inside NeutronSource main folder
+   
+   cd build
+   cmake ..
+   make
+   
+   Then an executable will be created named NeutronSource
+ 
    Execute NeutronSource in 'batch' mode from macro files :
- 	% NeutronSource  run0.mac
-	% NeutronSource  neutronSource.in > neutronSource.out
+ 	% ./NeutronSource  run0.mac
+	% ./NeutronSource  neutronSource.in > neutronSource.out
  		
    Execute NeutronSource in 'interactive mode' with visualization :
- 	% NeutronSource
+ 	% ./NeutronSource
 	Idle> control/execute vis.mac
  	....
  	Idle> type your commands
