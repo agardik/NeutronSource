@@ -1,0 +1,136 @@
+
+     =========================================================
+     Geant4 - an Object-Oriented Toolkit for Simulation in HEP
+     =========================================================
+
+                            NeutronSource
+                            -------------
+
+   This simulation is based on  NeutronSource example for neutrons production in the Geant4 directory. It illustrates the cooperative work
+   of nuclear reactions and radioactive decay processes.
+   It survey energy deposition and particle's flux.
+   It uses PhysicsConstructor objects.
+
+	
+ 1- MATERIALS AND GEOMETRY DEFINITION
+ 
+   The geometry is based on a migromegas neutron beam monitor.
+   The default geometry is built in DetectorConstruction, but the above
+   parameters can be changed interactively via commands defined in DetectorMessenger.
+
+   Six parameters define the geometry :
+	1. AlMg3 as the monitor window of 200 micrometer
+	2. Aluminium plate of 100 micrometer
+	3. Enriched Boron Carbide  coated on the 2. Aluminium plate
+	4. stainless-Steel with thickness of 40 micrometer.
+	5. AlMg3 with thickness of 250 micrometer.
+	6. AlMg3 with thickness of 200 micrometer.
+	
+   Those slabs are introduced in the macro file as:
+	
+	/testhadr/det/setNbOfAbsor  6
+	/testhadr/det/setAbsor 1 AlMg3  0.02 cm
+	/testhadr/det/setAbsor 2 Alu  0.01 cm
+	/testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
+	/testhadr/det/setAbsor 4 SSteel  0.004 cm
+	/testhadr/det/setAbsor 5 AlMg3  0.025 cm
+	/testhadr/det/setAbsor 6 AlMg3  0.02 cm
+	
+   The size of the slabs are defined in the macro file as:
+	/testhadr/det/setSizeY 100 mm
+	/testhadr/det/setSizeZ 60 mm
+   
+   The monitor is surrounded by a World volume (air) 1m x 1m x 1m
+   
+   A function, and its associated UI command, allows to build a material
+   directly from a single isotope.
+   
+   To be identified by the ThermalScattering module, the elements composing a
+   material must have a specific name (see G4ParticleHPThermalScatteringNames.cc)
+   Examples of such materials are build in DetectorConstruction of Hadr04,06,07.
+   
+   TS_Iron_Metal and TS_Aluminium_Metal are already introduced in the DetectorConstruction
+   
+   To calculate the particle energy deposition and the doses around the monitor, silicon slabs are placed on the edges
+   of the world volume. Silicon slabs are 2 mm thick.
+   When calculation the energy deposition on the silicon slabs or the particle flux emerging from the world volume,
+   use the following lines in the macro:
+   
+	# To save the energy deposition in the slilcion slabs for dose calculations
+	# Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
+	# To save the particles emerging from the world volume
+	# Set-> SetSiliconSlabs 0 and saveSiliconData 0 and saveFluxData 1
+	/testhadr/det/SetSiliconSlabs 1
+	/stepping/saveSiliconData 1
+	/stepping/saveFluxData 0
+   
+ 	
+ 2- PHYSICS LIST
+   
+  "Full" set of physics processes are registered, but via PhysicsConstructor
+  objects rather than complete pre-defined G4 physics lists. This alternative 
+  way may give more freedom to register physics.
+  
+  Physics constructors are either constructors provided in Geant4 (with G4 prefix)
+  or 'local'. They include : HadronElastic, HadronInelastic, IonsInelastic, GammaNuclear,
+  RadioactiveDecay and Electomagnetic.
+  (see geant4/source/physics_lists/constructors)
+
+  HadronElasticPhysicsHP include a model for thermalized neutrons, under the control of a command
+  defined in NeutronHPMesseger.
+
+  GammmaNuclearPhysics is a subset of G4BertiniElectroNuclearBuilder.
+
+  ElectromagneticPhysics is a simplified version of G4EmStandardPhysics.
+
+  In PhysicsList::ConstructProcess() we give an example of how to access hadronic models.
+
+  Several hadronic physics options are controlled by environment variables.
+  To select them, see NeutronSource.cc
+ 	 
+ 3- AN EVENT : THE PRIMARY GENERATOR
+ 
+   The General Particle Source is used to create the primary particles. A square netron beam is employed.
+   The definition of the source can be found in the macro, run0.mac
+ 	
+ 4- PHYSICS
+
+   The program computes and plots energy deposited in the interaction volume
+   (absorber + container) and the flux of particles leaving this volume.
+   Processes invoked and particles generated during hadronic cascade are listed.
+
+ 5- Output
+    The results are written in a root file, One can control the name of the root file with the command:
+   /analysis/setFileName  name  (default NeutronSource)
+   
+   It is possible to choose the format of the histogram file : root (default),
+   xml, csv, by using namespace in HistoManager.hh
+   
+   The results are saved in NTuples.
+ 	 				
+ 6- VISUALIZATION
+ 
+   The Visualization Manager is set in the main().
+   The initialisation of the drawing is done via the commands
+   /vis/... in the macro vis.mac. To get visualisation:
+   > /control/execute vis.mac
+ 	
+   The tracks are drawn at the end of event, and erased at the end of run.   
+   gamma green   
+   neutron yellow
+   negative particles (e-, ...) red
+   positive particles (e+, ions, ...) blue
+ 	
+ 7- HOW TO START ?
+ 
+   Execute NeutronSource in 'batch' mode from macro files :
+ 	% NeutronSource  run0.mac
+	% NeutronSource  neutronSource.in > neutronSource.out
+ 		
+   Execute NeutronSource in 'interactive mode' with visualization :
+ 	% NeutronSource
+	Idle> control/execute vis.mac
+ 	....
+ 	Idle> type your commands
+ 	....
+ 	Idle> exit
