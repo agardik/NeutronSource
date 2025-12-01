@@ -24,6 +24,7 @@ private:
   Double_t MeandEdX;
   Double_t StopingPower;
   Char_t CreatorProcessName[30];
+  Char_t PVatVertexname[30];
   //************************************************************************************//
 
 public:
@@ -73,6 +74,7 @@ public:
     GetTree()->SetBranchAddress("MeandEdx", &MeandEdX);
     GetTree()->SetBranchAddress("StopPower", &StopingPower);
     GetTree()->SetBranchAddress("fCreatorProcessName", &CreatorProcessName);
+    GetTree()->SetBranchAddress("fPVatVertexname", &PVatVertexname);
     //************************************************************************************//
   }
 
@@ -113,6 +115,7 @@ public:
     std::vector<Double_t> v_MeandEdx;
     std::vector<Double_t> v_StopPower;
     std::vector<std::string> v_fCreatorProcessName;
+    std::vector<std::string> v_fPVatVertexname;
     //************************************************************************************//
 
     //************************************************************************************//
@@ -135,6 +138,7 @@ public:
       v_MeandEdx.push_back(MeandEdX);
       v_StopPower.push_back(StopingPower);
       v_fCreatorProcessName.push_back(CreatorProcessName);
+      v_fPVatVertexname.push_back(PVatVertexname);
       //   std::cout<< i << " " << InteractionType << std::endl;
       //   std::cin.get();
     }

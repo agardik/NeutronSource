@@ -20,6 +20,7 @@ private:
   Char_t InteractionType[20];
   Char_t TargetIsotope[20];
   Char_t CreatorProcessName[30];
+  Char_t PVatVertexname[30];
   //************************************************************************************//
 
 public:
@@ -61,6 +62,8 @@ public:
     GetTree()->SetBranchAddress("fInteractionType", &InteractionType);
     GetTree()->SetBranchAddress("targetIsotope", &TargetIsotope);
     GetTree()->SetBranchAddress("fCreatorProcessName", &CreatorProcessName);
+    GetTree()->SetBranchAddress("fPVatVertexname", &PVatVertexname);
+
     //************************************************************************************//
   }
 
@@ -103,6 +106,7 @@ public:
     std::vector<std::string> v_interactionType;
     std::vector<std::string> v_targetIsotope;
     std::vector<std::string> v_fCreatorProcessName;
+    std::vector<std::string> v_fPVatVertexname;
     //************************************************************************************//
     //************************************************************************************//
     // Loop through events and fill vectors
@@ -121,6 +125,7 @@ public:
       v_interactionType.push_back(InteractionType);
       v_targetIsotope.push_back(TargetIsotope);
       v_fCreatorProcessName.push_back(CreatorProcessName);
+      v_fPVatVertexname.push_back(PVatVertexname);
       //   std::cout<< i << " " << InteractionType << std::endl;
       //   std::cin.get();
     }

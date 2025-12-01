@@ -536,7 +536,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
       analysisManager->FillNtupleDColumn(
           3, 14, stopPower / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
       analysisManager->FillNtupleSColumn(3, 15, creatorProcessName);
-      analysisManager->FillNtupleSColumn(3, 16, creatorProcessName);
+      analysisManager->FillNtupleSColumn(3, 16, PVatVertexname);
 
       analysisManager->AddNtupleRow(3);
     }
@@ -563,7 +563,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
       analysisManager->FillNtupleDColumn(
           4, 14, stopPower / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
       analysisManager->FillNtupleSColumn(4, 15, creatorProcessName);
-      analysisManager->FillNtupleSColumn(4, 16, creatorProcessName);
+      analysisManager->FillNtupleSColumn(4, 16, PVatVertexname);
 
       analysisManager->AddNtupleRow(4);
     }
@@ -590,7 +590,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
       analysisManager->FillNtupleDColumn(
           5, 14, stopPower / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
       analysisManager->FillNtupleSColumn(5, 15, creatorProcessName);
-      analysisManager->FillNtupleSColumn(5, 16, creatorProcessName);
+      analysisManager->FillNtupleSColumn(5, 16, PVatVertexname);
 
       analysisManager->AddNtupleRow(5);
     }
