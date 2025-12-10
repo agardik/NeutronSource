@@ -18,8 +18,13 @@
 /testhadr/det/setSizeZ 60 mm
 #
 #
-/testhadr/det/SetSiliconSlabs 0
-/stepping/saveSiliconData 0
+# To save the energy deposition in the slilcion slabs for dose calculations
+# Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
+# To save the particles emerging from the world volume
+# Set-> SetSiliconSlabs 0 and saveSiliconData 0 and saveFluxData 1
+/testhadr/det/SetSiliconSlabs 1
+/stepping/saveSiliconData 1
+/stepping/saveFluxData 0
 #
 /run/initialize
 #
