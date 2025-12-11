@@ -17,7 +17,7 @@
 /testhadr/det/setAbsor 6 AlMg3  0.02 cm
 /testhadr/det/setSizeY 100 mm
 /testhadr/det/setSizeZ 60 mm
-
+/run/initialize
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
 # To save the particles emerging from the world volume
@@ -26,7 +26,7 @@
 /stepping/saveSiliconData 1
 /stepping/saveFluxData 0
 #
-/run/initialize
+
 #
 # Set a very high time threshold to allow all decays to happen
 #/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
@@ -42,7 +42,7 @@
 /gps/pos/rot2 0 1 0
 /gps/direction 1 0 0
 #
-/analysis/setFileName NeutronSource_run0_thermalScattering_silicon_save
+/analysis/setFileName NeutronSource_run0_thermalScattering_deneme_silicon_save
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -50,4 +50,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 10000000
+/run/beamOn 10000
