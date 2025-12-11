@@ -98,6 +98,8 @@ int main(int argc, char **argv) {
     // interactive mode
     visManager = new G4VisExecutive;
     visManager->Initialize();
+    G4String command = "/control/execute vis.mac";
+    UImanager->ApplyCommand(command);
     ui->SessionStart();
     delete ui;
   } else {

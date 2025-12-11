@@ -43,6 +43,7 @@ set(NeutronSource_SCRIPTS
     debug.mac
     envHadronic.csh
     envHadronic.sh
+    threadmerger.sh
     neutronSource.in
     plotHisto.C
     run1.mac
