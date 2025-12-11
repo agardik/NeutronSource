@@ -50,7 +50,7 @@
 SteppingAction::SteppingAction(EventAction *event) : fEventAction(event) {
 
   steppingMessenger = new SteppingActionMessenger(this);
-  save_silicon_data = 0;
+  save_silicon_data = 1;
   save_flux_data = 0;
 }
 

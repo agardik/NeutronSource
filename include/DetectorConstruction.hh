@@ -101,6 +101,7 @@ private:
 
   G4Material *fWorldMaterial = nullptr;
   G4Material *matSilicon = nullptr;
+  G4Material *fmatAlu = nullptr;
   G4VPhysicalVolume *fPWorld = nullptr;
 
   DetectorMessenger *fDetectorMessenger = nullptr;

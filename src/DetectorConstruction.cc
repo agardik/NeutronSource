@@ -148,7 +148,8 @@ void DetectorConstruction::DefineMaterials() {
   d = 2.70 * g / cm3; // Density of Aluminium in g/cm^3
   G4Material *Alu = new G4Material("Alu", d, 1); // 1 component
   Alu->AddElement(Al, 1.0); // Add the Aluminium element with mass fraction 1.0
-
+  
+  fmatAlu = Alu;
   // Stainless steel (Medical Physics, Vol 25, No 10, Oct 1998)
   d = 8.02 * g / cm3;
   G4Material *SSteel = new G4Material("SSteel", d, 5);
@@ -461,6 +462,52 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       logicAbsor->SetVisAttributes(AbsorAtt);
     }
   }
+
+  // ################################################################################//
+// Monitor geometry: Aluminum box
+// ################################################################################//
+  G4double alboxsizeX = 1.0 * mm;
+  G4double alboxsizeY = 0.5 * (fAbsorSizeY);
+  G4double alboxsizeZ = 0.5 * (fXfront[fNbOfAbsor] + fAbsorThickness[fNbOfAbsor]);
+  
+// ******************************************************************************//
+  auto SolidAlBox_1 =
+      new G4Box("SolidAlBox_1", alboxsizeZ, alboxsizeY, alboxsizeX); // along Z
+  G4LogicalVolume *logalSlab_AlongZ_1 =
+      new G4LogicalVolume(SolidAlBox_1,          // shape
+                          fmatAlu,            // material
+                          "logalSlab_AlongZ_1"); // name
+  auto physiSlab_AlongZ_1 = new G4PVPlacement(
+      0, {alboxsizeZ, 0, fAbsorSizeZ/2+alboxsizeX}, logalSlab_AlongZ_1,
+      "phyalSlab_AlongZ_1", lWorld, false, 0);
+
+  G4LogicalVolume *logalSlab_AlongZ_2 =
+      new G4LogicalVolume(SolidAlBox_1,          // shape
+                          fmatAlu,            // material
+                          "logalSlab_AlongZ_2"); // name
+  auto physiSlab_AlongZ_2 = new G4PVPlacement(
+      0, {alboxsizeZ, 0, -(fAbsorSizeZ/2+alboxsizeX)}, logalSlab_AlongZ_2,
+      "phyalSlab_AlongZ_2", lWorld, false, 0);
+    //*******************************************************************************//
+    // ******************************************************************************//
+  auto SolidAlBox_2 =
+      new G4Box("SolidAlBox_2", alboxsizeZ, alboxsizeX, 0.5 * (fAbsorSizeZ)); // along y
+  G4LogicalVolume *logalSlab_AlongY_1 =
+      new G4LogicalVolume(SolidAlBox_2,          // shape
+                          fmatAlu,            // material
+                          "logalSlab_AlongY_1"); // name
+  auto physiSlab_AlongY_1 = new G4PVPlacement(
+      0, {alboxsizeZ, fAbsorSizeY/2+alboxsizeX,0}, logalSlab_AlongY_1,
+      "phyalSlab_AlongY_1", lWorld, false, 0);
+
+  G4LogicalVolume *logalSlab_AlongY_2 =
+      new G4LogicalVolume(SolidAlBox_2,          // shape
+                          fmatAlu,            // material
+                          "logalSlab_AlongY_2"); // name
+  auto physiSlab_AlongY_2 = new G4PVPlacement(
+      0, {alboxsizeZ,  -(fAbsorSizeY/2+alboxsizeX),0}, logalSlab_AlongY_2,
+      "phyalSlab_AlongY_2", lWorld, false, 0);
+    //*******************************************************************************//
   // ###############################################################################//
   // PrintParameters();
 
