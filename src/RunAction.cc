@@ -188,6 +188,23 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleSColumn("fPVatVertexname");
 
   analysisManager->FinishNtuple(6);
+
+    // Create ntuple for energy deposition
+  analysisManager->CreateNtuple("phygasBox", "phygasBox");
+  analysisManager->CreateNtupleIColumn("fEvent");
+  analysisManager->CreateNtupleSColumn("fParticleName");
+  analysisManager->CreateNtupleIColumn("fParentID");
+  analysisManager->CreateNtupleIColumn("fParticleID");
+  analysisManager->CreateNtupleIColumn("fStepNumber");
+  analysisManager->CreateNtupleDColumn("fX");
+  analysisManager->CreateNtupleDColumn("fY");
+  analysisManager->CreateNtupleDColumn("fZ");
+  analysisManager->CreateNtupleSColumn("fInteractionType");
+  analysisManager->CreateNtupleSColumn("targetIsotope");
+  analysisManager->CreateNtupleDColumn("Edep");
+  analysisManager->CreateNtupleSColumn("fCreatorProcessName");
+
+  analysisManager->FinishNtuple(7);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

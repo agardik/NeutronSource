@@ -380,6 +380,23 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->FillNtupleSColumn(1, 11, creatorProcessName);
     analysisManager->AddNtupleRow(1);
   }
+  // If the particle is interacted with the helium gas.
+  if (thePostPVname == "phygasBox" && fParticleName != "neutron") {
+    // data of the interaction products
+    analysisManager->FillNtupleIColumn(7, 0, evt);
+    analysisManager->FillNtupleSColumn(7, 1, fParticleName);
+    analysisManager->FillNtupleIColumn(7, 2, part_parent_ID);
+    analysisManager->FillNtupleIColumn(7, 3, part_ID);
+    analysisManager->FillNtupleIColumn(7, 4, StepNumberr);
+    analysisManager->FillNtupleDColumn(7, 5, posParticle[0] / mm);
+    analysisManager->FillNtupleDColumn(7, 6, posParticle[1] / mm);
+    analysisManager->FillNtupleDColumn(7, 7, posParticle[2] / mm);
+    analysisManager->FillNtupleSColumn(7, 8, interactionType);
+    analysisManager->FillNtupleSColumn(7, 9, targetIsotope);
+    analysisManager->FillNtupleDColumn(7, 10, edepStep);
+    analysisManager->FillNtupleSColumn(7, 11, creatorProcessName);
+    analysisManager->AddNtupleRow(7);
+  }
 
   // if (!step->GetTrack()->GetNextVolume())
   //  Check if the particle is leaving the world volume

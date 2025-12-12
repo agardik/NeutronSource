@@ -6,7 +6,7 @@
 /control/verbose 2
 /run/verbose 1
 #
-#/testhadr/phys/thermalScattering true
+/testhadr/phys/thermalScattering true
 
 /testhadr/det/setNbOfAbsor  6
 /testhadr/det/setAbsor 1 AlMg3  0.02 cm
@@ -50,4 +50,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 100
+/run/beamOn 1000000
