@@ -13,11 +13,11 @@
 /testhadr/det/setAbsor 2 Alu  0.01 cm
 /testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
 /testhadr/det/setAbsor 4 SSteel  0.004 cm
-/testhadr/det/setAbsor 5 AlMg3  0.05 cm
+/testhadr/det/setAbsor 5 AlMg3  0.025 cm
 /testhadr/det/setAbsor 6 AlMg3  0.02 cm
 /testhadr/det/setSizeY 100 mm
 /testhadr/det/setSizeZ 60 mm
-/run/initialize
+
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
 # To save the particles emerging from the world volume
@@ -26,7 +26,7 @@
 /stepping/saveSiliconData 1
 /stepping/saveFluxData 0
 #
-
+/run/initialize
 #
 # Set a very high time threshold to allow all decays to happen
 #/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
@@ -50,4 +50,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 10000
+/run/beamOn 1000

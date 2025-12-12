@@ -23,8 +23,8 @@
 # To save the particles emerging from the world volume
 # Set-> SetSiliconSlabs 0 and saveSiliconData 0 and saveFluxData 1
 /testhadr/det/SetSiliconSlabs 1
-/stepping/saveSiliconData 1
-/stepping/saveFluxData 0
+#/stepping/saveSiliconData 1
+#/stepping/saveFluxData 0
 #
 /run/initialize
 #
@@ -32,7 +32,7 @@
 /vis/open OGL
 # This opens the default viewer
 #
-/vis/viewer/set/background white
+#/vis/viewer/set/background white
 
 # Disable auto refresh and quieten vis messages whilst scene and
 # trajectories are established:
@@ -55,7 +55,7 @@
 #/vis/geometry/set/visibility World 0 true
 #
 # Draw coordinate axes:
-/vis/scene/add/axes 0 0 0 10 cm
+#/vis/scene/add/axes 0 0 0 10 cm
 #
 # Draw smooth trajectories at end of event, showing trajectory points
 # as markers 2 pixels wide:
@@ -92,8 +92,8 @@
 # Axes, scale, etc.
 #/vis/scene/add/scale   # Simple scale line
 #/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
-/vis/scene/add/eventID # Drawn at end of event
-/vis/scene/add/date    # Date stamp
+#/vis/scene/add/eventID # Drawn at end of event
+#/vis/scene/add/date    # Date stamp
 #
 # Re-establish auto refreshing and verbosity:
 /vis/viewer/set/autoRefresh true
