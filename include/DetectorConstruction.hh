@@ -100,6 +100,7 @@ private:
   G4LogicalVolume *fLContain = nullptr;
 
   G4Material *fWorldMaterial = nullptr;
+  G4Material *fHeCO2Material = nullptr;
   G4Material *matSilicon = nullptr;
   G4Material *fmatAlu = nullptr;
   G4VPhysicalVolume *fPWorld = nullptr;

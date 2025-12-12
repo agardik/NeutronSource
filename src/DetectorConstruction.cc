@@ -106,6 +106,7 @@ void DetectorConstruction::DefineMaterials() {
   Air->AddElement(O, 30. * perCent);
 
   fWorldMaterial = Air;
+  
 
   /********************************************************************************/
   // Added by Altingun
@@ -195,6 +196,25 @@ void DetectorConstruction::DefineMaterials() {
   B4C_enriched->AddElement(C, 1);
 
   //********************************************************************************/
+  //HeCO2 gas 25C 
+  // Get materials from NIST
+  G4Material* He  = nistManager->FindOrBuildMaterial("G4_He");
+  G4Material* CO2 = nistManager->FindOrBuildMaterial("G4_CARBON_DIOXIDE");
+  G4double Hedensity = 0.1607 * mg/cm3;
+  G4double Hefraction = 0.7;
+  G4double CO2density = 1.784 * mg/cm3;
+  G4double CO2fraction = 1-Hefraction;
+  // Set the density of the mixture (example value)
+  G4double density = Hedensity*Hefraction+CO2density*CO2fraction;  // adjust for your pressure/temperature
+
+  // Create material with 2 components
+  G4Material* HeCO2 = new G4Material("HeCO2", density, 2);
+
+  // Fractions by mass OR by volume (commonly volume fractions)
+  HeCO2->AddMaterial(He,  0.70);   // 70% Helium
+  HeCO2->AddMaterial(CO2, 0.30);   // 30% CO₂
+
+  fHeCO2Material=HeCO2;
   //********************************************************************************/
 
   /// G4cout << *(G4Material::GetMaterialTable()) << G4endl;
@@ -463,7 +483,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
     }
   }
 
-  // ################################################################################//
+// ################################################################################//
 // Monitor geometry: Aluminum box
 // ################################################################################//
   G4double alboxsizeX = 1.0 * mm;
@@ -508,6 +528,39 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       0, {alboxsizeZ,  -(fAbsorSizeY/2+alboxsizeX),0}, logalSlab_AlongY_2,
       "phyalSlab_AlongY_2", lWorld, false, 0);
     //*******************************************************************************//
+  // ################################################################################//
+  // Monitor geometry: HeCO2 gas
+  // ################################################################################//
+  G4double gasboxsizeX[fNbOfAbsor];
+  for (G4int k = 1; k <= fNbOfAbsor-1; k++) {
+    if (k==2){
+      continue;
+    }
+    gasboxsizeX[k]=(-(fXfront[k] + 1 * fAbsorThickness[k])+fXfront[k+1])*0.5;
+  }
+  G4double gasboxsizeY = 0.5 * (fAbsorSizeY);
+  G4double gasboxsizeZ = 0.5 * (fAbsorSizeZ);
+
+  // ******************************************************************************//
+  for (G4int k = 1; k <= fNbOfAbsor-1; k++) {
+    if (k==2){
+      continue;
+    }
+  auto SolidgasBox =
+      new G4Box("SolidgasBox", gasboxsizeX[k], gasboxsizeY, gasboxsizeZ); 
+  G4LogicalVolume *loggasBox =
+      new G4LogicalVolume(SolidgasBox,          // shape
+                          fHeCO2Material,            // material
+                          "loggasBox"); // name
+  auto phygasBox = new G4PVPlacement(
+      0, {(fXfront[k] + 1 * fAbsorThickness[k])+gasboxsizeX[k], 0, 0}, loggasBox,
+      "phygasBox", lWorld, false, k);
+
+  // Set visualization attributes
+    G4VisAttributes *gasAtt;
+      gasAtt = new G4VisAttributes(G4Color(0., 1, 0.));
+      loggasBox->SetVisAttributes(gasAtt);
+  }
   // ###############################################################################//
   // PrintParameters();
 
