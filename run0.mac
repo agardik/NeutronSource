@@ -13,7 +13,7 @@
 /testhadr/det/setAbsor 2 Alu  0.01 cm
 /testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
 /testhadr/det/setAbsor 4 SSteel  0.004 cm
-/testhadr/det/setAbsor 5 AlMg3  0.025 cm
+/testhadr/det/setAbsor 5 AlMg3  0.05 cm
 /testhadr/det/setAbsor 6 AlMg3  0.02 cm
 /testhadr/det/setSizeY 100 mm
 /testhadr/det/setSizeZ 60 mm
