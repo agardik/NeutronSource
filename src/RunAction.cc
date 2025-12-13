@@ -190,7 +190,7 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->FinishNtuple(6);
 
     // Create ntuple for energy deposition
-  analysisManager->CreateNtuple("phygasBox", "phygasBox");
+  analysisManager->CreateNtuple("HeliumEdep", "HeliumEdep");
   analysisManager->CreateNtupleIColumn("fEvent");
   analysisManager->CreateNtupleSColumn("fParticleName");
   analysisManager->CreateNtupleIColumn("fParentID");

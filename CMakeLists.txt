@@ -48,6 +48,8 @@ set(NeutronSource_SCRIPTS
     plotHisto.C
     run1.mac
     run0.mac
+    simfront.mac
+    simback.mac
     vis.mac
   )
 
