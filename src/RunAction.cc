@@ -202,6 +202,11 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleSColumn("fInteractionType");
   analysisManager->CreateNtupleSColumn("targetIsotope");
   analysisManager->CreateNtupleDColumn("Edep");
+  analysisManager->CreateNtupleDColumn("StopTable");
+  analysisManager->CreateNtupleDColumn("StopFull");
+  analysisManager->CreateNtupleDColumn("MeandEdx");
+  analysisManager->CreateNtupleDColumn("StopPower");
+  analysisManager->CreateNtupleSColumn("fPVatVertexname");
   analysisManager->CreateNtupleSColumn("fCreatorProcessName");
 
   analysisManager->FinishNtuple(7);

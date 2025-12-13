@@ -385,6 +385,50 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     //  // If no energy deposit, return1
     if (edepStep <= 0.)
       return;
+        // // Stopping Power from input Table.
+
+    // Get the material at the pre-step point
+    G4Material *prematerial = thePrePoint->GetMaterial();
+    // Get the material at the post-step point
+    G4Material *postmaterial = thePostPoint->GetMaterial();
+    //   G4cout << "Next volume is  nullptr!" << G4endl;
+    //   return;
+    // }
+    // You can now use the material object, for example, to get its name
+    G4String materialName = postmaterial->GetName();
+    G4double density = postmaterial->GetDensity() / (g / cm3);
+
+    // Get step length
+    G4double stepLength = aStep->GetStepLength() / mm;
+    // G4cout << "Step length: " << stepLength << " mm" << G4endl;
+
+    // Kinetic energy of the particle after each step
+    G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
+
+    G4double postKineticEnergy =
+        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
+    G4double preKineticEnergy =
+        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
+
+    // current step number
+    G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
+
+    G4EmCalculator emCalculator;
+    G4double dEdxTable = 0., dEdxFull = 0.;
+
+    if (particleType->GetPDGCharge() != 0.) {
+      dEdxTable =
+          emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
+      dEdxFull = emCalculator.ComputeTotalDEDX(preKineticEnergy, particleType,
+                                               postmaterial);
+    }
+    G4double stopTable = dEdxTable / density;
+    G4double stopFull = dEdxFull / density;
+
+    // Stopping Power from simulation.
+    //
+    G4double meandEdx = edepStep / stepLength;
+    G4double stopPower = meandEdx / density;
     // data of the interaction products
     analysisManager->FillNtupleIColumn(7, 0, evt);
     analysisManager->FillNtupleSColumn(7, 1, fParticleName);
@@ -397,7 +441,16 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->FillNtupleSColumn(7, 8, interactionType);
     analysisManager->FillNtupleSColumn(7, 9, targetIsotope);
     analysisManager->FillNtupleDColumn(7, 10, edepStep);
-    analysisManager->FillNtupleSColumn(7, 11, creatorProcessName);
+    analysisManager->FillNtupleDColumn(
+          7, 11, stopTable / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+    analysisManager->FillNtupleDColumn(
+          7, 12, stopFull / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+    analysisManager->FillNtupleDColumn(7, 13,
+                                         meandEdx / (CLHEP::MeV / CLHEP::cm));
+    analysisManager->FillNtupleDColumn(
+          7, 14, stopPower / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+    analysisManager->FillNtupleSColumn(7, 15, creatorProcessName);
+    analysisManager->FillNtupleSColumn(7, 16, PVatVertexname);    
     analysisManager->AddNtupleRow(7);
   }
 
