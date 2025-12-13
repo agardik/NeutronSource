@@ -399,7 +399,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     G4double density = postmaterial->GetDensity() / (g / cm3);
 
     // Get step length
-    G4double stepLength = aStep->GetStepLength() / mm;
+    G4double stepLength = aStep->GetStepLength() / cm;
     // G4cout << "Step length: " << stepLength << " mm" << G4endl;
 
     // Kinetic energy of the particle after each step
@@ -528,7 +528,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     G4double density = postmaterial->GetDensity() / (g / cm3);
 
     // Get step length
-    G4double stepLength = aStep->GetStepLength() / mm;
+    G4double stepLength = aStep->GetStepLength() / cm;
     // G4cout << "Step length: " << stepLength << " mm" << G4endl;
 
     // Kinetic energy of the particle after each step
