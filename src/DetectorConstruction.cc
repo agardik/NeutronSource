@@ -211,8 +211,8 @@ void DetectorConstruction::DefineMaterials() {
   G4Material* HeCO2 = new G4Material("HeCO2", density, 2);
 
   // Fractions by mass OR by volume (commonly volume fractions)
-  HeCO2->AddMaterial(He,  0.70);   // 70% Helium
-  HeCO2->AddMaterial(CO2, 0.30);   // 30% CO₂
+  HeCO2->AddMaterial(He,  Hefraction);   // 70% Helium
+  HeCO2->AddMaterial(CO2, CO2fraction);   // 30% CO₂
 
   fHeCO2Material=HeCO2;
   //********************************************************************************/
