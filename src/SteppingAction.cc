@@ -427,6 +427,9 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
 
     // Stopping Power from simulation.
     //
+    if (stepLength<=0) {
+      return;
+    }
     G4double meandEdx = edepStep / stepLength;
     G4double stopPower = meandEdx / density;
     // data of the interaction products
