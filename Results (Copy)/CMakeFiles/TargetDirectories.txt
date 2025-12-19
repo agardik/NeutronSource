@@ -1,0 +1,3 @@
+/home/kali/Software/Newtron source git/NeutronSource/Results/CMakeFiles/DoseCalculation.dir
+/home/kali/Software/Newtron source git/NeutronSource/Results/CMakeFiles/edit_cache.dir
+/home/kali/Software/Newtron source git/NeutronSource/Results/CMakeFiles/rebuild_cache.dir

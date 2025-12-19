@@ -1,3 +1,5 @@
 build/
 .vscode/
 NeutronSource.code-workspace
+Results/
+Results(Copy)/

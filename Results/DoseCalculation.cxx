@@ -24,7 +24,6 @@ private:
   Double_t MeandEdX;
   Double_t StopingPower;
   Char_t CreatorProcessName[30];
-  Char_t PVatVertexname[30];
   //************************************************************************************//
 
 public:
@@ -74,7 +73,6 @@ public:
     GetTree()->SetBranchAddress("MeandEdx", &MeandEdX);
     GetTree()->SetBranchAddress("StopPower", &StopingPower);
     GetTree()->SetBranchAddress("fCreatorProcessName", &CreatorProcessName);
-    GetTree()->SetBranchAddress("fPVatVertexname", &PVatVertexname);
     //************************************************************************************//
   }
 
@@ -115,7 +113,6 @@ public:
     std::vector<Double_t> v_MeandEdx;
     std::vector<Double_t> v_StopPower;
     std::vector<std::string> v_fCreatorProcessName;
-    std::vector<std::string> v_fPVatVertexname;
     //************************************************************************************//
 
     //************************************************************************************//
@@ -138,7 +135,6 @@ public:
       v_MeandEdx.push_back(MeandEdX);
       v_StopPower.push_back(StopingPower);
       v_fCreatorProcessName.push_back(CreatorProcessName);
-      v_fPVatVertexname.push_back(PVatVertexname);
       //   std::cout<< i << " " << InteractionType << std::endl;
       //   std::cin.get();
     }
@@ -146,32 +142,32 @@ public:
     // Create the Histograms
     //************************************************************************************//
     TString H_Title_1 =
-        TString::Format("LET Spectrum for %s (MeV / cm) ", histtitle.c_str());
-    TH1F *Hist_LET = new TH1F("Hist_LET", H_Title_1.Data(), 400, 0., 4.);
+        TString::Format("Energy dep for Alpha (MeV) ", histtitle.c_str());
+    TH1F *Hist_LET = new TH1F("alphadep", H_Title_1.Data(), 150, 0., 1.8);
     TString H_Title_2 =
-        TString::Format("TID Spectrum for %s (rad) ", histtitle.c_str());
-    TH1F *Hist_TID = new TH1F("Hist_TID", H_Title_2.Data(), 400, 0., 4.);
+        TString::Format("Energy dep for Li7 (MeV) ", histtitle.c_str());
+    TH1F *Hist_TID = new TH1F("Li7dep", H_Title_2.Data(), 150, 0., 1.8);
     TString H_Title_3 = TString::Format(
-        "Stopping Power From Table Restricted for %s (MeV / cm / g)",
+        "Energy dep for all products (MeV)",
         histtitle.c_str());
     auto Hist_StopTable =
-        new TH1F("Hist_StopTable", H_Title_3.Data(), 400, 0., 4.);
+        new TH1F("all_dep", H_Title_3.Data(), 150, 0., 1.8);
 
     TString H_Title_4 =
-        TString::Format("Stopping Power From Table Total for %s (MeV / cm / g)",
+        TString::Format("fx where alpha particles interacted",
                         histtitle.c_str());
     TH1F *Hist_StopFull =
-        new TH1F("Hist_StopFull", H_Title_4.Data(), 400, 0., 4.);
+        new TH1F("Hist_StopFull", H_Title_4.Data(), 100, 0., 4.);
 
     TString H_Title_5 = TString::Format(
-        "dE/dX From Simulations for %s (MeV / cm ) ", histtitle.c_str());
-    TH1F *DEDX_Hist = new TH1F("DEDX_Hist", H_Title_5.Data(), 400, 0., 4.);
+        "dE/dX for Alpha (MeV / cm ) ", histtitle.c_str());
+    TH1F *DEDX_Hist = new TH1F("DEDX_Hist", H_Title_5.Data(), 100, 0., 20.);
 
     TString H_Title_6 = TString::Format(
         "Stopping Power From Simulations for %s (MeV / cm / g) ",
         histtitle.c_str());
     TH1F *Hist_StopPower =
-        new TH1F("Hist_StopPower", H_Title_6.Data(), 400, 0., 4.);
+        new TH1F("Hist_StopPower", H_Title_6.Data(), 100, 0., 4.);
 
     //************************************************************************************//
     // Calculate the energy deposition per event and divide by thickness to get
@@ -193,46 +189,51 @@ public:
     Double_t mass =
         area * 0.2 * density * 1E-6; // in kg, 2 mm (0.2 cm) thickness,  Silicon
                                      // mass, 1E-6 for mg to g conversion
-
+    int count1=0;
     for (long unsigned int j = 1; j < v_evt.size(); j++) {
       if (v_evt[j] == v_evt[j - 1]) {
         edep_per_event = edep_per_event + v_edepStep[j];
         StopTable_per_event = StopTable_per_event + v_StopTable[j];
         StopFull_per_event = StopFull_per_event + v_StopFull[j];
         StopPower_per_event = StopPower_per_event + v_StopPower[j];
-        DEDX_per_event = DEDX_per_event + v_MeandEdx[j];
+        if (v_fParticleName[j] == "alpha") {
+          DEDX_per_event =  v_MeandEdx[j];
+          DEDX_Hist->Fill(DEDX_per_event); // in MeV/cm
+          Hist_StopFull->Fill(v_posParticleX[j]); 
+        }
       } else {
-
         //   std::cout << v_evt[j] << "    " << edep_per_event << std::endl;
-        Hist_LET->Fill(edep_per_event / 0.2); // in MeV/cm
-        Hist_TID->Fill(edep_per_event, edep_per_event *
-                                           (Joule_conversion / (mass)) *
-                                           100.); // in rad
+        if (v_fParticleName[j-1]=="alpha"){
+          Hist_LET->Fill(edep_per_event); // in MeV
+        }
+        if (v_fParticleName[j-1]=="Li7"){
+          Hist_TID->Fill(edep_per_event); // in MeV
+        }
+        Hist_StopTable->Fill(edep_per_event); // in MeV*cm2/g
         edep_per_event = v_edepStep[j];
 
-        Hist_StopTable->Fill(StopTable_per_event); // in MeV*cm2/g
-        StopTable_per_event = v_StopTable[j];
+        if (v_fParticleName[j-1]=="alpha" or v_fParticleName[j-1]=="Li7"){
+          count1++;
+        }
+        //StopTable_per_event = v_StopTable[j];
 
-        Hist_StopFull->Fill(StopFull_per_event); // in MeV*cm2/g
-        StopFull_per_event = v_StopFull[j];
+        
+        //StopFull_per_event = v_StopFull[j];
 
         Hist_StopPower->Fill(StopPower_per_event); // in MeV*cm2/g
         StopPower_per_event = v_StopPower[j];
-
-        DEDX_Hist->Fill(DEDX_per_event); // in MeV/cm
-        DEDX_per_event = v_MeandEdx[j];
       }
     } // End of the loop over all entries
     //************************************************************************************//
-
+    printf("Number of alpha and Li7 events: %d\n",count1);
     //************************************************************************************//
     // Normalize the histogram
     // Neutron source strength is 2.8E10 n/s
     // Number of primaries created in the simulation is 10E7
     //************************************************************************************//
-    double scale = 2800.0; // scale factor to get per second rate
+    double scale = 1.0; // scale factor to get per second rate
     Hist_LET->Scale(scale);
-    Hist_TID->Scale(scale * 1E6); // It is also scaled to urad
+    Hist_TID->Scale(scale); // It is also scaled to urad
     Hist_StopTable->Scale(scale);
     Hist_StopFull->Scale(scale);
     Hist_StopPower->Scale(scale);
@@ -244,24 +245,25 @@ public:
     //************************************************************************************/
     TCanvas *c1 = new TCanvas("c1", "c1", 1368, 1126);
     gStyle->SetOptStat(0);
-    Hist_LET->GetXaxis()->SetTitle("MeV/cm");
+    Hist_LET->GetXaxis()->SetTitle("MeV");
     Hist_LET->GetXaxis()->SetTickLength(0.02);
     Hist_LET->GetXaxis()->SetLabelSize(0.03);
-    Hist_LET->GetYaxis()->SetTitle("# particles per second (Normalized)");
+    Hist_LET->GetYaxis()->SetTitle("# particle count");
     //   Hist_LET->GetYaxis()->SetMoreLogLabels();
     Hist_LET->GetYaxis()->SetLabelSize(0.03);
     //   Hist_LET->GetYaxis()->SetMaxDigits(4);
     Hist_LET->SetLineWidth(2);
+    Hist_LET->SetLineColor(kGreen + 2);
     gPad->SetLogy(1);
     //   Hist_LET->GetYaxis()->SetMoreLogLabels(false);
     // Center the axis titles
     Hist_LET->GetXaxis()->CenterTitle(true);
     Hist_LET->GetYaxis()->CenterTitle(true);
-    Hist_LET->Draw("HISTE"); // draw with error bars
+    Hist_LET->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_1 =
-        TString::Format("LET_Spectrum_%s.png", histoutname.c_str());
+        TString::Format("Alpha_Spectrum_%s.png", histoutname.c_str());
     if (Savecanvas)
       c1->SaveAs(Hist_out_name_1.Data());
     //************************************************************************************/
@@ -272,7 +274,7 @@ public:
     Hist_TID->GetXaxis()->SetTitle("Energy (MeV)");
     Hist_TID->GetXaxis()->SetTickLength(0.02);
     Hist_TID->GetXaxis()->SetLabelSize(0.03);
-    Hist_TID->GetYaxis()->SetTitle("TID (#murad)");
+    Hist_TID->GetYaxis()->SetTitle("# particle count");
     //   Hist_TID->GetYaxis()->SetMoreLogLabels();
     Hist_TID->GetYaxis()->SetLabelSize(0.03);
     Hist_TID->GetYaxis()->SetMaxDigits(4);
@@ -280,11 +282,13 @@ public:
     // Center the axis titles
     Hist_TID->GetXaxis()->CenterTitle(true);
     Hist_TID->GetYaxis()->CenterTitle(true);
-    Hist_TID->Draw("HISTE"); // draw with error bars
+    Hist_TID->SetLineColor(kGreen + 2);
+    gPad->SetLogy(1);
+    Hist_TID->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_2 =
-        TString::Format("TID_Spectrum_%s.png", histoutname.c_str());
+        TString::Format("Li_Spectrum_%s.png", histoutname.c_str());
     if (Savecanvas)
       c2->SaveAs(Hist_out_name_2.Data());
     //************************************************************************************/
@@ -293,10 +297,10 @@ public:
     //************************************************************************************/
     TCanvas *c3 = new TCanvas("c3", "c3", 1368, 1126);
     gStyle->SetOptStat(0);
-    Hist_StopTable->GetXaxis()->SetTitle("MeV * cm2 / g");
+    Hist_StopTable->GetXaxis()->SetTitle("MeV");
     Hist_StopTable->GetXaxis()->SetTickLength(0.02);
     Hist_StopTable->GetXaxis()->SetLabelSize(0.03);
-    Hist_StopTable->GetYaxis()->SetTitle("# particles per second (Normalized)");
+    Hist_StopTable->GetYaxis()->SetTitle("# particle count");
     //   Hist_StopTable->GetYaxis()->SetMoreLogLabels();
     Hist_StopTable->GetYaxis()->SetLabelSize(0.03);
     Hist_StopTable->GetYaxis()->SetMaxDigits(4);
@@ -304,11 +308,13 @@ public:
     // Center the axis titles
     Hist_StopTable->GetXaxis()->CenterTitle(true);
     Hist_StopTable->GetYaxis()->CenterTitle(true);
-    Hist_StopTable->Draw("HISTE"); // draw with error bars
+    Hist_StopTable->SetLineColor(kGreen + 2);
+    gPad->SetLogy(1);
+    Hist_StopTable->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_3 =
-        TString::Format("StoppingTable_Spectrum_%s.png", histoutname.c_str());
+        TString::Format("All_Spectrum_%s.png", histoutname.c_str());
     if (Savecanvas)
       c3->SaveAs(Hist_out_name_3.Data());
 
@@ -318,10 +324,10 @@ public:
     //************************************************************************************/
     TCanvas *c4 = new TCanvas("c4", "c4", 1368, 1126);
     gStyle->SetOptStat(0);
-    Hist_StopFull->GetXaxis()->SetTitle("MeV * cm2 / g");
+    Hist_StopFull->GetXaxis()->SetTitle("mm");
     Hist_StopFull->GetXaxis()->SetTickLength(0.02);
     Hist_StopFull->GetXaxis()->SetLabelSize(0.03);
-    Hist_StopFull->GetYaxis()->SetTitle("# particles per second (Normalized)");
+    Hist_StopFull->GetYaxis()->SetTitle("# interaction count");
     //   Hist_StopFull->GetYaxis()->SetMoreLogLabels();
     Hist_StopFull->GetYaxis()->SetLabelSize(0.03);
     Hist_StopFull->GetYaxis()->SetMaxDigits(4);
@@ -329,7 +335,8 @@ public:
     // Center the axis titles
     Hist_StopFull->GetXaxis()->CenterTitle(true);
     Hist_StopFull->GetYaxis()->CenterTitle(true);
-    Hist_StopFull->Draw("HISTE"); // draw with error bars
+    Hist_StopFull->SetLineColor(kGreen + 2);
+    Hist_StopFull->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_4 =
@@ -342,10 +349,10 @@ public:
     //************************************************************************************/
     TCanvas *c5 = new TCanvas("c5", "c5", 1368, 1126);
     gStyle->SetOptStat(0);
-    Hist_StopPower->GetXaxis()->SetTitle("MeV * cm2 / g");
+    Hist_StopPower->GetXaxis()->SetTitle("cm");
     Hist_StopPower->GetXaxis()->SetTickLength(0.02);
     Hist_StopPower->GetXaxis()->SetLabelSize(0.03);
-    Hist_StopPower->GetYaxis()->SetTitle("# particles per second (Normalized)");
+    Hist_StopPower->GetYaxis()->SetTitle("# particle count");
     //   Hist_StopPower->GetYaxis()->SetMoreLogLabels();
     Hist_StopPower->GetYaxis()->SetLabelSize(0.03);
     Hist_StopPower->GetYaxis()->SetMaxDigits(4);
@@ -353,7 +360,8 @@ public:
     // Center the axis titles
     Hist_StopPower->GetXaxis()->CenterTitle(true);
     Hist_StopPower->GetYaxis()->CenterTitle(true);
-    Hist_StopPower->Draw("HISTE"); // draw with error bars
+    Hist_StopPower->SetLineColor(kGreen + 2);
+    Hist_StopPower->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_5 =
@@ -370,7 +378,7 @@ public:
     DEDX_Hist->GetXaxis()->SetTitle("MeV / cm");
     DEDX_Hist->GetXaxis()->SetTickLength(0.02);
     DEDX_Hist->GetXaxis()->SetLabelSize(0.03);
-    DEDX_Hist->GetYaxis()->SetTitle("# particles per second (Normalized)");
+    DEDX_Hist->GetYaxis()->SetTitle("# particle count");
     //   DEDX_Hist->GetYaxis()->SetMoreLogLabels();
     DEDX_Hist->GetYaxis()->SetLabelSize(0.03);
     DEDX_Hist->GetYaxis()->SetMaxDigits(4);
@@ -378,7 +386,8 @@ public:
     // Center the axis titles
     DEDX_Hist->GetXaxis()->CenterTitle(true);
     DEDX_Hist->GetYaxis()->CenterTitle(true);
-    DEDX_Hist->Draw("HISTE"); // draw with error bars
+    DEDX_Hist->SetLineColor(kGreen + 2);
+    DEDX_Hist->Draw("HIST"); // draw with error bars
 
     // save the canvas
     TString Hist_out_name_6 = TString::Format(
@@ -513,8 +522,8 @@ public:
     //************************************************************************************//
     // Print the results
     //************************************************************************************//
-    std::cout << "Total TID in the " << histtitle.c_str()
-              << " slab: " << TID_Total * scale * 1E6 << " urad" << std::endl;
+    std::cout << "Total particles in the " << histtitle.c_str()
+              << " slab: " << count1 << " urad" << std::endl;
     std::cout << "Total TID e-&e+ in the " << histtitle.c_str()
               << " slab: " << TID_electron * scale * 1E6 << " urad"
               << std::endl;

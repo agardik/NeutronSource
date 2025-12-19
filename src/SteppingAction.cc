@@ -381,8 +381,10 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->AddNtupleRow(1);
   }
   // If the particle is interacted with the helium gas.
-  if (thePostPVname == "phygasBox" && fParticleName != "neutron") {
+  if (thePostPVname == "phygasBox" && fParticleName != "neutron" && thePrePVname == "phygasBox") {
     //  // If no energy deposit, return1
+    if (thePrePVname != "phygasBox")
+      return;
     if (edepStep <= 0.)
       return;
         // // Stopping Power from input Table.

@@ -536,7 +536,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
     if (k==2){
       continue;
     }
-    gasboxsizeX[k]=0.995*(-(fXfront[k] + 1 * fAbsorThickness[k])+fXfront[k+1])*0.5;
+    gasboxsizeX[k]=(-(fXfront[k] + 1 * fAbsorThickness[k])+fXfront[k+1])*0.5;
   }
   G4double gasboxsizeY = 0.5 * (fAbsorSizeY);
   G4double gasboxsizeZ = 0.5 * (fAbsorSizeZ);
@@ -553,7 +553,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
                           fHeCO2Material,            // material
                           "loggasBox"); // name
   auto phygasBox = new G4PVPlacement(
-      0, {(fXfront[k] + 1.001 * fAbsorThickness[k])+gasboxsizeX[k], 0, 0}, loggasBox,
+      0, {(fXfront[k] +  fAbsorThickness[k])+gasboxsizeX[k], 0, 0}, loggasBox,
       "phygasBox", lWorld, false, k,true);
 
   // Set visualization attributes
