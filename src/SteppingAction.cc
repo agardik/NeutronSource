@@ -398,11 +398,13 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     // }
     // You can now use the material object, for example, to get its name
     G4String materialName = postmaterial->GetName();
-    G4double density = postmaterial->GetDensity() / (g / cm3);
+    G4double density = postmaterial->GetDensity()/(g/cm3);
+    //std::cout << "Name of material: " << materialName << std::endl;
+    //std::cout << "Density of material: " << density<< " ??" << std::endl;
 
     // Get step length
-    G4double stepLength = aStep->GetStepLength() / cm;
-    // G4cout << "Step length: " << stepLength << " mm" << G4endl;
+    G4double stepLength = aStep->GetStepLength()/cm;
+    //G4cout << "Step length: " << stepLength << " ??" << G4endl;
 
     // Kinetic energy of the particle after each step
     G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
@@ -447,13 +449,13 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->FillNtupleSColumn(7, 9, targetIsotope);
     analysisManager->FillNtupleDColumn(7, 10, edepStep);
     analysisManager->FillNtupleDColumn(
-          7, 11, stopTable / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+          7, 11, stopTable);
     analysisManager->FillNtupleDColumn(
-          7, 12, stopFull / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+          7, 12, stopFull);
     analysisManager->FillNtupleDColumn(7, 13,
-                                         meandEdx / (CLHEP::MeV / CLHEP::cm));
+                                         meandEdx);
     analysisManager->FillNtupleDColumn(
-          7, 14, stopPower / (CLHEP::MeV * CLHEP::cm2 / CLHEP::g));
+          7, 14, stopPower );
     analysisManager->FillNtupleSColumn(7, 15, creatorProcessName);
     analysisManager->FillNtupleSColumn(7, 16, PVatVertexname);    
     analysisManager->AddNtupleRow(7);
@@ -530,19 +532,19 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     // }
     // You can now use the material object, for example, to get its name
     G4String materialName = postmaterial->GetName();
-    G4double density = postmaterial->GetDensity() / (g / cm3);
+    G4double density = postmaterial->GetDensity() ;
 
     // Get step length
-    G4double stepLength = aStep->GetStepLength() / cm;
+    G4double stepLength = aStep->GetStepLength() ;
     // G4cout << "Step length: " << stepLength << " mm" << G4endl;
 
     // Kinetic energy of the particle after each step
-    G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
+    G4double kinEnergy = theTrack->GetKineticEnergy() ;
 
     G4double postKineticEnergy =
-        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
+        aStep->GetPostStepPoint()->GetKineticEnergy() ;
     G4double preKineticEnergy =
-        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
+        aStep->GetPreStepPoint()->GetKineticEnergy() ;
 
     // current step number
     G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();

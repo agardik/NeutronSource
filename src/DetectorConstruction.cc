@@ -208,7 +208,7 @@ void DetectorConstruction::DefineMaterials() {
   G4double density = Hedensity*Hefraction+CO2density*CO2fraction;  // adjust for your pressure/temperature
 
   // Create material with 2 components
-  G4Material* HeCO2 = new G4Material("HeCO2", density, 2);
+  G4Material* HeCO2 = new G4Material("HeCO2", density, 2,kStateGas);
 
   // Fractions by mass OR by volume (commonly volume fractions)
   HeCO2->AddMaterial(He,  Hefraction);   // 70% Helium
