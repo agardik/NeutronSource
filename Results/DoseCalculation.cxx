@@ -161,7 +161,7 @@ public:
 
     TString H_Title_5 = TString::Format(
         "dE/dX for Alpha (MeV / cm ) ", histtitle.c_str());
-    TH1F *DEDX_Hist = new TH1F("DEDX_Hist", H_Title_5.Data(), 100, 0., 20.);
+    TH1F *DEDX_Hist = new TH1F("DEDX_Hist", H_Title_5.Data(), 100, 0., 2.);
 
     TString H_Title_6 = TString::Format(
         "Stopping Power From Simulations for %s (MeV / cm / g) ",
