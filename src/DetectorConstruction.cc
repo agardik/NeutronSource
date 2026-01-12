@@ -452,7 +452,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1];
       break;
     case 4:
-      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 0.17 * cm;
+      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 1.7 * mm;
       break;
     case 5:
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 0.1 * mm;
