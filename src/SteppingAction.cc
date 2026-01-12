@@ -461,6 +461,82 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->AddNtupleRow(7);
   }
 
+  // alphas generated.
+  if (fParticleName == "alpha") {
+        // // Stopping Power from input Table.
+
+    // Get the material at the pre-step point
+    G4Material *prematerial = thePrePoint->GetMaterial();
+    // Get the material at the post-step point
+    G4Material *postmaterial = thePostPoint->GetMaterial();
+    //   G4cout << "Next volume is  nullptr!" << G4endl;
+    //   return;
+    // }
+    // You can now use the material object, for example, to get its name
+    G4String materialName = postmaterial->GetName();
+    G4double density = postmaterial->GetDensity()/(g/cm3);
+    //std::cout << "Name of material: " << materialName << std::endl;
+    //std::cout << "Density of material: " << density<< " ??" << std::endl;
+
+    // Get step length
+    G4double stepLength = aStep->GetStepLength()/cm;
+    //G4cout << "Step length: " << stepLength << " ??" << G4endl;
+
+    // Kinetic energy of the particle after each step
+    G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
+
+    G4double postKineticEnergy =
+        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
+    G4double preKineticEnergy =
+        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
+
+    // current step number
+    G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
+
+    G4EmCalculator emCalculator;
+    G4double dEdxTable = 0., dEdxFull = 0.;
+
+    if (particleType->GetPDGCharge() != 0.) {
+      dEdxTable =
+          emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
+      dEdxFull = emCalculator.ComputeTotalDEDX(preKineticEnergy, particleType,
+                                               postmaterial);
+    }
+    G4double stopTable = dEdxTable / density;
+    G4double stopFull = dEdxFull / density;
+
+    // Stopping Power from simulation.
+    //
+    if (stepLength<=0) {
+      return;
+    }
+    G4double meandEdx = edepStep / stepLength;
+    G4double stopPower = meandEdx / density;
+    // data of the interaction products
+    analysisManager->FillNtupleIColumn(8, 0, evt);
+    analysisManager->FillNtupleSColumn(8, 1, fParticleName);
+    analysisManager->FillNtupleIColumn(8, 2, part_parent_ID);
+    analysisManager->FillNtupleIColumn(8, 3, part_ID);
+    analysisManager->FillNtupleIColumn(8, 4, StepNumberr);
+    analysisManager->FillNtupleDColumn(8, 5, posParticle[0] / mm);
+    analysisManager->FillNtupleDColumn(8, 6, posParticle[1] / mm);
+    analysisManager->FillNtupleDColumn(8, 7, posParticle[2] / mm);
+    analysisManager->FillNtupleSColumn(8, 8, interactionType);
+    analysisManager->FillNtupleSColumn(8, 9, targetIsotope);
+    analysisManager->FillNtupleDColumn(8, 10, edepStep);
+    analysisManager->FillNtupleDColumn(
+          8, 11, stopTable);
+    analysisManager->FillNtupleDColumn(
+          8, 12, stopFull);
+    analysisManager->FillNtupleDColumn(8, 13,
+                                         meandEdx);
+    analysisManager->FillNtupleDColumn(
+          8, 14, stopPower );
+    analysisManager->FillNtupleSColumn(8, 15, creatorProcessName);
+    analysisManager->FillNtupleSColumn(8, 16, PVatVertexname);    
+    analysisManager->AddNtupleRow(8);
+  }
+
   // if (!step->GetTrack()->GetNextVolume())
   //  Check if the particle is leaving the world volume
   //  Save the information of the particle exiting the world volume

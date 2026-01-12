@@ -51,6 +51,7 @@ set(NeutronSource_SCRIPTS
     simfront.mac
     simback.mac
     vis.mac
+    simvis.mac
   )
 
 foreach(_script ${NeutronSource_SCRIPTS})
