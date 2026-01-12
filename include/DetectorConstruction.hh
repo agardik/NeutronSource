@@ -35,6 +35,7 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
+#include "G4UserLimits.hh"
 
 class G4LogicalVolume;
 class G4Material;
@@ -106,6 +107,7 @@ private:
   G4VPhysicalVolume *fPWorld = nullptr;
 
   DetectorMessenger *fDetectorMessenger = nullptr;
+  G4UserLimits *myStepLimit = nullptr;
 
   G4int fNbOfAbsor = 0;
   G4Material *fAbsorMaterial_Slab[kMaxAbsor];

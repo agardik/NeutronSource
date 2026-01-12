@@ -50,6 +50,7 @@
 #include "G4Tubs.hh"
 #include "G4UnitsTable.hh"
 #include "G4VisAttributes.hh"
+#include "G4UserLimits.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::DetectorConstruction() {
@@ -63,6 +64,8 @@ DetectorConstruction::DetectorConstruction() {
   fAbsorRadius = 15 * mm;
   fAbsorLength = 60 * mm;
   fContainThickness = 2.4 * mm;
+  G4double maxStep = 1 * mm;
+  myStepLimit = new G4UserLimits(maxStep);
   DefineMaterials();
   SetAbsorMaterial("BeO");
   SetContainMaterial("Stainless-Steel");
@@ -388,6 +391,10 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
     G4LogicalVolume *logicAbsor = new G4LogicalVolume(solidAbsor, // solid
                                                       material,   // material
                                                       matname);   // name
+    //set step limit for the B4C layer
+    if (matname == "B4C_enriched") {
+        logicAbsor->SetUserLimits(new G4UserLimits(0.01*um));
+    }
 
     // fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1];
 
@@ -445,7 +452,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1];
       break;
     case 4:
-      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 1.7 * mm;
+      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 0.17 * cm;
       break;
     case 5:
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 0.1 * mm;
@@ -552,6 +559,9 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       new G4LogicalVolume(SolidgasBox,          // shape
                           fHeCO2Material,            // material
                           "loggasBox"); // name
+  loggasBox->SetUserLimits(
+    new G4UserLimits(0.01*mm)
+  );
   auto phygasBox = new G4PVPlacement(
       0, {(fXfront[k] +  fAbsorThickness[k])+gasboxsizeX[k], 0, 0}, loggasBox,
       "phygasBox", lWorld, false, k,true);

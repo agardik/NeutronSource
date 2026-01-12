@@ -55,6 +55,7 @@ class PhysicsList : public G4VModularPhysicsList
     G4VPhysicsConstructor* fElectromagnetic = nullptr;
     G4VPhysicsConstructor* fDecay = nullptr;
     G4VPhysicsConstructor* fRadioactiveDecay = nullptr;
+    G4VPhysicsConstructor* fsteplimiter = nullptr;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -57,6 +57,9 @@
 #include "G4StoppingPhysics.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4UnitsTable.hh"
+#include "G4StepLimiter.hh"
+#include "G4StepLimiterPhysics.hh"
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -119,6 +122,9 @@ PhysicsList::PhysicsList()
   fRadioactiveDecay = new RadioactiveDecayPhysics();
   ////fRadioactiveDecay = new G4RadioactiveDecayPhysics();
   RegisterPhysics(fRadioactiveDecay);
+  // Step limiter
+  fsteplimiter = new G4StepLimiterPhysics();
+  RegisterPhysics(fsteplimiter);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -139,6 +145,7 @@ void PhysicsList::ConstructProcess()
   fElectromagnetic->ConstructProcess();
   fDecay->ConstructProcess();
   fRadioactiveDecay->ConstructProcess();
+  fsteplimiter->ConstructProcess();
 
   // example of GetHadronicModel (due to bug in QGSP_BIC_AllHP)
   //
