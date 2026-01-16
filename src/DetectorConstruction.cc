@@ -559,6 +559,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       new G4LogicalVolume(SolidgasBox,          // shape
                           fHeCO2Material,            // material
                           "loggasBox"); // name
+  // Set small step limit for gas volume
   loggasBox->SetUserLimits(
     new G4UserLimits(0.01*mm)
   );

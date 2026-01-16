@@ -227,7 +227,12 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   // energy deposit
   //
   // G4double edepStep = aStep->GetTotalEnergyDeposit() / CLHEP::keV;
-  G4double edepStep = aStep->GetTotalEnergyDeposit() / CLHEP::MeV;
+  //G4double edepStep = aStep->GetTotalEnergyDeposit() / CLHEP::MeV;
+      G4double postKineticEnergy1 =
+        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
+    G4double preKineticEnergy1 =
+        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
+    G4double edepStep = preKineticEnergy1 - postKineticEnergy1;
 
   // if (aStep->GetTrack()->GetNextVolume()) {
   //   // // Stopping Power from input Table.
@@ -413,7 +418,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
         aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
     G4double preKineticEnergy =
         aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
-
+    //G4double edepStep = preKineticEnergy - postKineticEnergy;
     // current step number
     G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
 

@@ -1,6 +1,7 @@
 #include "TreeReader.h"
 #include <TCanvas.h>
 #include <TH1F.h>
+#include <TH3F.h>
 #include <TFile.h>
 #include <TROOT.h>
 #include <TStyle.h>
@@ -8,6 +9,10 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
+#include <TPolyLine3D.h>
+#include <TLegend.h>
+#include <TGraph.h>
+
 
 // A derived class for specific analysis
 class DoseCalculation : public TreeReader {
@@ -137,18 +142,47 @@ public:
              "Alpha angular distribution;cos(#theta);Counts",
              50, -1.0, 1.0);
 
-
+    
     Double_t edep_per_event = v_edepStep[0];
     Double_t StopPower_per_event = v_StopPower[0];
     bool have_first_step = false;
     bool have_first_alpha = true;
     double x0=0, y0=0, z0=0;
+    // ---- Alpha track selection parameters ----
+    const double ALPHA_EDEP_MIN = 1.24;   // MeV (adjust)
+    const double ALPHA_EDEP_MAX = 1.4;   // MeV (adjust)
+    const int MAX_ALPHA_TRACKS = 30;
+    // ---- Storage for selected alpha tracks ----
+    std::vector<std::vector<double>> alpha_x;
+    std::vector<std::vector<double>> alpha_y;
+    std::vector<std::vector<double>> alpha_z;
+
+    alpha_x.reserve(MAX_ALPHA_TRACKS);
+    alpha_y.reserve(MAX_ALPHA_TRACKS);
+    alpha_z.reserve(MAX_ALPHA_TRACKS);
+
+    // Temporary storage for current event
+    std::vector<double> tmp_x, tmp_y, tmp_z;
+
+    // Storage for all selected alpha tracks for track length edep calculation
+    std::vector<double> alpha_track_lengths;
+    std::vector<double> alpha_total_edep;
+
+
+
 
 
     int count1 = 0;
     // Loop over all entries
     for (size_t j = 1; j < v_evt.size(); j++) {
       if (v_evt[j] == v_evt[j - 1]) {
+        // ---- Store alpha step positions ----
+        if (v_fParticleName[j] == "alpha") {
+          tmp_x.push_back(v_posParticleX[j]);
+          tmp_y.push_back(v_posParticleY[j]);
+          tmp_z.push_back(v_posParticleZ[j]);
+        }
+
         // ----- Alpha angular distribution -----
         if (v_fParticleName[j] == "alpha" && have_first_alpha) {
 
@@ -185,11 +219,33 @@ public:
         have_first_alpha = true;
         if (v_fParticleName[j - 1] == "alpha")
           Hist_LET->Fill(edep_per_event);
+              // Apply energy band cut
+          if (edep_per_event >= ALPHA_EDEP_MIN &&
+              edep_per_event <= ALPHA_EDEP_MAX &&
+              (int)alpha_x.size() < MAX_ALPHA_TRACKS) {
+
+            alpha_x.push_back(tmp_x);
+            alpha_y.push_back(tmp_y);
+            alpha_z.push_back(tmp_z);
+          }
         if (v_fParticleName[j - 1] == "Li7")
           Hist_TID->Fill(edep_per_event);
 
         Hist_StopTable->Fill(edep_per_event);
         Hist_StopPower->Fill(StopPower_per_event);
+
+        // --- Compute track length for previous alpha event ---
+        if (v_fParticleName[j - 1] == "alpha" && tmp_x.size() > 1) {
+          double trackLength = 0.0;
+          for (size_t k = 1; k < tmp_x.size(); k++) {
+            double dx = tmp_x[k] - tmp_x[k - 1];
+            double dy = tmp_y[k] - tmp_y[k - 1];
+            double dz = tmp_z[k] - tmp_z[k - 1];
+            trackLength += std::sqrt(dx*dx + dy*dy + dz*dz);
+          }
+          alpha_track_lengths.push_back(trackLength);
+          alpha_total_edep.push_back(edep_per_event);
+        }
 
         if (v_fParticleName[j - 1] == "alpha" ||
             v_fParticleName[j - 1] == "Li7")
@@ -197,6 +253,9 @@ public:
 
         edep_per_event = v_edepStep[j];
         StopPower_per_event = v_StopPower[j];
+        tmp_x.clear();
+        tmp_y.clear();
+        tmp_z.clear();
       }
     }
 
@@ -208,6 +267,160 @@ public:
     Hist_StopPower->Write();
     DEDX_Hist->Write();
     Hist_AlphaAngle->Write();
+    // ---------- Plot selected alpha tracks 3d----------
+    // ---------- Plot selected alpha tracks with axes ----------
+    if (!alpha_x.empty()) {
+
+      TCanvas *cTracks = new TCanvas("cAlphaTracks",
+                                    "Alpha Tracks (Energy Selected)",
+                                    800, 600);
+      cTracks->cd();
+
+      // ---- Determine plot bounds ----
+      double xmin =  1e9, xmax = -1e9;
+      double ymin =  1e9, ymax = -1e9;
+      double zmin =  1e9, zmax = -1e9;
+
+      for (size_t i = 0; i < alpha_x.size(); i++) {
+        for (size_t p = 0; p < alpha_x[i].size(); p++) {
+          xmin = std::min(xmin, alpha_x[i][p]);
+          xmax = std::max(xmax, alpha_x[i][p]);
+          ymin = std::min(ymin, alpha_y[i][p]);
+          ymax = std::max(ymax, alpha_y[i][p]);
+          zmin = std::min(zmin, alpha_z[i][p]);
+          zmax = std::max(zmax, alpha_z[i][p]);
+        }
+      }
+
+      // Add margins
+      double dx = 0.1 * (xmax - xmin);
+      double dy = 0.1 * (ymax - ymin);
+      double dz = 0.1 * (zmax - zmin);
+
+      // ---- 3D frame with axes ----
+      TH3F *frame = new TH3F("frame",
+                            "Alpha tracks;X;Y;Z",
+                            10, xmin - dx, xmax + dx,
+                            10, ymin - dy, ymax + dy,
+                            10, zmin - dz, zmax + dz);
+
+      frame->SetStats(0);
+      frame->Draw("BOX");
+
+      // ---- Draw tracks ----
+      for (size_t i = 0; i < alpha_x.size(); i++) {
+        int n = alpha_x[i].size();
+        if (n < 2) continue;
+
+        TPolyLine3D *pl = new TPolyLine3D(n);
+        for (int p = 0; p < n; p++) {
+          pl->SetPoint(p,
+                      alpha_x[i][p],
+                      alpha_y[i][p],
+                      alpha_z[i][p]);
+        }
+
+        pl->SetLineWidth(2);
+        pl->SetLineColor(1 + i % 9);
+        pl->Draw("same");
+      }
+
+      cTracks->Write();
+    }
+
+
+    // ---------- XZ projection of selected alpha tracks ----------
+    if (!alpha_x.empty()) {
+
+      TCanvas *cTracksXZ = new TCanvas("cAlphaTracksXZ",
+                                      "Alpha Tracks XZ Projection",
+                                      800, 600);
+      cTracksXZ->cd();
+
+      TLegend *legXZ = new TLegend(0.65, 0.65, 0.88, 0.88);
+      legXZ->SetBorderSize(0);
+
+      bool first = true;
+
+      for (size_t i = 0; i < alpha_x.size(); i++) {
+        int n = alpha_x[i].size();
+        if (n < 2) continue;
+
+        TGraph *gr = new TGraph(n);
+        for (int p = 0; p < n; p++) {
+          gr->SetPoint(p,
+                      alpha_x[i][p],  // X
+                      alpha_z[i][p]); // Z
+        }
+
+        gr->SetLineWidth(2);
+        gr->SetLineColor(1 + i % 9);
+        gr->SetMarkerStyle(20);
+        gr->SetMarkerSize(0.6);
+        gr->SetMarkerColor(1 + i % 9);
+
+        if (first) {
+          gr->SetTitle("Alpha tracks XZ projection;X;Z");
+          gr->Draw("AL");
+
+          // ---- SET AXIS RANGES HERE ----
+          gr->GetXaxis()->SetLimits(1.2, 3.1);  // X range
+          gr->GetYaxis()->SetRangeUser(-16, 16); // Z range
+
+          first = false;
+        } else {
+          gr->Draw("L same");
+        }
+
+
+        legXZ->AddEntry(gr,
+                        Form("Alpha track %zu", i + 1),
+                        "l");
+      }
+
+      legXZ->Draw();
+      cTracksXZ->Write();
+    }
+    // -----------------------------------------------
+    // ---------- Track Length vs Total Edep ----------
+    if (!alpha_track_lengths.empty()) {
+      TCanvas *cLengthEdep = new TCanvas("cLengthEdep",
+                                        "Alpha Track Length vs Total Edep",
+                                        800, 600);
+      cLengthEdep->cd();
+
+      // --- Determine axis ranges ---
+      double minLength = *std::min_element(alpha_track_lengths.begin(), alpha_track_lengths.end());
+      double maxLength = *std::max_element(alpha_track_lengths.begin(), alpha_track_lengths.end());
+      double minEdep  = *std::min_element(alpha_total_edep.begin(), alpha_total_edep.end());
+      double maxEdep  = *std::max_element(alpha_total_edep.begin(), alpha_total_edep.end());
+
+      // Add 5-10% margin
+      double xMargin = 0.05 * (maxLength - minLength);
+      double yMargin = 0.05 * (maxEdep - minEdep);
+
+      // --- Create graph ---
+      int nPoints = alpha_track_lengths.size();
+      TGraph *grLengthEdep = new TGraph(nPoints);
+      grLengthEdep->SetTitle("Alpha Track Length vs Total Edep;Track length (mm);Total Edep (MeV)");
+      grLengthEdep->SetMarkerStyle(20);
+      grLengthEdep->SetMarkerSize(0.8);
+      grLengthEdep->SetMarkerColor(kBlue);
+
+      for (int i = 0; i < nPoints; i++) {
+        grLengthEdep->SetPoint(i, alpha_track_lengths[i], alpha_total_edep[i]);
+      }
+
+      // --- Draw with explicit axis ranges ---
+      grLengthEdep->GetXaxis()->SetLimits(minLength - xMargin, maxLength + xMargin);
+      grLengthEdep->SetMinimum(minEdep - yMargin);
+      grLengthEdep->SetMaximum(maxEdep + yMargin);
+
+      grLengthEdep->Draw("AP"); // A=axes, P=points
+      cLengthEdep->Write();
+    }
+
+    // -----------------------------------------------
 
 
     rootFile->Close();
