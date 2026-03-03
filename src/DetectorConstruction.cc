@@ -51,6 +51,7 @@
 #include "G4UnitsTable.hh"
 #include "G4VisAttributes.hh"
 #include "G4UserLimits.hh"
+#include "G4GDMLParser.hh"
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::DetectorConstruction() {
@@ -69,6 +70,10 @@ DetectorConstruction::DetectorConstruction() {
   DefineMaterials();
   SetAbsorMaterial("BeO");
   SetContainMaterial("Stainless-Steel");
+  fReadFile = "test.gdml";
+  fWriteFile = "wtest.gdml";
+  fStepFile = "mbb";
+  fWritingChoice = 1;
   fDetectorMessenger = new DetectorMessenger(this);
 }
 
@@ -79,7 +84,66 @@ DetectorConstruction::~DetectorConstruction() { delete fDetectorMessenger; }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4VPhysicalVolume *DetectorConstruction::Construct() {
-  return ConstructVolumes();
+    if (fWritingChoice == 0) {
+    // **** LOOK HERE*** FOR READING GDML FILES
+    //
+
+    // ACTIVATING OVERLAP CHECK when read volumes are placed.
+    // Can take long time in case of complex geometries
+    //
+    fParser.SetOverlapCheck(true);
+
+    fParser.Read(fReadFile);
+
+    // READING GDML FILES OPTION: 2nd Boolean argument "Validate".
+    // Flag to "false" disables check with the Schema when reading GDML file.
+    // See the GDML Documentation for more information.
+    //
+    // fParser.Read(fReadFile,false);
+
+    // Prints the material information
+    //
+    G4cout << *(G4Material::GetMaterialTable()) << G4endl;
+
+    // Giving World Physical Volume from GDML Parser
+    //
+    fPWorld = fParser.GetWorldVolume();
+    return fPWorld;
+  } else {
+    // **** LOOK HERE*** FOR CONSTRUCTING GEOMETRY WITH C++ CODE
+    //
+    return ConstructVolumes();
+  }
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+//
+// SetReadFile
+//
+void DetectorConstruction::SetReadFile(const G4String& File)
+{
+  fReadFile = File;
+  fWritingChoice = 0;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+//
+// SetWriteFile
+//
+void DetectorConstruction::SetWriteFile(const G4String& File)
+{
+  fWriteFile = File;
+  fWritingChoice = 1;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+//
+// SetStepFile
+//
+void DetectorConstruction::SetStepFile(const G4String& File)
+{
+  fStepFile = File;
+  fWritingChoice = 3;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -393,7 +457,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
                                                       matname);   // name
     //set step limit for the B4C layer
     if (matname == "B4C_enriched") {
-        logicAbsor->SetUserLimits(new G4UserLimits(0.01*um));
+        logicAbsor->SetUserLimits(new G4UserLimits(0.001*um));
     }
 
     // fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1];
@@ -452,7 +516,7 @@ G4VPhysicalVolume *DetectorConstruction::ConstructVolumes() {
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1];
       break;
     case 4:
-      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 1.7 * mm;
+      fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 1.7/3 * mm;
       break;
     case 5:
       fXfront[k] = fXfront[k - 1] + fAbsorThickness[k - 1] + 0.1 * mm;

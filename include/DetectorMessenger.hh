@@ -70,6 +70,9 @@ private:
  G4UIcommand *fAbsorCmd = nullptr;
   G4UIcmdWithADoubleAndUnit *fSizeYCmd = nullptr;
   G4UIcmdWithADoubleAndUnit *fSizeZCmd = nullptr;
+  G4UIcmdWithAString *fTheReadCommand = nullptr;
+  G4UIcmdWithAString *fTheWriteCommand = nullptr;
+  G4UIcmdWithAString *fTheStepCommand = nullptr;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

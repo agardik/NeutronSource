@@ -152,6 +152,24 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction *Det)
   fSizeZCmd->SetToBeBroadcasted(false);
 
   // ###################################################################################//
+  fTheReadCommand = new G4UIcmdWithAString("/testhadr/det/readFile", this);
+  fTheReadCommand->SetGuidance("READ GDML file with given name");
+  fTheReadCommand->SetParameterName("FileRead", false);
+  fTheReadCommand->SetDefaultValue("test.gdml");
+  fTheReadCommand->AvailableForStates(G4State_PreInit);
+
+  fTheWriteCommand = new G4UIcmdWithAString("/testhadr/det/writeFile", this);
+  fTheWriteCommand->SetGuidance("WRITE geometry to GDML file with given name");
+  fTheWriteCommand->SetParameterName("FileWrite", false);
+  fTheWriteCommand->SetDefaultValue("wtest.gdml");
+  fTheWriteCommand->AvailableForStates(G4State_PreInit);
+
+  fTheStepCommand = new G4UIcmdWithAString("/testhadr/det/StepFile", this);
+  fTheStepCommand->SetGuidance("Read STEP Tools files (name without extension)");
+  fTheStepCommand->SetParameterName("STEPFile", false);
+  fTheStepCommand->SetDefaultValue("mbb");
+  fTheStepCommand->AvailableForStates(G4State_PreInit);
+  // ###################################################################################//
   G4UIparameter *symbPrm = new G4UIparameter("isotope", 's', false);
   symbPrm->SetGuidance("isotope symbol");
   fIsotopeCmd->SetParameter(symbPrm);
@@ -199,6 +217,9 @@ DetectorMessenger::~DetectorMessenger() {
   delete fSizeYCmd;
   delete fSizeZCmd;
   // ###################################################################################//
+  delete fTheReadCommand;
+  delete fTheWriteCommand;
+  delete fTheStepCommand;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -261,6 +282,15 @@ void DetectorMessenger::SetNewValue(G4UIcommand *command, G4String newValue) {
     fDetector->SetAbsorSizeZ_Slab(fSizeZCmd->GetNewDoubleValue(newValue));
   }
   // ###################################################################################//
+  if (command == fTheReadCommand) {
+    fDetector->SetReadFile(newValue);
+  }
+  if (command == fTheWriteCommand) {
+    fDetector->SetWriteFile(newValue);
+  }
+  if (command == fTheStepCommand) {
+    fDetector->SetStepFile(newValue);
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

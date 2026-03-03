@@ -1,0 +1,342 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+  <define>
+    <constant name="HALFPI" value="pi/2"/>
+    <constant name="PI" value="1*pi"/>
+    <constant name="TWOPI" value="2*pi"/>
+    <position name="center" x="0" y="0" z="0" unit="mm"/>
+    <rotation name="identity" x="0" y="0" z="0"/>
+    <position name="GasVol_Box_0" unit="mm" x="-80.0" y="-82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_1" unit="mm" x="-80.0" y="-82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_2" unit="mm" x="-80.0" y="82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_3" unit="mm" x="-80.0" y="82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_4" unit="mm" x="80.0" y="-82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_5" unit="mm" x="80.0" y="-82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_6" unit="mm" x="80.0" y="82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_7" unit="mm" x="80.0" y="82.5" z="8.055000305175781"/>
+    <position name="Cube_0" unit="mm" x="-80.0" y="-82.5" z="-0.8050000071525574"/>
+    <position name="Cube_1" unit="mm" x="-80.0" y="-82.5" z="0.8050000071525574"/>
+    <position name="Cube_2" unit="mm" x="-80.0" y="82.5" z="-0.8050000071525574"/>
+    <position name="Cube_3" unit="mm" x="-80.0" y="82.5" z="0.8050000071525574"/>
+    <position name="Cube_4" unit="mm" x="80.0" y="-82.5" z="0.8050000071525574"/>
+    <position name="Cube_5" unit="mm" x="80.0" y="-82.5" z="-0.8050000071525574"/>
+    <position name="Cube_6" unit="mm" x="80.0" y="82.5" z="-0.8050000071525574"/>
+    <position name="Cube_7" unit="mm" x="80.0" y="82.5" z="0.8050000071525574"/>
+    <position name="Cube012_0" unit="mm" x="-50.0" y="-50.0" z="-5.0"/>
+    <position name="Cube012_1" unit="mm" x="-50.0" y="-50.0" z="5.0"/>
+    <position name="Cube012_2" unit="mm" x="-50.0" y="50.0" z="-5.0"/>
+    <position name="Cube012_3" unit="mm" x="-50.0" y="50.0" z="5.0"/>
+    <position name="Cube012_4" unit="mm" x="50.0" y="-50.0" z="5.0"/>
+    <position name="Cube012_5" unit="mm" x="50.0" y="-50.0" z="-5.0"/>
+    <position name="Cube012_6" unit="mm" x="50.0" y="50.0" z="-5.0"/>
+    <position name="Cube012_7" unit="mm" x="50.0" y="50.0" z="5.0"/>
+    <position name="Al_Plate_0" unit="mm" x="-60.0" y="-60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_1" unit="mm" x="-60.0" y="-60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_2" unit="mm" x="-60.0" y="60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_3" unit="mm" x="-60.0" y="60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_4" unit="mm" x="60.0" y="-60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_5" unit="mm" x="60.0" y="-60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_6" unit="mm" x="60.0" y="60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_7" unit="mm" x="60.0" y="60.0" z="0.05000000074505806"/>
+    <position name="B4C_0" unit="mm" x="-50.0" y="-50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_1" unit="mm" x="-50.0" y="-50.0" z="0.0005000000237487257"/>
+    <position name="B4C_2" unit="mm" x="-50.0" y="50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_3" unit="mm" x="-50.0" y="50.0" z="0.0005000000237487257"/>
+    <position name="B4C_4" unit="mm" x="50.0" y="-50.0" z="0.0005000000237487257"/>
+    <position name="B4C_5" unit="mm" x="50.0" y="-50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_6" unit="mm" x="50.0" y="50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_7" unit="mm" x="50.0" y="50.0" z="0.0005000000237487257"/>
+    <position name="Mesh_SS_0" unit="mm" x="-50.0" y="-50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_1" unit="mm" x="-50.0" y="-50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_2" unit="mm" x="-50.0" y="50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_3" unit="mm" x="-50.0" y="50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_4" unit="mm" x="50.0" y="-50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_5" unit="mm" x="50.0" y="-50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_6" unit="mm" x="50.0" y="50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_7" unit="mm" x="50.0" y="50.0" z="0.019999999552965164"/>
+    <position name="AlMg3_Anode_0" unit="mm" x="-50.0" y="50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_1" unit="mm" x="-50.0" y="-50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_2" unit="mm" x="-50.0" y="50.0" z="0.25"/>
+    <position name="AlMg3_Anode_3" unit="mm" x="-50.0" y="-50.0" z="0.25"/>
+    <position name="AlMg3_Anode_4" unit="mm" x="50.0" y="-50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_5" unit="mm" x="50.0" y="50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_6" unit="mm" x="50.0" y="50.0" z="0.25"/>
+    <position name="AlMg3_Anode_7" unit="mm" x="50.0" y="-50.0" z="0.25"/>
+  </define>
+  <materials>
+    <isotope name="iso_B10" Z="5" N="10">
+      <atom value="10.01"/>
+    </isotope>
+    <isotope name="iso_B11" Z="5" N="11">
+      <atom value="11.009"/>
+    </isotope>
+    <isotope name="iso_C12" Z="6" N="12">
+      <atom value="12.011"/>
+    </isotope>
+    <element name="H_elem" Z="1" formula="H">
+      <atom value="1.008"/>
+    </element>
+    <element name="He_elem" Z="2" formula="He">
+      <atom value="4.0026"/>
+    </element>
+    <element name="C_elem" Z="6" formula="C">
+      <atom value="12.011"/>
+    </element>
+    <element name="N_elem" Z="7" formula="N">
+      <atom value="14.007"/>
+    </element>
+    <element name="O_elem" Z="8" formula="O">
+      <atom value="15.999"/>
+    </element>
+    <element name="Mg_elem" Z="12" formula="Mg">
+      <atom value="24.305"/>
+    </element>
+    <element name="Al_elem" Z="13" formula="Al">
+      <atom value="26.982"/>
+    </element>
+    <element name="Si_elem" Z="14" formula="Si">
+      <atom value="28.085"/>
+    </element>
+    <element name="Ar_elem" Z="18" formula="Ar">
+      <atom value="39.948"/>
+    </element>
+    <element name="Cr_elem" Z="24" formula="Cr">
+      <atom value="51.996"/>
+    </element>
+    <element name="Fe_elem" Z="26" formula="Fe">
+      <atom value="55.845"/>
+    </element>
+    <element name="Ni_elem" Z="28" formula="Ni">
+      <atom value="58.693"/>
+    </element>
+    <element name="Br_elem" Z="35" formula="Br">
+      <atom value="79.904"/>
+    </element>
+    <element name="Enriched_B">
+      <fraction n="0.5" ref="iso_B10"/>
+      <fraction n="0.5" ref="iso_B11"/>
+    </element>
+    <element name="Carbon_Iso">
+      <fraction n="1.0" ref="iso_C12"/>
+    </element>
+    <material name="AlMg3_Mat">
+      <D unit="g/cm3" value="2.66"/>
+      <fraction n="0.97" ref="Al_elem"/>
+      <fraction n="0.03" ref="Mg_elem"/>
+    </material>
+    <material name="B4C_enriched">
+      <D unit="g/cm3" value="2.52"/>
+      <composite n="4" ref="Enriched_B"/>
+      <composite n="1" ref="Carbon_Iso"/>
+    </material>
+    <material name="G4_STAINLESS-STEEL001">
+      <D unit="g/cm3" value="8.0"/>
+      <composite n="74" ref="Fe_elem"/>
+      <composite n="18" ref="Cr_elem"/>
+      <composite n="8" ref="Ni_elem"/>
+    </material>
+    <material name="PCB_H_Br">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.8" ref="H_elem"/>
+      <fraction n="0.2" ref="Br_elem"/>
+    </material>
+    <material name="PCB_SiOC">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.2778" ref="Si_elem"/>
+      <fraction n="0.3889" ref="O_elem"/>
+      <fraction n="0.3333" ref="C_elem"/>
+    </material>
+    <material name="PCB_FR4">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.1" ref="PCB_H_Br"/>
+      <fraction n="0.9" ref="PCB_SiOC"/>
+    </material>
+    <material name="CO2_Mol">
+      <D unit="g/cm3" value="0.001842"/>
+      <composite n="1" ref="C_elem"/>
+      <composite n="2" ref="O_elem"/>
+    </material>
+    <material name="HeCO2_80_20">
+      <D unit="g/cm3" value="0.000512"/>
+      <fraction n="0.8" ref="He_elem"/>
+      <fraction n="0.2" ref="CO2_Mol"/>
+    </material>
+    <material name="ArCO2_70_30">
+      <D unit="g/cm3" value="0.001815"/>
+      <fraction n="0.7" ref="Ar_elem"/>
+      <fraction n="0.3" ref="CO2_Mol"/>
+    </material>
+    <material name="G4_AIR001">
+      <D unit="g/cm3" value="0.00120479"/>
+      <fraction n="0.000124" ref="C_elem"/>
+      <fraction n="0.755268" ref="N_elem"/>
+      <fraction n="0.231781" ref="O_elem"/>
+      <fraction n="0.012827" ref="Ar_elem"/>
+    </material>
+  </materials>
+  <solids>
+    <tessellated name="GasVol_Box">
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_1" vertex3="GasVol_Box_2" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_2" vertex2="GasVol_Box_1" vertex3="GasVol_Box_3" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_4" vertex2="GasVol_Box_5" vertex3="GasVol_Box_6" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_4" vertex2="GasVol_Box_6" vertex3="GasVol_Box_7" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_5" vertex2="GasVol_Box_4" vertex3="GasVol_Box_0" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_4" vertex3="GasVol_Box_1" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_6" vertex3="GasVol_Box_2" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_2" vertex3="GasVol_Box_3" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_2" vertex3="GasVol_Box_5" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_2" vertex2="GasVol_Box_6" vertex3="GasVol_Box_5" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_3" vertex2="GasVol_Box_1" vertex3="GasVol_Box_4" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_3" vertex3="GasVol_Box_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube">
+      <triangular vertex1="Cube_0" vertex2="Cube_1" vertex3="Cube_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_2" vertex2="Cube_1" vertex3="Cube_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_4" vertex2="Cube_5" vertex3="Cube_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_4" vertex2="Cube_6" vertex3="Cube_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_5" vertex2="Cube_4" vertex3="Cube_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_0" vertex2="Cube_4" vertex3="Cube_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_6" vertex3="Cube_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_2" vertex3="Cube_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_0" vertex2="Cube_2" vertex3="Cube_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_2" vertex2="Cube_6" vertex3="Cube_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_3" vertex2="Cube_1" vertex3="Cube_4" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_3" vertex3="Cube_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube012">
+      <triangular vertex1="Cube012_0" vertex2="Cube012_1" vertex3="Cube012_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_2" vertex2="Cube012_1" vertex3="Cube012_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_4" vertex2="Cube012_5" vertex3="Cube012_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_4" vertex2="Cube012_6" vertex3="Cube012_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_5" vertex2="Cube012_4" vertex3="Cube012_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_0" vertex2="Cube012_4" vertex3="Cube012_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_6" vertex3="Cube012_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_2" vertex3="Cube012_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_2" vertex2="Cube012_6" vertex3="Cube012_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_0" vertex2="Cube012_6" vertex3="Cube012_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_3" vertex3="Cube012_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_1" vertex3="Cube012_4" type="ABSOLUTE"/>
+    </tessellated>
+    <subtraction name="MicroMegas_Board_Inner">
+      <first ref="Cube"/>
+      <second ref="Cube012"/>
+      <position unit="mm" name="P-Box01710" z="0.195"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <tessellated name="Al_Plate">
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_1" vertex3="Al_Plate_2" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_2" vertex2="Al_Plate_1" vertex3="Al_Plate_3" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_4" vertex2="Al_Plate_5" vertex3="Al_Plate_6" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_4" vertex2="Al_Plate_6" vertex3="Al_Plate_7" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_5" vertex2="Al_Plate_4" vertex3="Al_Plate_0" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_4" vertex3="Al_Plate_1" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_6" vertex3="Al_Plate_2" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_2" vertex3="Al_Plate_3" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_2" vertex2="Al_Plate_6" vertex3="Al_Plate_0" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_6" vertex3="Al_Plate_5" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_3" vertex3="Al_Plate_1" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_1" vertex3="Al_Plate_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="B4C">
+      <triangular vertex1="B4C_0" vertex2="B4C_1" vertex3="B4C_2" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_2" vertex2="B4C_1" vertex3="B4C_3" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_4" vertex2="B4C_5" vertex3="B4C_6" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_4" vertex2="B4C_6" vertex3="B4C_7" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_5" vertex2="B4C_4" vertex3="B4C_0" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_0" vertex2="B4C_4" vertex3="B4C_1" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_6" vertex3="B4C_2" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_2" vertex3="B4C_3" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_2" vertex2="B4C_6" vertex3="B4C_0" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_0" vertex2="B4C_6" vertex3="B4C_5" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_3" vertex3="B4C_1" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_1" vertex3="B4C_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Mesh_SS">
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_1" vertex3="Mesh_SS_2" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_2" vertex2="Mesh_SS_1" vertex3="Mesh_SS_3" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_4" vertex2="Mesh_SS_5" vertex3="Mesh_SS_6" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_4" vertex2="Mesh_SS_6" vertex3="Mesh_SS_7" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_5" vertex2="Mesh_SS_4" vertex3="Mesh_SS_0" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_4" vertex3="Mesh_SS_1" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_6" vertex3="Mesh_SS_2" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_2" vertex3="Mesh_SS_3" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_2" vertex2="Mesh_SS_6" vertex3="Mesh_SS_0" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_6" vertex3="Mesh_SS_5" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_3" vertex3="Mesh_SS_1" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_1" vertex3="Mesh_SS_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="AlMg3_Anode">
+      <triangular vertex1="AlMg3_Anode_0" vertex2="AlMg3_Anode_1" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_3" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_4" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_6" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_7" vertex2="AlMg3_Anode_4" vertex3="AlMg3_Anode_6" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_4" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_4" vertex2="AlMg3_Anode_7" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_5" vertex2="AlMg3_Anode_0" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_0" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_1" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_4" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_2" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_3" vertex3="AlMg3_Anode_7" type="ABSOLUTE"/>
+    </tessellated>
+  </solids>
+  <structure>
+    <volume name="LV_MicroMegas_Board_Inner">
+      <materialref ref="PCB_FR4"/>
+      <solidref ref="MicroMegas_Board_Inner"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_Al_Plate">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="Al_Plate"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccad"/>
+    </volume>
+    <volume name="LV_B4C">
+      <materialref ref="B4C_enriched"/>
+      <solidref ref="B4C"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccad"/>
+    </volume>
+    <volume name="LV_Mesh_SS">
+      <materialref ref="G4_STAINLESS-STEEL"/>
+      <solidref ref="Mesh_SS"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_AlMg3_Anode">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="AlMg3_Anode"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_GasVol_Box">
+      <materialref ref="HeCO2_80_20"/>
+      <solidref ref="GasVol_Box"/>
+      <physvol name="PV_LV_MicroMegas_Board_Inner">
+        <volumeref ref="LV_MicroMegas_Board_Inner"/>
+        <position unit="mm" name="P-MicroMegas_Board_Inner11"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_Al_Plate">
+        <volumeref ref="LV_Al_Plate"/>
+        <position unit="mm" name="P-Al_Plate12"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_B4C">
+        <volumeref ref="LV_B4C"/>
+        <position unit="mm" name="P-B4C13"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_Mesh_SS">
+        <volumeref ref="LV_Mesh_SS"/>
+        <position unit="mm" name="P-Mesh_SS14"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_AlMg3_Anode">
+        <volumeref ref="LV_AlMg3_Anode"/>
+        <position unit="mm" name="P-AlMg3_Anode15"/>
+        <rotationref ref="identity"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="Default" version="1.0">
+    <world ref="LV_GasVol_Box"/>
+  </setup>
+</gdml>

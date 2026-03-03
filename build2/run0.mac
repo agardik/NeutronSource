@@ -8,15 +8,7 @@
 #
 #/testhadr/phys/thermalScattering true
 
-/testhadr/det/setNbOfAbsor  6
-/testhadr/det/setAbsor 1 AlMg3  0.02 cm
-/testhadr/det/setAbsor 2 Alu  0.01 cm
-/testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
-/testhadr/det/setAbsor 4 SSteel  0.004 cm
-/testhadr/det/setAbsor 5 AlMg3  0.05 cm
-/testhadr/det/setAbsor 6 AlMg3  0.02 cm
-/testhadr/det/setSizeY 100 mm
-/testhadr/det/setSizeZ 60 mm
+/testhadr/det/readFile test3.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -34,8 +26,8 @@
 /gps/position -1 0 0 mm
 /gps/pos/type Plane
 /gps/pos/shape Rectangle
-/gps/pos/halfx 0.0015 mm
-/gps/pos/halfy 0.0030 mm
+/gps/pos/halfx 15 mm
+/gps/pos/halfy 30 mm
 /gps/particle neutron
 /gps/ene/mono 0.025 eV
 /gps/pos/rot1 0 0 1
@@ -50,4 +42,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 100
+/run/beamOn 1000

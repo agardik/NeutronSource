@@ -211,7 +211,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
 
   // Fill the ntuple only for neutrons created by inelastic scattering
-  if (fParticleName == "neutron" && interactionType == "neutronInelastic") {
+  if (fParticleName == "neutron" && interactionType == "neutronInelastic" && 0==1) {
     // position of the photon created inside the detector
     analysisManager->FillNtupleIColumn(0, 0, evt);
     analysisManager->FillNtupleSColumn(0, 1, fParticleName);
@@ -234,142 +234,8 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
         aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
     G4double edepStep = preKineticEnergy1 - postKineticEnergy1;
 
-  // if (aStep->GetTrack()->GetNextVolume()) {
-  //   // // Stopping Power from input Table.
-
-  //   // Get the material at the pre-step point
-  //   G4Material *prematerial = thePrePoint->GetMaterial();
-  //   // Get the material at the post-step point
-  //   G4Material *postmaterial = thePostPoint->GetMaterial();
-  //   //   G4cout << "Next volume is  nullptr!" << G4endl;
-  //   //   return;
-  //   // }
-  //   // You can now use the material object, for example, to get its name
-  //   G4String materialName = postmaterial->GetName();
-  //   G4double density = postmaterial->GetDensity() / CLHEP::g;
-
-  //   // current step number
-  //   G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
-
-  //   // Get step length
-  //   G4double stepLength = aStep->GetStepLength() / CLHEP::cm2;
-  //   // G4cout << "Step length: " << stepLength << " mm" << G4endl;
-
-  //   // Kinetic energy of the particle after each step
-  //   G4double kinEnergy = theTrack->GetKineticEnergy();
-
-  //   G4double postKineticEnergy =
-  //   aStep->GetPostStepPoint()->GetKineticEnergy(); G4double preKineticEnergy
-  //   = aStep->GetPreStepPoint()->GetKineticEnergy();
-
-  //   G4double EDifference = (postKineticEnergy - preKineticEnergy) /
-  //   CLHEP::MeV;
-
-  //   // Get step length
-  //   G4double stepLength_ = aStep->GetStepLength() / CLHEP::mm;
-
-  //   G4EmCalculator emCalculator;
-  //   G4double dEdxTable = 0., dEdxFull = 0.;
-
-  //   if (particleType->GetPDGCharge() != 0.) {
-  //     dEdxTable =
-  //         emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
-  //     dEdxFull = emCalculator.ComputeTotalDEDX(preKineticEnergy,
-  //     particleType,
-  //                                              postmaterial);
-  //   }
-
-  //   G4double stopTable = dEdxTable / density;
-  //   G4double stopFull = dEdxFull / density;
-
-  //   // Stopping Power from simulation.
-  //   //
-  //   G4double meandEdx = edepStep / stepLength_;
-  //   G4double stopPower = meandEdx / density;
-
-  //   // // current step number
-  //   // G4int StepNumberr = aStep->GetTrack()->GetCurrentStepNumber();
-  //   // if ((thePostPVname == "physiSlab_AlongZ_1" ||
-  //   //      thePostPVname == "physiSlab_AlongY_1" ||
-  //   //      thePostPVname == "physiSlab_AlongX_1" ||
-  //   //      thePostPVname == "physiSlab_AlongY_2" ||
-  //   //      thePostPVname == "physiSlab_AlongX_2" ||
-  //   //      thePostPVname == "physiSlab_AlongZ_2")) {
-  //   //   std::cout << "Event Number: " << evt << std::endl;
-  //   //   std::cout << " Particle: " << fParticleName << std::endl;
-  //   //   std::cout << "Particle ID: " << part_ID << std::endl;
-  //   //   std::cout << "Particle Parent ID:  " << part_parent_ID << std::endl;
-  //   //   std::cout << "Step No: " << StepNumberr << std::endl;
-  //   //   std::cout << "Interaction Type: " << interactionType << std::endl;
-  //   //   std::cout << "Target Isotope: " << targetIsotope << std::endl;
-  //   //   std::cout << "Creator Process: " << creatorProcessName << std::endl;
-  //   //   std::cout << "Edep: " << edepStep << std::endl;
-  //   //   std::cout << "Ekin_post - Ekin_pre: " << EDifference << std::endl;
-  //   //   std::cout << "Int. Lenght (mm): " << aStep->GetStepLength() /
-  //   CLHEP::mm
-  //   //             << std::endl;
-  //   //   std::cout << "Prevoius Volume: " << thePrePVname << std::endl;
-  //   //   std::cout << "Current Volume:  " << thePostPVname << std::endl;
-  //   //   std::cout << std::endl;
-  //   // }
-
-  //   if ((thePostPVname == "physiSlab_AlongZ_1" ||
-  //        thePostPVname == "physiSlab_AlongY_1" ||
-  //        thePostPVname == "physiSlab_AlongX_1" ||
-  //        thePostPVname == "physiSlab_AlongY_2" ||
-  //        thePostPVname == "physiSlab_AlongX_2" ||
-  //        thePostPVname == "physiSlab_AlongZ_2")) {
-  //     std::cout << "Event: " << evt << "\nStep: " << StepNumber
-  //               << "\ncreatorProcessName: " << creatorProcessName
-  //               << "\npreProcessName: " << preProcessName
-  //               << "\npostProcessName: " << postProcessName
-  //               << "\nParticle: " << fParticleName
-  //               << "\nParentID: " << part_parent_ID
-  //               << "\nParticleID: " << part_ID << "\nPos: " << posParticle[0]
-  //               << "  " << posParticle[1] << " " << posParticle[2]
-  //               << "\nIntType: " << interactionType
-  //               << "\nTarget: " << targetIsotope
-  //               << "\nKinEn (MeV): " << kinEnergy
-  //               << "\npreKineticEnergy (MeV): " << preKineticEnergy
-  //               << "\npostKineticEnergy (MeV): " << postKineticEnergy
-  //               << "\nEdep (MeV): " << aStep->GetTotalEnergyDeposit()
-  //               << "\nS_Lenght(mm): " << aStep->GetStepLength() / CLHEP::mm
-  //               << "\nPre_vol: " << thePrePVname
-  //               << "\nPost_Vol: " << thePostPVname << std::endl;
-  //     std::cout << std::endl;
-
-  //     G4cout << "Mean dE/dx = " << meandEdx << " MeV/mm" << "\t(" <<
-  //     stopPower
-  //            << G4endl;
-
-  //     G4cout << "\nFrom formulas :" << G4endl;
-  //     G4cout << "   restricted dEdx = " << dEdxTable << "\t(" << stopTable
-  //            << ")" << G4endl;
-
-  //     G4cout << "   Full dEdx = " << dEdxFull << "\t(" << stopFull << ")"
-  //            << G4endl;
-  //     G4cout << "\n" << G4endl;
-  //     G4cout << "\n" << G4endl;
-  //   }
-  // }
-  // if (thePostPVname == "physiSlab_AlongZ_1" ||
-  //     thePostPVname == "physiSlab_AlongY_1" ||
-  //     thePostPVname == "physiSlab_AlongX_1" ||
-  //     thePostPVname == "physiSlab_AlongY_2" ||
-  //     thePostPVname == "physiSlab_AlongX_2" ||
-  //     thePostPVname == "physiSlab_AlongZ_2") {
-  //   std::cout << evt << ": Particle: " << fParticleName << "  "
-  //             << part_parent_ID << "  " << interactionType << "  "
-  //             << targetIsotope << "  " << "Creator: " << creatorProcessName
-  //             << "  " << aStep->GetTotalEnergyDeposit() / CLHEP::MeV << "  "
-  //             << (postKineticEnergy - preKineticEnergy) / CLHEP::MeV << "  "
-  //             << "Int. Lenght: " << aStep->GetStepLength() / CLHEP::mm << " "
-  //             << thePrePVname << " " << thePostPVname << std::endl;
-  //   std::cout << std::endl;
-  // }
-
   // If the particle is interacted with the enriched boron slab.
-  if (thePostPVname == "B4C_enriched") {
+  if (thePostPVname == "B4C_enriched" && 0==1) {
     // position of the photon created inside the detector
     analysisManager->FillNtupleIColumn(1, 0, evt);
     analysisManager->FillNtupleSColumn(1, 1, fParticleName);
@@ -390,8 +256,8 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     //  // If no energy deposit, return1
     if (thePrePVname != "phygasBox")
       return;
-    if (edepStep <= 0.)
-      return;
+    //if (edepStep <= 0.)
+      //return;
         // // Stopping Power from input Table.
 
     // Get the material at the pre-step point
@@ -433,7 +299,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     }
     G4double stopTable = dEdxTable / density;
     G4double stopFull = dEdxFull / density;
-
+    
     // Stopping Power from simulation.
     //
     if (stepLength<=0) {
@@ -462,13 +328,19 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->FillNtupleDColumn(
           7, 14, stopPower );
     analysisManager->FillNtupleSColumn(7, 15, creatorProcessName);
-    analysisManager->FillNtupleSColumn(7, 16, PVatVertexname);    
+    analysisManager->FillNtupleSColumn(7, 16, PVatVertexname);
     analysisManager->AddNtupleRow(7);
   }
 
   // alphas generated.
-  if (fParticleName == "alpha") {
+  if (fParticleName != "neutron") {
         // // Stopping Power from input Table.
+    G4Material* prematerial1 = thePrePoint->GetMaterial();
+G4Material* postmaterial1 = thePostPoint->GetMaterial();
+
+if (!prematerial1 || !postmaterial1) return;
+if (particleType->GetPDGCharge() == 0.) return;
+
 
     // Get the material at the pre-step point
     G4Material *prematerial = thePrePoint->GetMaterial();
@@ -538,7 +410,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->FillNtupleDColumn(
           8, 14, stopPower );
     analysisManager->FillNtupleSColumn(8, 15, creatorProcessName);
-    analysisManager->FillNtupleSColumn(8, 16, PVatVertexname);    
+    analysisManager->FillNtupleSColumn(8, 16, PVatVertexname);
     analysisManager->AddNtupleRow(8);
   }
 

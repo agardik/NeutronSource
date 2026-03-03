@@ -33,6 +33,7 @@
 #ifndef DetectorConstruction_h
 #define DetectorConstruction_h 1
 
+#include "G4GDMLParser.hh"
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 #include "G4UserLimits.hh"
@@ -48,6 +49,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 public:
   DetectorConstruction();
   ~DetectorConstruction() override;
+
+  // Writing and Reading GDML
+  //
+  void SetReadFile(const G4String& File);
+  void SetWriteFile(const G4String& File);
+  void SetStepFile(const G4String& File);
 
 public:
   G4VPhysicalVolume *Construct() override;
@@ -125,6 +132,17 @@ private:
   G4double fWorldSizeZ = 0.;
 
   G4int CreateSiliconSlabs = 0;
+
+  // GDMLparser
+  //
+  G4GDMLParser fParser;
+
+  // Reading and Writing Settings
+  //
+  G4String fReadFile;
+  G4String fWriteFile;
+  G4String fStepFile;
+  G4int fWritingChoice;
 
 private:
   void DefineMaterials();

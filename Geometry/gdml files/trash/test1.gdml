@@ -1,0 +1,598 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+  <define>
+    <constant name="HALFPI" value="pi/2"/>
+    <constant name="PI" value="1*pi"/>
+    <constant name="TWOPI" value="2*pi"/>
+    <constant name="HALFPI" value="pi/2"/>
+    <constant name="PI" value="1*pi"/>
+    <constant name="TWOPI" value="2*pi"/>
+    <position name="center" x="0" y="0" z="0" unit="mm"/>
+    <rotation name="identity" x="0" y="0" z="0"/>
+    <position name="WorldBox_0" unit="mm" x="-1000.0" y="-1000.0" z="-1000.0"/>
+    <position name="WorldBox_1" unit="mm" x="-1000.0" y="-1000.0" z="1000.0"/>
+    <position name="WorldBox_2" unit="mm" x="-1000.0" y="1000.0" z="-1000.0"/>
+    <position name="WorldBox_3" unit="mm" x="-1000.0" y="1000.0" z="1000.0"/>
+    <position name="WorldBox_4" unit="mm" x="1000.0" y="-1000.0" z="1000.0"/>
+    <position name="WorldBox_5" unit="mm" x="1000.0" y="-1000.0" z="-1000.0"/>
+    <position name="WorldBox_6" unit="mm" x="1000.0" y="1000.0" z="-1000.0"/>
+    <position name="WorldBox_7" unit="mm" x="1000.0" y="1000.0" z="1000.0"/>
+    <position name="Cube009_0" unit="mm" x="-80.0" y="-82.5" z="-5.0"/>
+    <position name="Cube009_1" unit="mm" x="-80.0" y="-82.5" z="5.0"/>
+    <position name="Cube009_2" unit="mm" x="-80.0" y="82.5" z="-5.0"/>
+    <position name="Cube009_3" unit="mm" x="-80.0" y="82.5" z="5.0"/>
+    <position name="Cube009_4" unit="mm" x="80.0" y="-82.5" z="5.0"/>
+    <position name="Cube009_5" unit="mm" x="80.0" y="-82.5" z="-5.0"/>
+    <position name="Cube009_6" unit="mm" x="80.0" y="82.5" z="-5.0"/>
+    <position name="Cube009_7" unit="mm" x="80.0" y="82.5" z="5.0"/>
+    <position name="Cube007_0" unit="mm" x="-105.0" y="-187.5" z="-3.4549999237060547"/>
+    <position name="Cube007_1" unit="mm" x="-105.0" y="-187.5" z="3.4549999237060547"/>
+    <position name="Cube007_2" unit="mm" x="-105.0" y="187.5" z="-3.4549999237060547"/>
+    <position name="Cube007_3" unit="mm" x="-105.0" y="187.5" z="3.4549999237060547"/>
+    <position name="Cube007_4" unit="mm" x="105.0" y="-187.5" z="3.4549999237060547"/>
+    <position name="Cube007_5" unit="mm" x="105.0" y="-187.5" z="-3.4549999237060547"/>
+    <position name="Cube007_6" unit="mm" x="105.0" y="187.5" z="-3.4549999237060547"/>
+    <position name="Cube007_7" unit="mm" x="105.0" y="187.5" z="3.4549999237060547"/>
+    <position name="Cube008_0" unit="mm" x="-101.0" y="-190.0" z="-5.0"/>
+    <position name="Cube008_1" unit="mm" x="-101.0" y="-190.0" z="5.0"/>
+    <position name="Cube008_2" unit="mm" x="-101.0" y="190.0" z="-5.0"/>
+    <position name="Cube008_3" unit="mm" x="-101.0" y="190.0" z="5.0"/>
+    <position name="Cube008_4" unit="mm" x="101.0" y="-190.0" z="5.0"/>
+    <position name="Cube008_5" unit="mm" x="101.0" y="-190.0" z="-5.0"/>
+    <position name="Cube008_6" unit="mm" x="101.0" y="190.0" z="-5.0"/>
+    <position name="Cube008_7" unit="mm" x="101.0" y="190.0" z="5.0"/>
+    <position name="Cube010_0" unit="mm" x="-100.0" y="-125.0" z="-0.8050000071525574"/>
+    <position name="Cube010_1" unit="mm" x="-100.0" y="-125.0" z="0.8050000071525574"/>
+    <position name="Cube010_2" unit="mm" x="-100.0" y="125.0" z="-0.8050000071525574"/>
+    <position name="Cube010_3" unit="mm" x="-100.0" y="125.0" z="0.8050000071525574"/>
+    <position name="Cube010_4" unit="mm" x="100.0" y="-125.0" z="0.8050000071525574"/>
+    <position name="Cube010_5" unit="mm" x="100.0" y="-125.0" z="-0.8050000071525574"/>
+    <position name="Cube010_6" unit="mm" x="100.0" y="125.0" z="-0.8050000071525574"/>
+    <position name="Cube010_7" unit="mm" x="100.0" y="125.0" z="0.8050000071525574"/>
+    <position name="Cube006_0" unit="mm" x="-101.0" y="-110.0" z="-5.0"/>
+    <position name="Cube006_1" unit="mm" x="-101.0" y="-110.0" z="5.0"/>
+    <position name="Cube006_2" unit="mm" x="-101.0" y="110.0" z="-5.0"/>
+    <position name="Cube006_3" unit="mm" x="-101.0" y="110.0" z="5.0"/>
+    <position name="Cube006_4" unit="mm" x="101.0" y="-110.0" z="5.0"/>
+    <position name="Cube006_5" unit="mm" x="101.0" y="-110.0" z="-5.0"/>
+    <position name="Cube006_6" unit="mm" x="101.0" y="110.0" z="-5.0"/>
+    <position name="Cube006_7" unit="mm" x="101.0" y="110.0" z="5.0"/>
+    <position name="Cube004_0" unit="mm" x="-105.0" y="-107.0" z="-4.800000190734863"/>
+    <position name="Cube004_1" unit="mm" x="-105.0" y="-107.0" z="4.800000190734863"/>
+    <position name="Cube004_2" unit="mm" x="-105.0" y="107.0" z="-4.800000190734863"/>
+    <position name="Cube004_3" unit="mm" x="-105.0" y="107.0" z="4.800000190734863"/>
+    <position name="Cube004_4" unit="mm" x="105.0" y="-107.0" z="4.800000190734863"/>
+    <position name="Cube004_5" unit="mm" x="105.0" y="-107.0" z="-4.800000190734863"/>
+    <position name="Cube004_6" unit="mm" x="105.0" y="107.0" z="-4.800000190734863"/>
+    <position name="Cube004_7" unit="mm" x="105.0" y="107.0" z="4.800000190734863"/>
+    <position name="Cube005_0" unit="mm" x="-80.0" y="-82.5" z="-8.300000190734863"/>
+    <position name="Cube005_1" unit="mm" x="-80.0" y="-82.5" z="8.300000190734863"/>
+    <position name="Cube005_2" unit="mm" x="-80.0" y="82.5" z="-8.300000190734863"/>
+    <position name="Cube005_3" unit="mm" x="-80.0" y="82.5" z="8.300000190734863"/>
+    <position name="Cube005_4" unit="mm" x="80.0" y="-82.5" z="8.300000190734863"/>
+    <position name="Cube005_5" unit="mm" x="80.0" y="-82.5" z="-8.300000190734863"/>
+    <position name="Cube005_6" unit="mm" x="80.0" y="82.5" z="-8.300000190734863"/>
+    <position name="Cube005_7" unit="mm" x="80.0" y="82.5" z="8.300000190734863"/>
+    <position name="GasVol_Box_0" unit="mm" x="-80.0" y="-82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_1" unit="mm" x="-80.0" y="-82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_2" unit="mm" x="-80.0" y="82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_3" unit="mm" x="-80.0" y="82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_4" unit="mm" x="80.0" y="-82.5" z="8.055000305175781"/>
+    <position name="GasVol_Box_5" unit="mm" x="80.0" y="-82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_6" unit="mm" x="80.0" y="82.5" z="-8.055000305175781"/>
+    <position name="GasVol_Box_7" unit="mm" x="80.0" y="82.5" z="8.055000305175781"/>
+    <position name="Cube_0" unit="mm" x="-80.0" y="-82.5" z="-0.8050000071525574"/>
+    <position name="Cube_1" unit="mm" x="-80.0" y="-82.5" z="0.8050000071525574"/>
+    <position name="Cube_2" unit="mm" x="-80.0" y="82.5" z="-0.8050000071525574"/>
+    <position name="Cube_3" unit="mm" x="-80.0" y="82.5" z="0.8050000071525574"/>
+    <position name="Cube_4" unit="mm" x="80.0" y="-82.5" z="0.8050000071525574"/>
+    <position name="Cube_5" unit="mm" x="80.0" y="-82.5" z="-0.8050000071525574"/>
+    <position name="Cube_6" unit="mm" x="80.0" y="82.5" z="-0.8050000071525574"/>
+    <position name="Cube_7" unit="mm" x="80.0" y="82.5" z="0.8050000071525574"/>
+    <position name="Cube012_0" unit="mm" x="-50.0" y="-50.0" z="-5.0"/>
+    <position name="Cube012_1" unit="mm" x="-50.0" y="-50.0" z="5.0"/>
+    <position name="Cube012_2" unit="mm" x="-50.0" y="50.0" z="-5.0"/>
+    <position name="Cube012_3" unit="mm" x="-50.0" y="50.0" z="5.0"/>
+    <position name="Cube012_4" unit="mm" x="50.0" y="-50.0" z="5.0"/>
+    <position name="Cube012_5" unit="mm" x="50.0" y="-50.0" z="-5.0"/>
+    <position name="Cube012_6" unit="mm" x="50.0" y="50.0" z="-5.0"/>
+    <position name="Cube012_7" unit="mm" x="50.0" y="50.0" z="5.0"/>
+    <position name="Al_Plate_0" unit="mm" x="-60.0" y="-60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_1" unit="mm" x="-60.0" y="-60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_2" unit="mm" x="-60.0" y="60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_3" unit="mm" x="-60.0" y="60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_4" unit="mm" x="60.0" y="-60.0" z="0.05000000074505806"/>
+    <position name="Al_Plate_5" unit="mm" x="60.0" y="-60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_6" unit="mm" x="60.0" y="60.0" z="-0.05000000074505806"/>
+    <position name="Al_Plate_7" unit="mm" x="60.0" y="60.0" z="0.05000000074505806"/>
+    <position name="B4C_0" unit="mm" x="-50.0" y="-50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_1" unit="mm" x="-50.0" y="-50.0" z="0.0005000000237487257"/>
+    <position name="B4C_2" unit="mm" x="-50.0" y="50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_3" unit="mm" x="-50.0" y="50.0" z="0.0005000000237487257"/>
+    <position name="B4C_4" unit="mm" x="50.0" y="-50.0" z="0.0005000000237487257"/>
+    <position name="B4C_5" unit="mm" x="50.0" y="-50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_6" unit="mm" x="50.0" y="50.0" z="-0.0005000000237487257"/>
+    <position name="B4C_7" unit="mm" x="50.0" y="50.0" z="0.0005000000237487257"/>
+    <position name="Mesh_SS_0" unit="mm" x="-50.0" y="-50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_1" unit="mm" x="-50.0" y="-50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_2" unit="mm" x="-50.0" y="50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_3" unit="mm" x="-50.0" y="50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_4" unit="mm" x="50.0" y="-50.0" z="0.019999999552965164"/>
+    <position name="Mesh_SS_5" unit="mm" x="50.0" y="-50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_6" unit="mm" x="50.0" y="50.0" z="-0.019999999552965164"/>
+    <position name="Mesh_SS_7" unit="mm" x="50.0" y="50.0" z="0.019999999552965164"/>
+    <position name="AlMg3_Anode_0" unit="mm" x="-50.0" y="50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_1" unit="mm" x="-50.0" y="-50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_2" unit="mm" x="-50.0" y="50.0" z="0.25"/>
+    <position name="AlMg3_Anode_3" unit="mm" x="-50.0" y="-50.0" z="0.25"/>
+    <position name="AlMg3_Anode_4" unit="mm" x="50.0" y="-50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_5" unit="mm" x="50.0" y="50.0" z="-0.25"/>
+    <position name="AlMg3_Anode_6" unit="mm" x="50.0" y="50.0" z="0.25"/>
+    <position name="AlMg3_Anode_7" unit="mm" x="50.0" y="-50.0" z="0.25"/>
+  </define>
+  <materials>
+    <isotope name="iso_B10" Z="5" N="10">
+      <atom value="10.01"/>
+    </isotope>
+    <isotope name="iso_B11" Z="5" N="11">
+      <atom value="11.009"/>
+    </isotope>
+    <isotope name="iso_C12" Z="6" N="12">
+      <atom value="12.011"/>
+    </isotope>
+    <element name="H_elem" Z="1" formula="H">
+      <atom value="1.008"/>
+    </element>
+    <element name="He_elem" Z="2" formula="He">
+      <atom value="4.0026"/>
+    </element>
+    <element name="C_elem" Z="6" formula="C">
+      <atom value="12.011"/>
+    </element>
+    <element name="N_elem" Z="7" formula="N">
+      <atom value="14.007"/>
+    </element>
+    <element name="O_elem" Z="8" formula="O">
+      <atom value="15.999"/>
+    </element>
+    <element name="Mg_elem" Z="12" formula="Mg">
+      <atom value="24.305"/>
+    </element>
+    <element name="Al_elem" Z="13" formula="Al">
+      <atom value="26.982"/>
+    </element>
+    <element name="Si_elem" Z="14" formula="Si">
+      <atom value="28.085"/>
+    </element>
+    <element name="Ar_elem" Z="18" formula="Ar">
+      <atom value="39.948"/>
+    </element>
+    <element name="Cr_elem" Z="24" formula="Cr">
+      <atom value="51.996"/>
+    </element>
+    <element name="Fe_elem" Z="26" formula="Fe">
+      <atom value="55.845"/>
+    </element>
+    <element name="Ni_elem" Z="28" formula="Ni">
+      <atom value="58.693"/>
+    </element>
+    <element name="Br_elem" Z="35" formula="Br">
+      <atom value="79.904"/>
+    </element>
+    <element name="Enriched_B">
+      <fraction n="0.5" ref="iso_B10"/>
+      <fraction n="0.5" ref="iso_B11"/>
+    </element>
+    <element name="Carbon_Iso">
+      <fraction n="1.0" ref="iso_C12"/>
+    </element>
+    <material name="AlMg3_Mat">
+      <D unit="g/cm3" value="2.66"/>
+      <fraction n="0.97" ref="Al_elem"/>
+      <fraction n="0.03" ref="Mg_elem"/>
+    </material>
+    <material name="B4C_enriched">
+      <D unit="g/cm3" value="2.52"/>
+      <composite n="4" ref="Enriched_B"/>
+      <composite n="1" ref="Carbon_Iso"/>
+    </material>
+    <material name="G4_STAINLESS-STEEL001">
+      <D unit="g/cm3" value="8.0"/>
+      <composite n="74" ref="Fe_elem"/>
+      <composite n="18" ref="Cr_elem"/>
+      <composite n="8" ref="Ni_elem"/>
+    </material>
+    <material name="PCB_H_Br">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.8" ref="H_elem"/>
+      <fraction n="0.2" ref="Br_elem"/>
+    </material>
+    <material name="PCB_SiOC">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.2778" ref="Si_elem"/>
+      <fraction n="0.3889" ref="O_elem"/>
+      <fraction n="0.3333" ref="C_elem"/>
+    </material>
+    <material name="PCB_FR4">
+      <D unit="g/cm3" value="1.85"/>
+      <fraction n="0.1" ref="PCB_H_Br"/>
+      <fraction n="0.9" ref="PCB_SiOC"/>
+    </material>
+    <material name="CO2_Mol">
+      <D unit="g/cm3" value="0.001842"/>
+      <composite n="1" ref="C_elem"/>
+      <composite n="2" ref="O_elem"/>
+    </material>
+    <material name="HeCO2_80_20">
+      <D unit="g/cm3" value="0.000512"/>
+      <fraction n="0.8" ref="He_elem"/>
+      <fraction n="0.2" ref="CO2_Mol"/>
+    </material>
+    <material name="ArCO2_70_30">
+      <D unit="g/cm3" value="0.001815"/>
+      <fraction n="0.7" ref="Ar_elem"/>
+      <fraction n="0.3" ref="CO2_Mol"/>
+    </material>
+    <material name="G4_AIR001">
+      <D unit="g/cm3" value="0.00120479"/>
+      <fraction n="0.000124" ref="C_elem"/>
+      <fraction n="0.755268" ref="N_elem"/>
+      <fraction n="0.231781" ref="O_elem"/>
+      <fraction n="0.012827" ref="Ar_elem"/>
+    </material>
+  </materials>
+  <solids>
+    <tessellated name="WorldBox">
+      <triangular vertex1="WorldBox_0" vertex2="WorldBox_1" vertex3="WorldBox_2" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_2" vertex2="WorldBox_1" vertex3="WorldBox_3" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_4" vertex2="WorldBox_5" vertex3="WorldBox_6" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_4" vertex2="WorldBox_6" vertex3="WorldBox_7" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_5" vertex2="WorldBox_4" vertex3="WorldBox_0" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_0" vertex2="WorldBox_4" vertex3="WorldBox_1" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_7" vertex2="WorldBox_6" vertex3="WorldBox_2" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_7" vertex2="WorldBox_2" vertex3="WorldBox_3" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_2" vertex2="WorldBox_6" vertex3="WorldBox_0" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_0" vertex2="WorldBox_6" vertex3="WorldBox_5" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_7" vertex2="WorldBox_3" vertex3="WorldBox_1" type="ABSOLUTE"/>
+      <triangular vertex1="WorldBox_7" vertex2="WorldBox_1" vertex3="WorldBox_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube009">
+      <triangular vertex1="Cube009_0" vertex2="Cube009_1" vertex3="Cube009_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_2" vertex2="Cube009_1" vertex3="Cube009_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_4" vertex2="Cube009_5" vertex3="Cube009_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_4" vertex2="Cube009_6" vertex3="Cube009_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_5" vertex2="Cube009_4" vertex3="Cube009_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_0" vertex2="Cube009_4" vertex3="Cube009_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_7" vertex2="Cube009_6" vertex3="Cube009_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_7" vertex2="Cube009_2" vertex3="Cube009_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_0" vertex2="Cube009_2" vertex3="Cube009_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_2" vertex2="Cube009_6" vertex3="Cube009_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_3" vertex2="Cube009_1" vertex3="Cube009_4" type="ABSOLUTE"/>
+      <triangular vertex1="Cube009_7" vertex2="Cube009_3" vertex3="Cube009_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube007">
+      <triangular vertex1="Cube007_0" vertex2="Cube007_1" vertex3="Cube007_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_2" vertex2="Cube007_1" vertex3="Cube007_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_4" vertex2="Cube007_5" vertex3="Cube007_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_4" vertex2="Cube007_6" vertex3="Cube007_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_5" vertex2="Cube007_4" vertex3="Cube007_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_0" vertex2="Cube007_4" vertex3="Cube007_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_7" vertex2="Cube007_6" vertex3="Cube007_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_7" vertex2="Cube007_2" vertex3="Cube007_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_2" vertex2="Cube007_6" vertex3="Cube007_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_0" vertex2="Cube007_6" vertex3="Cube007_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_7" vertex2="Cube007_3" vertex3="Cube007_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube007_7" vertex2="Cube007_1" vertex3="Cube007_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube008">
+      <triangular vertex1="Cube008_0" vertex2="Cube008_1" vertex3="Cube008_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_2" vertex2="Cube008_1" vertex3="Cube008_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_4" vertex2="Cube008_5" vertex3="Cube008_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_4" vertex2="Cube008_6" vertex3="Cube008_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_0" vertex2="Cube008_5" vertex3="Cube008_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_5" vertex2="Cube008_4" vertex3="Cube008_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_6" vertex2="Cube008_2" vertex3="Cube008_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_7" vertex2="Cube008_6" vertex3="Cube008_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_2" vertex2="Cube008_6" vertex3="Cube008_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_0" vertex2="Cube008_6" vertex3="Cube008_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_7" vertex2="Cube008_3" vertex3="Cube008_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube008_7" vertex2="Cube008_1" vertex3="Cube008_4" type="ABSOLUTE"/>
+    </tessellated>
+    <subtraction name="Cut004">
+      <first ref="Cube007"/>
+      <second ref="Cube008"/>
+      <position unit="mm" name="P-Box0121" y="-6.5" z="5.945"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <subtraction name="Main_Plate">
+      <first ref="Cut004"/>
+      <second ref="Cube009"/>
+      <position unit="mm" name="P-Box0132" y="80.0" z="1.745"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <tessellated name="Cube010">
+      <triangular vertex1="Cube010_0" vertex2="Cube010_1" vertex3="Cube010_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_2" vertex2="Cube010_1" vertex3="Cube010_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_4" vertex2="Cube010_5" vertex3="Cube010_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_4" vertex2="Cube010_6" vertex3="Cube010_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_5" vertex2="Cube010_4" vertex3="Cube010_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_0" vertex2="Cube010_4" vertex3="Cube010_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_7" vertex2="Cube010_6" vertex3="Cube010_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_7" vertex2="Cube010_2" vertex3="Cube010_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_2" vertex2="Cube010_6" vertex3="Cube010_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_0" vertex2="Cube010_6" vertex3="Cube010_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_7" vertex2="Cube010_3" vertex3="Cube010_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube010_7" vertex2="Cube010_1" vertex3="Cube010_4" type="ABSOLUTE"/>
+    </tessellated>
+    <subtraction name="MicroMegas_Board_Main">
+      <first ref="Cube010"/>
+      <second ref="Cube009"/>
+      <position unit="mm" name="P-Box0154" y="22.5" z="-0.805"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <tessellated name="Cube006">
+      <triangular vertex1="Cube006_0" vertex2="Cube006_1" vertex3="Cube006_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_2" vertex2="Cube006_1" vertex3="Cube006_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_4" vertex2="Cube006_5" vertex3="Cube006_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_4" vertex2="Cube006_6" vertex3="Cube006_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_0" vertex2="Cube006_5" vertex3="Cube006_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_5" vertex2="Cube006_4" vertex3="Cube006_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_6" vertex2="Cube006_2" vertex3="Cube006_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_7" vertex2="Cube006_6" vertex3="Cube006_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_0" vertex2="Cube006_2" vertex3="Cube006_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_2" vertex2="Cube006_6" vertex3="Cube006_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_3" vertex2="Cube006_1" vertex3="Cube006_4" type="ABSOLUTE"/>
+      <triangular vertex1="Cube006_7" vertex2="Cube006_3" vertex3="Cube006_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube004">
+      <triangular vertex1="Cube004_0" vertex2="Cube004_1" vertex3="Cube004_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_2" vertex2="Cube004_1" vertex3="Cube004_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_4" vertex2="Cube004_5" vertex3="Cube004_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_4" vertex2="Cube004_6" vertex3="Cube004_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_5" vertex2="Cube004_4" vertex3="Cube004_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_0" vertex2="Cube004_4" vertex3="Cube004_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_7" vertex2="Cube004_6" vertex3="Cube004_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_7" vertex2="Cube004_2" vertex3="Cube004_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_2" vertex2="Cube004_6" vertex3="Cube004_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_0" vertex2="Cube004_6" vertex3="Cube004_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_7" vertex2="Cube004_3" vertex3="Cube004_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube004_7" vertex2="Cube004_1" vertex3="Cube004_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube005">
+      <triangular vertex1="Cube005_0" vertex2="Cube005_1" vertex3="Cube005_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_2" vertex2="Cube005_1" vertex3="Cube005_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_4" vertex2="Cube005_5" vertex3="Cube005_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_4" vertex2="Cube005_6" vertex3="Cube005_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_5" vertex2="Cube005_4" vertex3="Cube005_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_0" vertex2="Cube005_4" vertex3="Cube005_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_7" vertex2="Cube005_6" vertex3="Cube005_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_7" vertex2="Cube005_2" vertex3="Cube005_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_0" vertex2="Cube005_2" vertex3="Cube005_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_2" vertex2="Cube005_6" vertex3="Cube005_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_3" vertex2="Cube005_1" vertex3="Cube005_4" type="ABSOLUTE"/>
+      <triangular vertex1="Cube005_7" vertex2="Cube005_3" vertex3="Cube005_4" type="ABSOLUTE"/>
+    </tessellated>
+    <subtraction name="Cut002">
+      <first ref="Cube004"/>
+      <second ref="Cube005"/>
+      <position unit="mm" name="P-Box0096" y="-0.5" z="-3.699999999999999"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <subtraction name="Top_Lid">
+      <first ref="Cut002"/>
+      <second ref="Cube006"/>
+      <position unit="mm" name="P-Box0107" y="-7.0" z="-9.2"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <tessellated name="GasVol_Box">
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_1" vertex3="GasVol_Box_2" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_2" vertex2="GasVol_Box_1" vertex3="GasVol_Box_3" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_4" vertex2="GasVol_Box_5" vertex3="GasVol_Box_6" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_4" vertex2="GasVol_Box_6" vertex3="GasVol_Box_7" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_5" vertex2="GasVol_Box_4" vertex3="GasVol_Box_0" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_4" vertex3="GasVol_Box_1" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_6" vertex3="GasVol_Box_2" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_2" vertex3="GasVol_Box_3" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_0" vertex2="GasVol_Box_2" vertex3="GasVol_Box_5" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_2" vertex2="GasVol_Box_6" vertex3="GasVol_Box_5" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_3" vertex2="GasVol_Box_1" vertex3="GasVol_Box_4" type="ABSOLUTE"/>
+      <triangular vertex1="GasVol_Box_7" vertex2="GasVol_Box_3" vertex3="GasVol_Box_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube">
+      <triangular vertex1="Cube_0" vertex2="Cube_1" vertex3="Cube_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_2" vertex2="Cube_1" vertex3="Cube_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_4" vertex2="Cube_5" vertex3="Cube_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_4" vertex2="Cube_6" vertex3="Cube_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_5" vertex2="Cube_4" vertex3="Cube_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_0" vertex2="Cube_4" vertex3="Cube_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_6" vertex3="Cube_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_2" vertex3="Cube_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_0" vertex2="Cube_2" vertex3="Cube_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_2" vertex2="Cube_6" vertex3="Cube_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_3" vertex2="Cube_1" vertex3="Cube_4" type="ABSOLUTE"/>
+      <triangular vertex1="Cube_7" vertex2="Cube_3" vertex3="Cube_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Cube012">
+      <triangular vertex1="Cube012_0" vertex2="Cube012_1" vertex3="Cube012_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_2" vertex2="Cube012_1" vertex3="Cube012_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_4" vertex2="Cube012_5" vertex3="Cube012_6" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_4" vertex2="Cube012_6" vertex3="Cube012_7" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_5" vertex2="Cube012_4" vertex3="Cube012_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_0" vertex2="Cube012_4" vertex3="Cube012_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_6" vertex3="Cube012_2" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_2" vertex3="Cube012_3" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_2" vertex2="Cube012_6" vertex3="Cube012_0" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_0" vertex2="Cube012_6" vertex3="Cube012_5" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_3" vertex3="Cube012_1" type="ABSOLUTE"/>
+      <triangular vertex1="Cube012_7" vertex2="Cube012_1" vertex3="Cube012_4" type="ABSOLUTE"/>
+    </tessellated>
+    <subtraction name="MicroMegas_Board_Inner">
+      <first ref="Cube"/>
+      <second ref="Cube012"/>
+      <position unit="mm" name="P-Box01710" z="0.195"/>
+      <rotationref ref="identity"/>
+    </subtraction>
+    <tessellated name="Al_Plate">
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_1" vertex3="Al_Plate_2" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_2" vertex2="Al_Plate_1" vertex3="Al_Plate_3" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_4" vertex2="Al_Plate_5" vertex3="Al_Plate_6" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_4" vertex2="Al_Plate_6" vertex3="Al_Plate_7" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_5" vertex2="Al_Plate_4" vertex3="Al_Plate_0" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_4" vertex3="Al_Plate_1" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_6" vertex3="Al_Plate_2" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_2" vertex3="Al_Plate_3" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_2" vertex2="Al_Plate_6" vertex3="Al_Plate_0" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_0" vertex2="Al_Plate_6" vertex3="Al_Plate_5" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_3" vertex3="Al_Plate_1" type="ABSOLUTE"/>
+      <triangular vertex1="Al_Plate_7" vertex2="Al_Plate_1" vertex3="Al_Plate_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="B4C">
+      <triangular vertex1="B4C_0" vertex2="B4C_1" vertex3="B4C_2" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_2" vertex2="B4C_1" vertex3="B4C_3" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_4" vertex2="B4C_5" vertex3="B4C_6" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_4" vertex2="B4C_6" vertex3="B4C_7" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_5" vertex2="B4C_4" vertex3="B4C_0" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_0" vertex2="B4C_4" vertex3="B4C_1" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_6" vertex3="B4C_2" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_2" vertex3="B4C_3" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_2" vertex2="B4C_6" vertex3="B4C_0" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_0" vertex2="B4C_6" vertex3="B4C_5" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_3" vertex3="B4C_1" type="ABSOLUTE"/>
+      <triangular vertex1="B4C_7" vertex2="B4C_1" vertex3="B4C_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="Mesh_SS">
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_1" vertex3="Mesh_SS_2" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_2" vertex2="Mesh_SS_1" vertex3="Mesh_SS_3" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_4" vertex2="Mesh_SS_5" vertex3="Mesh_SS_6" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_4" vertex2="Mesh_SS_6" vertex3="Mesh_SS_7" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_5" vertex2="Mesh_SS_4" vertex3="Mesh_SS_0" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_4" vertex3="Mesh_SS_1" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_6" vertex3="Mesh_SS_2" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_2" vertex3="Mesh_SS_3" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_2" vertex2="Mesh_SS_6" vertex3="Mesh_SS_0" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_0" vertex2="Mesh_SS_6" vertex3="Mesh_SS_5" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_3" vertex3="Mesh_SS_1" type="ABSOLUTE"/>
+      <triangular vertex1="Mesh_SS_7" vertex2="Mesh_SS_1" vertex3="Mesh_SS_4" type="ABSOLUTE"/>
+    </tessellated>
+    <tessellated name="AlMg3_Anode">
+      <triangular vertex1="AlMg3_Anode_0" vertex2="AlMg3_Anode_1" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_3" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_4" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_6" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_7" vertex2="AlMg3_Anode_4" vertex3="AlMg3_Anode_6" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_4" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_4" vertex2="AlMg3_Anode_7" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_5" vertex2="AlMg3_Anode_0" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_2" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_0" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_1" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_1" vertex2="AlMg3_Anode_5" vertex3="AlMg3_Anode_4" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_2" vertex3="AlMg3_Anode_3" type="ABSOLUTE"/>
+      <triangular vertex1="AlMg3_Anode_6" vertex2="AlMg3_Anode_3" vertex3="AlMg3_Anode_7" type="ABSOLUTE"/>
+    </tessellated>
+  </solids>
+  <structure>
+    <volume name="LV_Main_Plate">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="Main_Plate"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_MicroMegas_Board_Main">
+      <materialref ref="PCB_FR4"/>
+      <solidref ref="MicroMegas_Board_Main"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_Top_Lid">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="Top_Lid"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccb2"/>
+    </volume>
+    <volume name="LV_GasVol_Box">
+      <materialref ref="HeCO2_80_20"/>
+      <solidref ref="GasVol_Box"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccad"/>
+    </volume>
+    <volume name="LV_MicroMegas_Board_Inner">
+      <materialref ref="PCB_FR4"/>
+      <solidref ref="MicroMegas_Board_Inner"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_Al_Plate">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="Al_Plate"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccad"/>
+    </volume>
+    <volume name="LV_B4C">
+      <materialref ref="B4C_enriched"/>
+      <solidref ref="B4C"/>
+      <auxiliary auxtype="Color" auxvalue="#ccccccad"/>
+    </volume>
+    <volume name="LV_Mesh_SS">
+      <materialref ref="G4_STAINLESS-STEEL"/>
+      <solidref ref="Mesh_SS"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <volume name="LV_AlMg3_Anode">
+      <materialref ref="AlMg3_Mat"/>
+      <solidref ref="AlMg3_Anode"/>
+      <auxiliary auxtype="Color" auxvalue="#cccccc00"/>
+    </volume>
+    <assembly name="Gas_Volume">
+      <physvol name="av_1_impr_1_LV_GasVol_Box_pv_0">
+        <volumeref ref="LV_GasVol_Box"/>
+        <position unit="mm" name="P-GasVol_Box9" x="100.0" y="147.5" z="3.855"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="av_1_impr_1_LV_MicroMegas_Board_Inner_pv_1">
+        <volumeref ref="LV_MicroMegas_Board_Inner"/>
+        <position unit="mm" name="P-MicroMegas_Board_Inner11" x="100.0" y="147.5" z="0.805"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="av_1_impr_1_LV_Al_Plate_pv_2">
+        <volumeref ref="LV_Al_Plate"/>
+        <position unit="mm" name="P-Al_Plate12" x="100.0" y="150.0" z="3.3609999999999998"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="av_1_impr_1_LV_B4C_pv_3">
+        <volumeref ref="LV_B4C"/>
+        <position unit="mm" name="P-B4C13" x="100.0" y="150.0" z="3.3105"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="av_1_impr_1_LV_Mesh_SS_pv_4">
+        <volumeref ref="LV_Mesh_SS"/>
+        <position unit="mm" name="P-Mesh_SS14" x="100.0" y="150.0" z="1.59"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="av_1_impr_1_LV_AlMg3_Anode_pv_5">
+        <volumeref ref="LV_AlMg3_Anode"/>
+        <position unit="mm" name="P-AlMg3_Anode15" x="100.0" y="150.0" z="1.22"/>
+        <rotationref ref="identity"/>
+      </physvol>
+    </assembly>
+    <volume name="worldVOL">
+      <materialref ref="G4_AIR"/>
+      <solidref ref="WorldBox"/>
+      <physvol name="PV_LV_Main_Plate">
+        <volumeref ref="LV_Main_Plate"/>
+        <position unit="mm" name="P-Main_Plate3" x="100.0" y="67.5" z="-0.9450000000000003"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_MicroMegas_Board_Main">
+        <volumeref ref="LV_MicroMegas_Board_Main"/>
+        <position unit="mm" name="P-MicroMegas_Board_Main5" x="100.0" y="125.0" z="0.805"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_LV_Top_Lid">
+        <volumeref ref="LV_Top_Lid"/>
+        <position unit="mm" name="P-Top_Lid8" x="100.0" y="148.0" z="7.31"/>
+        <rotationref ref="identity"/>
+      </physvol>
+      <physvol name="PV_Gas_Volume">
+        <volumeref ref="Gas_Volume"/>
+        <positionref ref="center"/>
+        <rotationref ref="identity"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="Default" version="1.0">
+    <world ref="worldVOL"/>
+  </setup>
+</gdml>

@@ -1,0 +1,7 @@
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/NeutronSource.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/edit_cache.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/rebuild_cache.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/list_install_components.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/install.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/install/local.dir
+/home/kali/Software/Newtron source git/NeutronSource/build2/CMakeFiles/install/strip.dir
