@@ -7,7 +7,7 @@
 /control/verbose 2
 /run/verbose 2
 #
-/testhadr/det/readFile DetectorGeo.gdml
+/testhadr/det/readFile truegeofile1.gdml
 #
 #
 # To save the energy deposition in the slilcion slabs for dose calculations
@@ -61,8 +61,9 @@
 #/vis/scene/add/hits
 #
 # To draw only gammas:
-#/vis/filtering/trajectories/create/particleFilter
-#/vis/filtering/trajectories/particleFilter-0/add gamma
+/vis/filtering/trajectories/create/particleFilter
+/vis/filtering/trajectories/particleFilter-0/add alpha
+/vis/filtering/trajectories/particleFilter-0/add neutron
 #
 # To invert the above, drawing all particles except gammas,
 # keep the above two lines but also add:

@@ -6,12 +6,12 @@
 /control/verbose 2
 /run/verbose 1
 #
-/testhadr/phys/thermalScattering true
+#/testhadr/phys/thermalScattering true
 
 /testhadr/det/setNbOfAbsor  6
 /testhadr/det/setAbsor 1 AlMg3  0.02 cm
 /testhadr/det/setAbsor 2 Alu  0.01 cm
-/testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
+/testhadr/det/setAbsor 3 B4C_enriched  {B4CThickness} um
 /testhadr/det/setAbsor 4 SSteel  0.004 cm
 /testhadr/det/setAbsor 5 AlMg3  0.05 cm
 /testhadr/det/setAbsor 6 AlMg3  0.02 cm
@@ -34,15 +34,20 @@
 /gps/position -1 0 0 mm
 /gps/pos/type Plane
 /gps/pos/shape Rectangle
-/gps/pos/halfx 15 mm
-/gps/pos/halfy 30 mm
+/gps/pos/halfx 0.015 mm
+/gps/pos/halfy 0.030 mm
 /gps/particle neutron
-/gps/ene/mono 0.025 eV
+/gps/ang/type beam1d
+/gps/ene/type Lin
+/gps/ene/min 0.005 eV
+/gps/ene/max 10 eV
+/gps/ene/gradient 0
+/gps/ene/intercept 1
 /gps/pos/rot1 0 0 1
 /gps/pos/rot2 0 1 0
 /gps/direction 1 0 0
 #
-/analysis/setFileName NeutronSource_run0_thermalScattering_deneme_silicon_save
+/analysis/setFileName NeutronSource12
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -50,4 +55,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 1000000
+/run/beamOn 100000

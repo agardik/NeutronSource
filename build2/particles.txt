@@ -1,0 +1,306 @@
+ List of generated particles (with meanLife != 0) :
+           Al27:     837  Emean =  377.32 meV	( 1.8787 meV --> 1.6008 eV )	stable
+           Al28:      12  Emean =  705.47 eV 	( 163.68 eV  --> 1.0627 keV)	mean life = 3.2388 min
+            B10:       6  Emean =  452.23 meV	( 164.89 meV --> 855.28 meV)	stable
+            B11:      21  Emean =  110.02 eV 	( 32.004 meV --> 2.2958 keV)	stable
+            C12:       7  Emean =  747.28 meV	( 68.27 meV --> 1.4946 eV )	stable
+            C14:      35  Emean =  42.061 keV	( 41.843 keV --> 42.265 keV)	mean life = 8229 y  
+           Cr51:       1  Emean =  388.11 eV 	( 388.11 eV  --> 388.11 eV )	mean life = 39.968 d  
+           Cr52:      21  Emean =  209.53 meV	( 17.111 meV --> 623.8 meV)	stable
+           Cr53:       4  Emean =  42.792 eV 	( 107.88 meV --> 170.22 eV )	stable
+           Cr54:       3  Emean =  69.575 eV 	( 30.739 meV --> 208.59 eV )	stable
+           Fe54:       1  Emean =  332.14 meV	( 332.14 meV --> 332.14 meV)	stable
+           Fe56:     266  Emean =  275.07 meV	( 2.059 meV --> 6.8825 eV )	stable
+           Fe57:      12  Emean =  298.07 eV 	( 138.3 eV  --> 513.85 eV )	stable
+           Fe58:       1  Emean =  20.749 meV	( 20.749 meV --> 20.749 meV)	stable
+            Li7:    1079  Emean =  849.93 keV	( 831.94 keV --> 1.015 MeV)	stable
+           Mg24:      54  Emean =  393.68 meV	( 9.7129 meV --> 1.2147 eV )	stable
+           Mg25:       4  Emean =  542.88 meV	( 167.49 meV --> 1.1541 eV )	stable
+           Mg26:       3  Emean =  258.02 meV	( 54.183 meV --> 521.91 meV)	stable
+           Mn55:       1  Emean =  44.088 meV	( 44.088 meV --> 44.088 meV)	stable
+           Mn56:       2  Emean =  363.26 eV 	( 294.47 eV  --> 432.05 eV )	mean life = 3.7206 h  
+            N14:    1875  Emean =  668.83 meV	( 1.4299 meV --> 2.892 eV )	stable
+            N15:       3  Emean =  2.2967 keV	( 762.49 meV --> 3.8535 keV)	stable
+           Ni58:      49  Emean =  191.96 meV	( 7.2982 meV --> 709.83 meV)	stable
+           Ni62:       3  Emean =   97.96 meV	( 28.708 meV --> 133.77 meV)	stable
+            O16:     286  Emean =  584.71 meV	( 1.596 meV --> 2.3732 eV )	stable
+            O18:       1  Emean =  228.34 meV	( 228.34 meV --> 228.34 meV)	stable
+           Si28:     120  Emean =  6.3362 eV 	( 18.485 meV --> 60.736 eV )	stable
+           Si29:       6  Emean =  69.409 eV 	( 81.485 meV --> 414.92 eV )	stable
+           Si30:      11  Emean =  351.91 meV	( 32.449 meV --> 834.46 meV)	stable
+            V51:       1  Emean =   5.966 eV 	( 5.966 eV  --> 5.966 eV )	stable
+          alpha:    1081  Emean =  1.4868 MeV	( 1.1063 eV  --> 1.7778 MeV)	stable
+      anti_nu_e:      14  Emean =  1.8375 MeV	( 1.1729 MeV --> 2.8015 MeV)	stable
+             e-:     203  Emean =  200.62 keV	( 1.6456 keV --> 1.6889 MeV)	stable
+          gamma:    1133  Emean =  685.49 keV	( 14.413 keV --> 8.836 MeV)	stable
+           nu_e:       1  Emean =  752.38 keV	( 752.38 keV --> 752.38 keV)	stable
+         proton:      35  Emean =  584.28 keV	( 584.08 keV --> 584.5 keV)	stable
+
+ Mean energy deposit per event = 26.119 keV;  rms = 247.76 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     845  Emean =  377.89 meV	( 5.0248 meV --> 1.7023 eV )	stable
+           Al28:      14  Emean =  752.68 eV 	( 310.88 eV  --> 1.1475 keV)	mean life = 3.2388 min
+            B10:       5  Emean =  665.02 meV	( 193.32 meV --> 1.8461 eV )	stable
+            B11:       8  Emean =  611.77 meV	( 69.998 meV --> 1.224 eV )	stable
+            C12:       6  Emean =  967.53 meV	( 91.124 meV --> 2.0746 eV )	stable
+            C14:      34  Emean =  42.023 keV	( 41.705 keV --> 42.299 keV)	mean life = 8229 y  
+           Cr52:      21  Emean =   272.8 meV	( 4.704 meV --> 1.0493 eV )	stable
+           Cr53:       3  Emean =  196.46 meV	( 39.614 meV --> 367.8 meV)	stable
+           Cr54:       1  Emean =  267.52 eV 	( 267.52 eV  --> 267.52 eV )	stable
+           Fe54:       1  Emean =  528.86 meV	( 528.86 meV --> 528.86 meV)	stable
+           Fe56:     281  Emean =  291.74 meV	( 4.9945 meV --> 6.8825 eV )	stable
+           Fe57:       4  Emean =  235.46 eV 	( 76.537 eV  --> 385.45 eV )	stable
+            Li7:    1271  Emean =  849.88 keV	( 831.48 keV --> 1.0149 MeV)	stable
+           Mg24:      54  Emean =  452.08 meV	( 6.844 meV --> 1.4181 eV )	stable
+           Mg25:       6  Emean =   434.8 meV	( 8.7867 meV --> 855.19 meV)	stable
+           Mg26:       4  Emean =  399.78 meV	( 78.201 meV --> 713.66 meV)	stable
+           Mn55:       1  Emean =  205.14 meV	( 205.14 meV --> 205.14 meV)	stable
+           Mn56:       3  Emean =  393.92 eV 	( 389.33 eV  --> 398.4 eV )	mean life = 3.7206 h  
+            N14:    1909  Emean =  671.41 meV	( 0.51496 meV --> 2.6723 eV )	stable
+            N15:       7  Emean =  686.74 meV	( 8.5055 meV --> 1.9483 eV )	stable
+           Ni58:      47  Emean =  152.79 meV	( 6.2385 meV --> 641.32 meV)	stable
+           Ni59:       1  Emean =  179.34 eV 	( 179.34 eV  --> 179.34 eV )	mean life = 1.0972e+05 y  
+           Ni60:       1  Emean =  52.978 meV	( 52.978 meV --> 52.978 meV)	stable
+            O16:     284  Emean =     598 meV	( 15.162 meV --> 2.242 eV )	stable
+           Si28:     114  Emean =  7.7577 eV 	( 8.6465 meV --> 60.736 eV )	stable
+           Si29:       8  Emean =  157.38 eV 	( 57.546 meV --> 967.16 eV )	stable
+           Si30:       7  Emean =  281.74 meV	( 34.174 meV --> 761.33 meV)	stable
+          alpha:    1272  Emean =  1.4882 MeV	( 303.33 meV --> 1.7777 MeV)	stable
+      anti_nu_e:      17  Emean =   1.458 MeV	( 771.21 keV --> 2.329 MeV)	stable
+             e-:     214  Emean =  257.85 keV	( 477.61 eV  --> 2.7094 MeV)	stable
+          gamma:    1300  Emean =  615.68 keV	( 14.413 keV --> 7.6933 MeV)	stable
+         proton:      34  Emean =  584.32 keV	( 584.05 keV --> 584.63 keV)	stable
+
+ Mean energy deposit per event = 30.789 keV;  rms = 269.27 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     849  Emean =  374.98 meV	( 2.1357 meV --> 1.7247 eV )	stable
+           Al28:      11  Emean =  632.86 eV 	( 46.21 eV  --> 1.0897 keV)	mean life = 3.2388 min
+            B10:      12  Emean =  704.04 meV	( 21.617 meV --> 2.3874 eV )	stable
+            B11:      20  Emean =   716.9 meV	( 90.49 meV --> 1.7904 eV )	stable
+            C12:       5  Emean =  614.57 meV	( 159.65 meV --> 1.2966 eV )	stable
+            C14:      36  Emean =  42.059 keV	( 41.755 keV --> 42.382 keV)	mean life = 8229 y  
+           Cr52:      26  Emean =  251.91 meV	( 17.482 meV --> 646.91 meV)	stable
+           Cr53:       2  Emean =  465.81 meV	( 74.497 meV --> 857.12 meV)	stable
+           Cr54:       1  Emean =   363.4 eV 	( 363.4 eV  --> 363.4 eV )	stable
+           Fe54:       2  Emean =  119.05 meV	( 113.88 meV --> 124.21 meV)	stable
+           Fe56:     277  Emean =  212.09 meV	( 1.63 meV --> 845.5 meV)	stable
+           Fe57:       9  Emean =  323.16 eV 	( 118.53 eV  --> 529.4 eV )	stable
+            Li7:    1501  Emean =  851.44 keV	( 831.45 keV --> 1.0149 MeV)	stable
+           Mg24:      46  Emean =  469.45 meV	( 0.44031 meV --> 1.5631 eV )	stable
+           Mg25:       2  Emean =  129.74 meV	( 92.962 meV --> 166.51 meV)	stable
+           Mg26:       6  Emean =  506.81 meV	( 87.671 meV --> 1.0099 eV )	stable
+           Mn55:       2  Emean =  250.77 meV	( 48.261 meV --> 453.27 meV)	stable
+            N14:    1981  Emean =  670.43 meV	( 1.4843 meV --> 3.0798 eV )	stable
+            N15:       5  Emean =  834.97 meV	( 82.677 meV --> 1.4401 eV )	stable
+           Ni58:      52  Emean =  206.98 meV	( 6.0458 meV --> 836.58 meV)	stable
+           Ni59:       2  Emean =  353.19 eV 	( 298.39 eV  --> 407.99 eV )	mean life = 1.0972e+05 y  
+            O16:     292  Emean =  608.02 meV	( 5.5888 meV --> 2.4322 eV )	stable
+           Si28:     143  Emean =  4.9889 eV 	( 3.2557 meV --> 60.736 eV )	stable
+           Si29:       7  Emean =  127.75 eV 	( 115.27 meV --> 892.82 eV )	stable
+           Si30:       8  Emean =  254.16 meV	( 20.137 meV --> 947.61 meV)	stable
+          alpha:    1501  Emean =  1.4922 MeV	( 1.4708 MeV --> 1.7778 MeV)	stable
+      anti_nu_e:      11  Emean =   1.778 MeV	( 665.08 keV --> 2.7248 MeV)	stable
+             e+:       1  Emean =  1.0648 MeV	( 1.0648 MeV --> 1.0648 MeV)	stable
+             e-:     243  Emean =  245.73 keV	( 467.62 eV  --> 5.1527 MeV)	stable
+          gamma:    1487  Emean =  592.22 keV	( 14.413 keV --> 7.6934 MeV)	stable
+         proton:      36  Emean =  584.28 keV	( 583.97 keV --> 584.59 keV)	stable
+
+ Mean energy deposit per event = 36.386 keV;  rms = 294.04 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     814  Emean =  382.18 meV	( 4.0495 meV --> 1.6704 eV )	stable
+           Al28:       8  Emean =  568.35 eV 	( 95.707 eV  --> 1.0314 keV)	mean life = 3.2388 min
+            B10:      11  Emean =  451.89 meV	( 33.708 meV --> 940.81 meV)	stable
+            B11:      23  Emean =  826.16 meV	( 4.7966 meV --> 2.1759 eV )	stable
+            C12:      11  Emean =  1.0304 eV 	( 113.73 meV --> 1.9251 eV )	stable
+            C14:      31  Emean =  42.028 keV	( 41.81 keV --> 42.334 keV)	mean life = 8229 y  
+           Cr51:       1  Emean =  569.46 eV 	( 569.46 eV  --> 569.46 eV )	mean life = 39.968 d  
+           Cr52:      20  Emean =  250.54 meV	( 28.526 meV --> 947.8 meV)	stable
+           Cr53:       3  Emean =   219.2 meV	( 61.48 meV --> 331.21 meV)	stable
+           Cr54:       1  Emean =  650.99 eV 	( 650.99 eV  --> 650.99 eV )	stable
+           Fe54:       5  Emean =  253.93 meV	( 42.286 meV --> 737.53 meV)	stable
+           Fe56:     243  Emean =  210.82 meV	( 3.5775 meV --> 839.74 meV)	stable
+           Fe57:       4  Emean =  349.29 eV 	( 98.826 eV  --> 508.74 eV )	stable
+           Fe58:       1  Emean =  301.37 eV 	( 301.37 eV  --> 301.37 eV )	stable
+            Li7:    1784  Emean =  850.23 keV	( 831.44 keV --> 1.0151 MeV)	stable
+           Mg24:      62  Emean =  414.13 meV	( 19.447 meV --> 1.551 eV )	stable
+           Mg25:       3  Emean =  521.69 meV	( 366.69 meV --> 683.59 meV)	stable
+           Mg26:       5  Emean =  529.48 meV	( 66.125 meV --> 1.0082 eV )	stable
+           Mn55:       3  Emean =  324.06 meV	( 91.486 meV --> 710.28 meV)	stable
+            N14:    1877  Emean =  667.16 meV	( 1.5255 meV --> 3.0178 eV )	stable
+            N15:       5  Emean =  941.22 eV 	( 3.8234 meV --> 4.1097 keV)	stable
+           Ni58:      72  Emean =  222.58 meV	( 2.239 meV --> 856.87 meV)	stable
+           Ni59:       1  Emean =  248.39 eV 	( 248.39 eV  --> 248.39 eV )	mean life = 1.0972e+05 y  
+           Ni60:       1  Emean =  92.662 meV	( 92.662 meV --> 92.662 meV)	stable
+           Ni63:       1  Emean =  197.39 eV 	( 197.39 eV  --> 197.39 eV )	mean life = 146.1 y  
+            O16:     275  Emean =  548.71 meV	( 5.9482 meV --> 2.078 eV )	stable
+            O17:       2  Emean =  124.84 meV	( 109.67 meV --> 140.01 meV)	stable
+           Si28:     121  Emean =  4.3228 eV 	( 6.7951 meV --> 60.736 eV )	stable
+           Si29:      12  Emean =  112.03 eV 	( 55.903 meV --> 705.59 eV )	stable
+           Si30:       4  Emean =   330.6 meV	( 67.684 meV --> 569.06 meV)	stable
+            V51:       1  Emean =   5.966 eV 	( 5.966 eV  --> 5.966 eV )	stable
+          alpha:    1785  Emean =  1.4894 MeV	( 6.2264 eV  --> 1.7776 MeV)	stable
+      anti_nu_e:       8  Emean =  1.3707 MeV	( 611.16 keV --> 2.3822 MeV)	stable
+             e+:       3  Emean =  2.2856 MeV	( 510.5 keV --> 3.9637 MeV)	stable
+             e-:     265  Emean =  211.16 keV	( 1.1659 keV --> 2.2506 MeV)	stable
+          gamma:    1757  Emean =  566.31 keV	( 14.413 keV --> 9.7973 MeV)	stable
+           nu_e:       1  Emean =  752.38 keV	( 752.38 keV --> 752.38 keV)	stable
+         proton:      31  Emean =  584.31 keV	( 584.02 keV --> 584.53 keV)	stable
+
+ Mean energy deposit per event = 43.066 keV;  rms = 321.34 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     866  Emean =  382.76 meV	( 6.1448 meV --> 1.7075 eV )	stable
+           Al28:      12  Emean =  638.11 eV 	( 173.08 eV  --> 1.1151 keV)	mean life = 3.2388 min
+            B10:      20  Emean =  716.84 meV	( 17.545 meV --> 2.5283 eV )	stable
+            B11:      27  Emean =  918.04 meV	( 26.741 meV --> 1.9629 eV )	stable
+            C12:      11  Emean =  681.75 meV	( 10.437 meV --> 1.4559 eV )	stable
+            C14:      29  Emean =  42.035 keV	( 41.825 keV --> 42.322 keV)	mean life = 8229 y  
+           Cr50:       1  Emean =  41.659 meV	( 41.659 meV --> 41.659 meV)	mean life = 1.8768e+18 y  
+           Cr52:      13  Emean =  375.99 meV	( 65.695 meV --> 871.75 meV)	stable
+           Cr53:       6  Emean =  372.86 meV	( 57.165 meV --> 889.26 meV)	stable
+           Cr54:       2  Emean =  375.44 eV 	( 20.35 eV  --> 730.53 eV )	stable
+           Fe54:       2  Emean =  269.51 meV	( 225.66 meV --> 313.36 meV)	stable
+           Fe56:     268  Emean =  240.97 meV	( 1.457 meV --> 6.8825 eV )	stable
+           Fe57:       8  Emean =  312.76 eV 	( 91.145 eV  --> 528.52 eV )	stable
+           Fe58:       1  Emean =  125.03 meV	( 125.03 meV --> 125.03 meV)	stable
+            Li7:    1861  Emean =  851.76 keV	( 831.35 keV --> 1.0148 MeV)	stable
+           Mg24:      52  Emean =  401.65 meV	( 6.8033 meV --> 1.6763 eV )	stable
+           Mg25:       3  Emean =  655.51 meV	( 473.33 meV --> 805.32 meV)	stable
+           Mg26:       5  Emean =  483.49 meV	( 93.599 meV --> 1.376 eV )	stable
+           Mn55:       1  Emean =  62.376 meV	( 62.376 meV --> 62.376 meV)	stable
+           Mn56:       1  Emean =  282.55 eV 	( 282.55 eV  --> 282.55 eV )	mean life = 3.7206 h  
+            N14:    1877  Emean =  627.09 meV	( 2.2612 meV --> 2.5566 eV )	stable
+            N15:       6  Emean =  1.3804 keV	( 1.1334 eV  --> 3.3053 keV)	stable
+           Ni58:      61  Emean =  184.17 meV	( 0.61261 meV --> 708.97 meV)	stable
+            O16:     252  Emean =  627.33 meV	( 2.3194 meV --> 2.6496 eV )	stable
+            O18:       1  Emean =  379.24 meV	( 379.24 meV --> 379.24 meV)	stable
+           Si28:     115  Emean =  6.6466 eV 	( 4.2798 meV --> 60.736 eV )	stable
+           Si29:       6  Emean =  97.017 eV 	( 29.043 meV --> 581.28 eV )	stable
+           Si30:       6  Emean =  380.16 meV	( 24.457 meV --> 987.81 meV)	stable
+          alpha:    1862  Emean =  1.4916 MeV	( 304.66 meV --> 1.778 MeV)	stable
+      anti_nu_e:      13  Emean =   1.791 MeV	( 922.78 keV --> 2.4974 MeV)	stable
+             e+:       1  Emean =  1.0887 MeV	( 1.0887 MeV --> 1.0887 MeV)	stable
+             e-:     302  Emean =  194.25 keV	( 185.12 eV  --> 3.4123 MeV)	stable
+          gamma:    1846  Emean =  581.69 keV	( 14.413 keV --> 9.5319 MeV)	stable
+         proton:      29  Emean =  584.31 keV	( 584.03 keV --> 584.52 keV)	stable
+
+ Mean energy deposit per event = 44.822 keV;  rms = 325.21 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     763  Emean =  372.15 meV	( 1.1973 meV --> 1.979 eV )	stable
+           Al28:      16  Emean =  661.18 eV 	( 54.669 eV  --> 1.08 keV)	mean life = 3.2388 min
+            B10:       9  Emean =  945.17 meV	( 26.342 meV --> 2.0474 eV )	stable
+            B11:      31  Emean =  877.18 meV	( 3.9594 meV --> 3.1111 eV )	stable
+            C12:       7  Emean =  501.14 meV	( 29.91 meV --> 1.8595 eV )	stable
+            C14:      38  Emean =  42.058 keV	( 41.797 keV --> 42.313 keV)	mean life = 8229 y  
+           Cr50:       1  Emean =  416.69 meV	( 416.69 meV --> 416.69 meV)	mean life = 1.8768e+18 y  
+           Cr52:      12  Emean =  163.23 meV	( 26.242 meV --> 470.42 meV)	stable
+           Cr53:       8  Emean =  263.04 meV	( 37.943 meV --> 574.52 meV)	stable
+           Cr54:       2  Emean =  213.46 eV 	( 276.99 meV --> 426.65 eV )	stable
+           Fe54:       2  Emean =  45.996 meV	( 19.323 meV --> 72.669 meV)	stable
+           Fe55:       1  Emean =  430.44 eV 	( 430.44 eV  --> 430.44 eV )	mean life = 3.9615 y  
+           Fe56:     252  Emean =     199 meV	( 0.094412 meV --> 737.35 meV)	stable
+           Fe57:       7  Emean =  282.12 eV 	( 204.28 eV  --> 410.89 eV )	stable
+            Li7:    2079  Emean =  851.39 keV	( 831.36 keV --> 1.0151 MeV)	stable
+           Mg24:      47  Emean =     385 meV	( 1.3524 meV --> 1.1296 eV )	stable
+           Mg25:       8  Emean =  271.19 meV	( 62.499 meV --> 723.68 meV)	stable
+           Mg26:       3  Emean =  327.81 meV	( 79.673 meV --> 758.83 meV)	stable
+           Mn55:       1  Emean =  354.75 meV	( 354.75 meV --> 354.75 meV)	stable
+            N14:    1976  Emean =  670.81 meV	( 0.13389 meV --> 2.7889 eV )	stable
+            N15:       5  Emean =  430.26 meV	( 168.66 meV --> 859.03 meV)	stable
+           Ni58:      48  Emean =  233.92 meV	( 5.6826 meV --> 943.5 meV)	stable
+           Ni59:       1  Emean =  451.85 eV 	( 451.85 eV  --> 451.85 eV )	mean life = 1.0972e+05 y  
+           Ni60:       2  Emean =  116.61 meV	( 66.294 meV --> 166.92 meV)	stable
+           Ni62:       1  Emean =  33.901 meV	( 33.901 meV --> 33.901 meV)	stable
+           Ni63:       1  Emean =   59.08 eV 	( 59.08 eV  --> 59.08 eV )	mean life = 146.1 y  
+            O16:     279  Emean =  622.11 meV	( 20.165 meV --> 2.3071 eV )	stable
+            O17:       1  Emean =  289.43 meV	( 289.43 meV --> 289.43 meV)	stable
+           Si28:     113  Emean =  8.8922 eV 	( 15.497 meV --> 60.736 eV )	stable
+           Si29:       9  Emean =  439.71 meV	( 96.883 meV --> 943.45 meV)	stable
+           Si30:       1  Emean =  415.88 meV	( 415.88 meV --> 415.88 meV)	stable
+          alpha:    2079  Emean =  1.4922 MeV	( 1.4709 MeV --> 1.7781 MeV)	stable
+      anti_nu_e:      16  Emean =  1.6188 MeV	( 374.1 keV --> 2.5288 MeV)	stable
+             e+:       1  Emean =   5.164 MeV	( 5.164 MeV --> 5.164 MeV)	stable
+             e-:     355  Emean =  225.23 keV	( 1.0037 keV --> 5.3919 MeV)	stable
+          gamma:    2049  Emean =  570.67 keV	( 14.369 keV --> 7.4065 MeV)	stable
+         proton:      38  Emean =  584.28 keV	( 584.03 keV --> 584.55 keV)	stable
+
+ Mean energy deposit per event = 50.389 keV;  rms = 346.53 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     855  Emean =  386.49 meV	( 1.7121 meV --> 1.753 eV )	stable
+           Al28:      17  Emean =  699.63 eV 	( 168.96 eV  --> 1.1494 keV)	mean life = 3.2388 min
+            B10:      14  Emean =  767.22 meV	( 26.243 meV --> 2.4457 eV )	stable
+            B11:      29  Emean =  541.91 meV	( 12.659 meV --> 2.6206 eV )	stable
+            C12:      16  Emean =  498.15 meV	( 11.129 meV --> 1.6041 eV )	stable
+            C14:      33  Emean =  42.036 keV	( 41.708 keV --> 42.224 keV)	mean life = 8229 y  
+           Cr51:       1  Emean =  535.64 eV 	( 535.64 eV  --> 535.64 eV )	mean life = 39.968 d  
+           Cr52:      19  Emean =  183.23 meV	( 10.951 meV --> 515.12 meV)	stable
+           Cr53:       9  Emean =  192.18 meV	( 26.134 meV --> 719.86 meV)	stable
+           Fe54:       3  Emean =  80.427 meV	( 33.31 meV --> 127.11 meV)	stable
+           Fe56:     265  Emean =  284.73 meV	( 1.7537 meV --> 6.8825 eV )	stable
+           Fe57:       7  Emean =  228.75 eV 	( 45.391 eV  --> 490.58 eV )	stable
+           Fe58:       1  Emean =  202.15 meV	( 202.15 meV --> 202.15 meV)	stable
+            Li7:    2361  Emean =  849.53 keV	( 831.41 keV --> 1.0153 MeV)	stable
+           Mg24:      56  Emean =  331.02 meV	( 5.5408 meV --> 1.208 eV )	stable
+           Mg25:       5  Emean =  161.81 meV	( 26.439 meV --> 380.97 meV)	stable
+           Mg26:       4  Emean =  322.05 meV	( 40.414 meV --> 1.0119 eV )	stable
+           Mn55:       1  Emean =  94.438 meV	( 94.438 meV --> 94.438 meV)	stable
+           Mn56:       3  Emean =  201.74 eV 	( 65.786 eV  --> 420.46 eV )	mean life = 3.7206 h  
+            N14:    1872  Emean =  657.92 meV	( 1.2576 meV --> 2.832 eV )	stable
+            N15:       4  Emean =  300.42 eV 	( 437.43 meV --> 1.1999 keV)	stable
+           Ni58:      51  Emean =  234.86 meV	( 7.792 meV --> 812.43 meV)	stable
+           Ni59:       1  Emean =  689.26 eV 	( 689.26 eV  --> 689.26 eV )	mean life = 1.0972e+05 y  
+           Ni60:       1  Emean =   34.95 meV	( 34.95 meV --> 34.95 meV)	stable
+           Ni62:       2  Emean =   249.9 meV	( 170.22 meV --> 329.59 meV)	stable
+            O16:     267  Emean =  553.79 meV	( 2.2858 meV --> 2.1882 eV )	stable
+            O18:       1  Emean =  1.5248 eV 	( 1.5248 eV  --> 1.5248 eV )	stable
+            P31:       1  Emean =    50.8 eV 	( 50.8 eV  --> 50.8 eV )	stable
+           Si28:     120  Emean =  8.8589 eV 	( 6.4447 meV --> 60.736 eV )	stable
+           Si29:       8  Emean =  217.14 meV	( 12.709 meV --> 874.34 meV)	stable
+           Si30:       5  Emean =  320.62 meV	( 8.8246 meV --> 910.09 meV)	stable
+           Si31:       1  Emean =  446.82 eV 	( 446.82 eV  --> 446.82 eV )	mean life = 3.7808 h  
+            V51:       1  Emean =   5.966 eV 	( 5.966 eV  --> 5.966 eV )	stable
+          alpha:    2361  Emean =  1.4888 MeV	( 1.4709 MeV --> 1.778 MeV)	stable
+      anti_nu_e:      21  Emean =  1.3268 MeV	( 422.68 keV --> 2.4348 MeV)	stable
+             e-:     411  Emean =  216.87 keV	( 264.95 eV  --> 2.7254 MeV)	stable
+          gamma:    2355  Emean =   571.2 keV	( 14.413 keV --> 7.6973 MeV)	stable
+           nu_e:       1  Emean =  752.38 keV	( 752.38 keV --> 752.38 keV)	stable
+         proton:      33  Emean =  584.31 keV	( 584.12 keV --> 584.63 keV)	stable
+
+ Mean energy deposit per event = 56.848 keV;  rms = 364.46 keV
+ List of generated particles (with meanLife != 0) :
+           Al27:     793  Emean =  386.25 meV	( 0.84956 meV --> 1.6039 eV )	stable
+           Al28:       7  Emean =  735.86 eV 	( 510.34 eV  --> 1.137 keV)	mean life = 3.2388 min
+            B10:      16  Emean =   760.2 meV	( 15.721 meV --> 2.3382 eV )	stable
+            B11:      36  Emean =  672.13 meV	( 2.9853 meV --> 2.2455 eV )	stable
+            C12:      17  Emean =  775.09 meV	( 7.6532 meV --> 2.2627 eV )	stable
+            C13:       1  Emean =  185.82 meV	( 185.82 meV --> 185.82 meV)	stable
+            C14:      31  Emean =  42.083 keV	( 41.869 keV --> 42.382 keV)	mean life = 8229 y  
+           Cr51:       1  Emean =  401.06 eV 	( 401.06 eV  --> 401.06 eV )	mean life = 39.968 d  
+           Cr52:      15  Emean =  154.73 meV	( 9.8112 meV --> 546.89 meV)	stable
+           Cr53:       7  Emean =  183.57 meV	( 35.586 meV --> 447.48 meV)	stable
+           Cr54:       3  Emean =   348.3 eV 	( 228.15 eV  --> 556.24 eV )	stable
+           Fe54:       2  Emean =  81.512 meV	( 44.214 meV --> 118.81 meV)	stable
+           Fe56:     224  Emean =  181.59 meV	( 4.1978 meV --> 824.9 meV)	stable
+           Fe57:       8  Emean =  248.86 eV 	( 50.666 eV  --> 525.38 eV )	stable
+           Fe58:       1  Emean =  514.35 eV 	( 514.35 eV  --> 514.35 eV )	stable
+            Li7:    2580  Emean =  851.16 keV	( 831.61 keV --> 1.0149 MeV)	stable
+           Mg24:      54  Emean =  599.48 meV	( 17.444 meV --> 1.6671 eV )	stable
+           Mg25:       3  Emean =  254.69 meV	( 163.61 meV --> 359.14 meV)	stable
+           Mg26:       5  Emean =  355.17 meV	( 99.957 meV --> 813.43 meV)	stable
+            N14:    1859  Emean =  669.13 meV	( 0.4414 meV --> 3.0099 eV )	stable
+            N15:       3  Emean =  1.2004 keV	( 52.843 meV --> 2.9385 keV)	stable
+           Ni58:      63  Emean =  187.06 meV	( 10.431 meV --> 545.17 meV)	stable
+           Ni61:       1  Emean =  594.32 meV	( 594.32 meV --> 594.32 meV)	stable
+            O16:     261  Emean =  559.56 meV	( 6.4324 meV --> 2.1675 eV )	stable
+            O18:       2  Emean =  460.71 meV	( 147.96 meV --> 773.46 meV)	stable
+           Si28:     127  Emean =  3.6696 eV 	( 0.26515 meV --> 60.736 eV )	stable
+           Si29:       7  Emean =  96.355 eV 	( 190.24 meV --> 672.36 eV )	stable
+           Si30:       6  Emean =  364.38 meV	( 49.579 meV --> 1.1161 eV )	stable
+            V51:       1  Emean =   5.966 eV 	( 5.966 eV  --> 5.966 eV )	stable
+          alpha:    2582  Emean =  1.4907 MeV	( 1.7516 eV  --> 1.7778 MeV)	stable
+      anti_nu_e:       7  Emean =  1.7112 MeV	( 862.49 keV --> 2.6244 MeV)	stable
+             e-:     434  Emean =  159.95 keV	( 329.67 eV  --> 1.9994 MeV)	stable
+          gamma:    2506  Emean =  542.39 keV	( 14.413 keV --> 8.195 MeV)	stable
+           nu_e:       1  Emean =  752.38 keV	( 752.38 keV --> 752.38 keV)	stable
+         proton:      31  Emean =  584.26 keV	( 583.97 keV --> 584.48 keV)	stable
+
+ Mean energy deposit per event = 61.913 keV;  rms = 380.08 keV

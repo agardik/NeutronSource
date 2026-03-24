@@ -274,7 +274,7 @@
 
       <physvol name="pv_LV_Mesh_SS">
         <volumeref ref="LV_Mesh_SS"/>
-        <position unit="mm" x="0.0" y="0.0" z="-2.265"/>
+        <position unit="mm" x="0.0" y="0.0" z="-0.618125"/>
         <rotationref ref="identity"/>
       </physvol>
 

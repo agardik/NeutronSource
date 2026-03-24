@@ -210,20 +210,25 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   // Create an instance of the analysis manager
   G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
 
-  // Fill the ntuple only for neutrons created by inelastic scattering
-  if (fParticleName == "neutron" && interactionType == "neutronInelastic" && 0==1) {
-    // position of the photon created inside the detector
-    analysisManager->FillNtupleIColumn(0, 0, evt);
-    analysisManager->FillNtupleSColumn(0, 1, fParticleName);
-    analysisManager->FillNtupleDColumn(0, 2, posParticle[0] / mm);
-    analysisManager->FillNtupleDColumn(0, 3, posParticle[1] / mm);
-    analysisManager->FillNtupleDColumn(0, 4, posParticle[2] / mm);
-    analysisManager->FillNtupleSColumn(0, 5, interactionType);
-    analysisManager->FillNtupleSColumn(0, 6, targetIsotope);
-    // analysisManager->FillNtupleDColumn(0, 7, edepStep);
-    analysisManager->AddNtupleRow(0);
-  }
+  auto track = aStep->GetTrack();
 
+  G4double energy = track->GetKineticEnergy();
+
+  if (fParticleName == "neutron" && track->GetParentID() == 0 && track->GetCurrentStepNumber() == 1)
+  {
+      analysisManager->FillNtupleIColumn(0, 0, evt);
+      analysisManager->FillNtupleSColumn(0, 1, fParticleName);
+      analysisManager->FillNtupleDColumn(0, 2, posParticle[0] / mm);
+      analysisManager->FillNtupleDColumn(0, 3, posParticle[1] / mm);
+      analysisManager->FillNtupleDColumn(0, 4, posParticle[2] / mm);
+      analysisManager->FillNtupleSColumn(0, 5, "primarySource");
+      analysisManager->FillNtupleSColumn(0, 6, "none");
+
+      // neutron initial kinetic energy
+      analysisManager->FillNtupleDColumn(0, 7, energy / MeV);
+
+      analysisManager->AddNtupleRow(0);
+  }
   // energy deposit
   //
   // G4double edepStep = aStep->GetTotalEnergyDeposit() / CLHEP::keV;
@@ -235,7 +240,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     G4double edepStep = preKineticEnergy1 - postKineticEnergy1;
 
   // If the particle is interacted with the enriched boron slab.
-  if (thePostPVname == "B4C_enriched" && 0==1) {
+  if (thePostPVname == "PV_LV_Main_Plate" && fParticleName != "neutron" && thePrePVname == "PV_LV_Main_Plate") {
     // position of the photon created inside the detector
     analysisManager->FillNtupleIColumn(1, 0, evt);
     analysisManager->FillNtupleSColumn(1, 1, fParticleName);
@@ -252,9 +257,9 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->AddNtupleRow(1);
   }
   // If the particle is interacted with the helium gas.
-  if (thePostPVname == "phygasBox" && fParticleName != "neutron" && thePrePVname == "phygasBox") {
+  if (thePostPVname == "PV_LV_GasVol_Box" && fParticleName != "neutron" && thePrePVname == "PV_LV_GasVol_Box") {
     //  // If no energy deposit, return1
-    if (thePrePVname != "phygasBox")
+    if (thePrePVname != "PV_LV_GasVol_Box")
       return;
     //if (edepStep <= 0.)
       //return;
@@ -333,7 +338,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   }
 
   // alphas generated.
-  if (fParticleName != "neutron") {
+  if (fParticleName != "neutron" && 0==1) {
         // // Stopping Power from input Table.
     G4Material* prematerial1 = thePrePoint->GetMaterial();
 G4Material* postmaterial1 = thePostPoint->GetMaterial();

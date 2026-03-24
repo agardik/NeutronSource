@@ -63,11 +63,11 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleDColumn("fZ");
   analysisManager->CreateNtupleSColumn("fInteractionType");
   analysisManager->CreateNtupleSColumn("targetIsotope");
-  // analysisManager->CreateNtupleDColumn("Edep");
+  analysisManager->CreateNtupleDColumn("Edep");
   analysisManager->FinishNtuple(0);
 
   // Create ntuple for energy deposition
-  analysisManager->CreateNtuple("BoronEdep", "BoronEdep");
+  analysisManager->CreateNtuple("PV_LV_Main_Plate", "PV_LV_Main_Plate");
   analysisManager->CreateNtupleIColumn("fEvent");
   analysisManager->CreateNtupleSColumn("fParticleName");
   analysisManager->CreateNtupleIColumn("fParentID");

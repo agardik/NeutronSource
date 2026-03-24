@@ -95,6 +95,13 @@ G4VPhysicalVolume *DetectorConstruction::Construct() {
 
     fParser.Read(fReadFile);
 
+    // Get a volume in the gdml file
+    G4LogicalVolume *LVgas = fParser.GetVolume("LV_GasVol_Box"); // Gas_Volume as an example
+    // Set small step limit for gas volume
+    LVgas->SetUserLimits(
+    new G4UserLimits(0.01*mm)
+    );
+
     // READING GDML FILES OPTION: 2nd Boolean argument "Validate".
     // Flag to "false" disables check with the Schema when reading GDML file.
     // See the GDML Documentation for more information.
@@ -104,6 +111,26 @@ G4VPhysicalVolume *DetectorConstruction::Construct() {
     // Prints the material information
     //
     G4cout << *(G4Material::GetMaterialTable()) << G4endl;
+
+    // DEBUG: List ALL volumes with their materials
+    G4LogicalVolumeStore* store = G4LogicalVolumeStore::GetInstance();
+
+    G4cout << "=== ALL VOLUMES ===" << G4endl;
+
+    for (auto lv : *store) {
+        G4Material* material = lv->GetMaterial();
+
+        G4cout << "  Volume: " << lv->GetName();
+
+        if (material) {
+            G4cout << "  |  Material: " << material->GetName();
+        } else {
+            G4cout << "  |  Material: NONE";
+        }
+
+        G4cout << G4endl;
+    }
+    //######################################################################//
 
     // Giving World Physical Volume from GDML Parser
     //
