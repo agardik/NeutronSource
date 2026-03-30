@@ -52,7 +52,7 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   fHistoManager = new HistoManager();
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->SetVerboseLevel(1);
-  // analysisManager->SetNtupleMerging(true); // Merging the ntuples
+  analysisManager->SetNtupleMerging(true); // Merging the ntuples
 
   // Create ntuple for energy deposition
   analysisManager->CreateNtuple("NeutronCapture_Data", "NeutronCapture_Data");
@@ -84,7 +84,7 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->FinishNtuple(1);
 
   // Create ntuple for energy deposition
-  analysisManager->CreateNtuple("SiliconEdep_Y_1", "SiliconEdep_Y_1");
+  analysisManager->CreateNtuple("Sphere", "Sphere");
   analysisManager->CreateNtupleIColumn("fEvent");
   analysisManager->CreateNtupleSColumn("fParticleName");
   analysisManager->CreateNtupleIColumn("fParentID");
@@ -212,7 +212,7 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->FinishNtuple(7);
 
       // Create ntuple for alphas generated
-  analysisManager->CreateNtuple("Alphas", "Alphas");
+  analysisManager->CreateNtuple("Electronics", "Electronics");
   analysisManager->CreateNtupleIColumn("fEvent");
   analysisManager->CreateNtupleSColumn("fParticleName");
   analysisManager->CreateNtupleIColumn("fParentID");

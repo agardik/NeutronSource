@@ -48,6 +48,10 @@ public:
   void UserSteppingAction(const G4Step *) override;
   void SaveSiliconEdepData(G4int);
   void SaveParticleFluxData(G4int);
+  void ProcessVolume(const G4Step* aStep,
+                      const G4String& volumeName,
+                      G4int ntupleID,
+                      G4double edepStep, G4int NeutronFlag);
 
 private:
   EventAction *fEventAction = nullptr;

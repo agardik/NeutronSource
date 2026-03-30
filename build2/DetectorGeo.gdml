@@ -101,9 +101,9 @@
       <composite n="2" ref="O_elem"/>
     </material>
     <material name="HeCO2_80_20">
-      <D unit="g/cm3" value="0.000648"/>
-      <fraction n="0.7" ref="He_elem"/>
-      <fraction n="0.3" ref="CO2_Mol"/>
+      <D unit="g/cm3" value="0.000512"/>
+      <fraction n="0.8" ref="He_elem"/>
+      <fraction n="0.2" ref="CO2_Mol"/>
     </material>
     <material name="ArCO2_70_30">
       <D unit="g/cm3" value="0.001815"/>

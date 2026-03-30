@@ -8,7 +8,7 @@
 #
 /testhadr/phys/thermalScattering true
 
-/testhadr/det/readFile DetectorGeo.gdml
+/testhadr/det/readFile Electronics_Lid.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -26,16 +26,13 @@
 /gps/position 100 150 20 mm
 /gps/pos/type Plane
 /gps/pos/shape Rectangle
-/gps/pos/halfx 0.015 mm
-/gps/pos/halfy 50 mm
+/gps/pos/halfx 15 mm
+/gps/pos/halfy 15 mm
 /gps/particle neutron
 /gps/ene/mono 0.025 eV
-/gps/pos/rot1 0 0 1
-/gps/pos/rot2 0 1 0
-/gps/pos/rot2 1 0 0
 /gps/direction 0 0 -1
 #
-/analysis/setFileName NeutronSource_run0_thermalScattering_deneme_silicon_save
+/analysis/setFileName /media/sf_vm-share/Neutron source output/rootoutput/Electronicstest
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 

@@ -60,6 +60,114 @@ SteppingAction::~SteppingAction() { delete steppingMessenger; }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
+void SteppingAction::ProcessVolume(const G4Step* aStep,
+                                      const G4String& volumeName,
+                                      G4int ntupleID,
+                                      G4double edepStep, G4int NeutronFlag)
+{
+  G4StepPoint* thePrePoint  = aStep->GetPreStepPoint();
+  G4StepPoint* thePostPoint = aStep->GetPostStepPoint();
+
+  G4VPhysicalVolume* thePrePV  = thePrePoint->GetPhysicalVolume();
+  G4VPhysicalVolume* thePostPV = thePostPoint->GetPhysicalVolume();
+
+  if (!thePrePV || !thePostPV) return;
+
+  G4String thePrePVname  = thePrePV->GetName();
+  G4String thePostPVname = thePostPV->GetName();
+
+  G4Track* theTrack = aStep->GetTrack();
+  G4ParticleDefinition* particleType = theTrack->GetDefinition();
+  G4String fParticleName = particleType->GetParticleName();
+
+  // Condition (same as yours)
+  if (thePostPVname != volumeName ||
+      thePrePVname  != volumeName ||
+      (NeutronFlag == 1 && fParticleName == "neutron")) {
+    return;
+  }
+
+  // Material
+  G4Material* postmaterial = thePostPoint->GetMaterial();
+  G4double density = postmaterial->GetDensity() / (g/cm3);
+
+  // Step length
+  G4double stepLength = aStep->GetStepLength() / cm;
+  if (stepLength <= 0) return;
+
+  // Energy
+  G4double preKineticEnergy =
+      thePrePoint->GetKineticEnergy() * MeV;
+
+  // Step number
+  G4int StepNumber = theTrack->GetCurrentStepNumber();
+
+  // dEdx
+  G4EmCalculator emCalculator;
+  G4double dEdxTable = 0., dEdxFull = 0.;
+
+  if (particleType->GetPDGCharge() != 0.) {
+    dEdxTable =
+        emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
+
+    dEdxFull =
+        emCalculator.ComputeTotalDEDX(preKineticEnergy, particleType, postmaterial);
+  }
+
+  G4double stopTable = dEdxTable / density;
+  G4double stopFull  = dEdxFull / density;
+
+  // Simulated stopping power
+  G4double meandEdx  = edepStep / stepLength;
+  G4double stopPower = meandEdx / density;
+
+  // Get things from your class (already computed in UserSteppingAction)
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  G4int evt = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+
+  G4ThreeVector posParticle = thePostPoint->GetPosition();
+
+  G4int part_parent_ID = theTrack->GetParentID();
+  G4int part_ID        = theTrack->GetTrackID();
+
+  // These come from your logic — reuse them if needed
+  G4String creatorProcessName = "";
+  if (theTrack->GetCreatorProcess())
+    creatorProcessName = theTrack->GetCreatorProcess()->GetProcessName();
+  else
+    creatorProcessName = "NoCreator";
+
+  const G4LogicalVolume* PVatVertex = theTrack->GetLogicalVolumeAtVertex();
+  G4String PVatVertexname = PVatVertex ? PVatVertex->GetName() : "None";
+
+  G4String interactionType = "unknown";
+  G4String targetIsotope   = "unknown";
+
+  // Fill ntuple
+  analysisManager->FillNtupleIColumn(ntupleID, 0, evt);
+  analysisManager->FillNtupleSColumn(ntupleID, 1, fParticleName);
+  analysisManager->FillNtupleIColumn(ntupleID, 2, part_parent_ID);
+  analysisManager->FillNtupleIColumn(ntupleID, 3, part_ID);
+  analysisManager->FillNtupleIColumn(ntupleID, 4, StepNumber);
+  analysisManager->FillNtupleDColumn(ntupleID, 5, posParticle[0] / mm);
+  analysisManager->FillNtupleDColumn(ntupleID, 6, posParticle[1] / mm);
+  analysisManager->FillNtupleDColumn(ntupleID, 7, posParticle[2] / mm);
+  analysisManager->FillNtupleSColumn(ntupleID, 8, interactionType);
+  analysisManager->FillNtupleSColumn(ntupleID, 9, targetIsotope);
+  analysisManager->FillNtupleDColumn(ntupleID, 10, edepStep);
+  analysisManager->FillNtupleDColumn(ntupleID, 11, stopTable);
+  analysisManager->FillNtupleDColumn(ntupleID, 12, stopFull);
+  analysisManager->FillNtupleDColumn(ntupleID, 13, meandEdx);
+  analysisManager->FillNtupleDColumn(ntupleID, 14, stopPower);
+  analysisManager->FillNtupleSColumn(ntupleID, 15, creatorProcessName);
+  analysisManager->FillNtupleSColumn(ntupleID, 16, PVatVertexname);
+
+  analysisManager->AddNtupleRow(ntupleID);
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   // count processes
   //
@@ -257,167 +365,13 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->AddNtupleRow(1);
   }
   // If the particle is interacted with the helium gas.
-  if (thePostPVname == "PV_LV_GasVol_Box" && fParticleName != "neutron" && thePrePVname == "PV_LV_GasVol_Box") {
-    //  // If no energy deposit, return1
-    if (thePrePVname != "PV_LV_GasVol_Box")
-      return;
-    //if (edepStep <= 0.)
-      //return;
-        // // Stopping Power from input Table.
+  //ProcessVolume(aStep, "PV_LV_GasVol_Box", 7, edepStep, 1);
+  // If the particle is interacted with the electronics.
+  ProcessVolume(aStep, "PV_LV_Electronics", 8, edepStep, 0);
+  // If the particle is interacted with the sphere.
+  ProcessVolume(aStep, "PV_LV_Sphere", 2, edepStep, 0);
 
-    // Get the material at the pre-step point
-    G4Material *prematerial = thePrePoint->GetMaterial();
-    // Get the material at the post-step point
-    G4Material *postmaterial = thePostPoint->GetMaterial();
-    //   G4cout << "Next volume is  nullptr!" << G4endl;
-    //   return;
-    // }
-    // You can now use the material object, for example, to get its name
-    G4String materialName = postmaterial->GetName();
-    G4double density = postmaterial->GetDensity()/(g/cm3);
-    //std::cout << "Name of material: " << materialName << std::endl;
-    //std::cout << "Density of material: " << density<< " ??" << std::endl;
-
-    // Get step length
-    G4double stepLength = aStep->GetStepLength()/cm;
-    //G4cout << "Step length: " << stepLength << " ??" << G4endl;
-
-    // Kinetic energy of the particle after each step
-    G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
-
-    G4double postKineticEnergy =
-        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
-    G4double preKineticEnergy =
-        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
-    //G4double edepStep = preKineticEnergy - postKineticEnergy;
-    // current step number
-    G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
-
-    G4EmCalculator emCalculator;
-    G4double dEdxTable = 0., dEdxFull = 0.;
-
-    if (particleType->GetPDGCharge() != 0.) {
-      dEdxTable =
-          emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
-      dEdxFull = emCalculator.ComputeTotalDEDX(preKineticEnergy, particleType,
-                                               postmaterial);
-    }
-    G4double stopTable = dEdxTable / density;
-    G4double stopFull = dEdxFull / density;
-    
-    // Stopping Power from simulation.
-    //
-    if (stepLength<=0) {
-      return;
-    }
-    G4double meandEdx = edepStep / stepLength;
-    G4double stopPower = meandEdx / density;
-    // data of the interaction products
-    analysisManager->FillNtupleIColumn(7, 0, evt);
-    analysisManager->FillNtupleSColumn(7, 1, fParticleName);
-    analysisManager->FillNtupleIColumn(7, 2, part_parent_ID);
-    analysisManager->FillNtupleIColumn(7, 3, part_ID);
-    analysisManager->FillNtupleIColumn(7, 4, StepNumberr);
-    analysisManager->FillNtupleDColumn(7, 5, posParticle[0] / mm);
-    analysisManager->FillNtupleDColumn(7, 6, posParticle[1] / mm);
-    analysisManager->FillNtupleDColumn(7, 7, posParticle[2] / mm);
-    analysisManager->FillNtupleSColumn(7, 8, interactionType);
-    analysisManager->FillNtupleSColumn(7, 9, targetIsotope);
-    analysisManager->FillNtupleDColumn(7, 10, edepStep);
-    analysisManager->FillNtupleDColumn(
-          7, 11, stopTable);
-    analysisManager->FillNtupleDColumn(
-          7, 12, stopFull);
-    analysisManager->FillNtupleDColumn(7, 13,
-                                         meandEdx);
-    analysisManager->FillNtupleDColumn(
-          7, 14, stopPower );
-    analysisManager->FillNtupleSColumn(7, 15, creatorProcessName);
-    analysisManager->FillNtupleSColumn(7, 16, PVatVertexname);
-    analysisManager->AddNtupleRow(7);
-  }
-
-  // alphas generated.
-  if (fParticleName != "neutron" && 0==1) {
-        // // Stopping Power from input Table.
-    G4Material* prematerial1 = thePrePoint->GetMaterial();
-G4Material* postmaterial1 = thePostPoint->GetMaterial();
-
-if (!prematerial1 || !postmaterial1) return;
-if (particleType->GetPDGCharge() == 0.) return;
-
-
-    // Get the material at the pre-step point
-    G4Material *prematerial = thePrePoint->GetMaterial();
-    // Get the material at the post-step point
-    G4Material *postmaterial = thePostPoint->GetMaterial();
-    //   G4cout << "Next volume is  nullptr!" << G4endl;
-    //   return;
-    // }
-    // You can now use the material object, for example, to get its name
-    G4String materialName = postmaterial->GetName();
-    G4double density = postmaterial->GetDensity()/(g/cm3);
-    //std::cout << "Name of material: " << materialName << std::endl;
-    //std::cout << "Density of material: " << density<< " ??" << std::endl;
-
-    // Get step length
-    G4double stepLength = aStep->GetStepLength()/cm;
-    //G4cout << "Step length: " << stepLength << " ??" << G4endl;
-
-    // Kinetic energy of the particle after each step
-    G4double kinEnergy = theTrack->GetKineticEnergy() * MeV;
-
-    G4double postKineticEnergy =
-        aStep->GetPostStepPoint()->GetKineticEnergy() * MeV;
-    G4double preKineticEnergy =
-        aStep->GetPreStepPoint()->GetKineticEnergy() * MeV;
-
-    // current step number
-    G4int StepNumber = aStep->GetTrack()->GetCurrentStepNumber();
-
-    G4EmCalculator emCalculator;
-    G4double dEdxTable = 0., dEdxFull = 0.;
-
-    if (particleType->GetPDGCharge() != 0.) {
-      dEdxTable =
-          emCalculator.GetDEDX(preKineticEnergy, particleType, postmaterial);
-      dEdxFull = emCalculator.ComputeTotalDEDX(preKineticEnergy, particleType,
-                                               postmaterial);
-    }
-    G4double stopTable = dEdxTable / density;
-    G4double stopFull = dEdxFull / density;
-
-    // Stopping Power from simulation.
-    //
-    if (stepLength<=0) {
-      return;
-    }
-    G4double meandEdx = edepStep / stepLength;
-    G4double stopPower = meandEdx / density;
-    // data of the interaction products
-    analysisManager->FillNtupleIColumn(8, 0, evt);
-    analysisManager->FillNtupleSColumn(8, 1, fParticleName);
-    analysisManager->FillNtupleIColumn(8, 2, part_parent_ID);
-    analysisManager->FillNtupleIColumn(8, 3, part_ID);
-    analysisManager->FillNtupleIColumn(8, 4, StepNumberr);
-    analysisManager->FillNtupleDColumn(8, 5, posParticle[0] / mm);
-    analysisManager->FillNtupleDColumn(8, 6, posParticle[1] / mm);
-    analysisManager->FillNtupleDColumn(8, 7, posParticle[2] / mm);
-    analysisManager->FillNtupleSColumn(8, 8, interactionType);
-    analysisManager->FillNtupleSColumn(8, 9, targetIsotope);
-    analysisManager->FillNtupleDColumn(8, 10, edepStep);
-    analysisManager->FillNtupleDColumn(
-          8, 11, stopTable);
-    analysisManager->FillNtupleDColumn(
-          8, 12, stopFull);
-    analysisManager->FillNtupleDColumn(8, 13,
-                                         meandEdx);
-    analysisManager->FillNtupleDColumn(
-          8, 14, stopPower );
-    analysisManager->FillNtupleSColumn(8, 15, creatorProcessName);
-    analysisManager->FillNtupleSColumn(8, 16, PVatVertexname);
-    analysisManager->AddNtupleRow(8);
-  }
+  
 
   // if (!step->GetTrack()->GetNextVolume())
   //  Check if the particle is leaving the world volume
