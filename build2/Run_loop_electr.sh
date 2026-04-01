@@ -1,3 +1,26 @@
+#!/bin/bash
+
+# ---- USER SETTINGS ----
+NX=20
+NY=10
+
+EXEC=./NeutronSource
+GDML_DIR=gdml_out          # where Python generated files
+OUTPUT_DIR=loopoutputs
+
+mkdir -p $OUTPUT_DIR
+
+# ---- LOOP ----
+for ((ix=0; ix<=NX; ix++))
+do
+  for ((iy=0; iy<=NY; iy++))
+  do
+    echo "Running x=${ix}, y=${iy}"
+
+    GDML_FILE=${GDML_DIR}/Electronics_x$(printf "%02d" $ix)_y$(printf "%02d" $iy).gdml
+    MACRO_FILE=${OUTPUT_DIR}/run_x${ix}_y${iy}.mac
+
+    cat > $MACRO_FILE <<EOF
 #
 # Macro file for "NeutronSource.cc"
 #
@@ -6,11 +29,9 @@
 /control/verbose 2
 /run/verbose 1
 #
+/testhadr/phys/thermalScattering true
 
-#/testhadr/phys/thermalScattering true
-/run/geometryModified
-/run/reinitializeGeometry
-/testhadr/det/readFile Sphere{drift}.gdml
+/testhadr/det/readFile ${GDML_FILE}
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -28,16 +49,13 @@
 /gps/position 100 150 20 mm
 /gps/pos/type Plane
 /gps/pos/shape Rectangle
-/gps/pos/halfx 0.015 mm
-/gps/pos/halfy 50 mm
+/gps/pos/halfx 15 mm
+/gps/pos/halfy 15 mm
 /gps/particle neutron
 /gps/ene/mono 0.025 eV
-/gps/pos/rot1 0 0 1
-/gps/pos/rot2 0 1 0
-/gps/pos/rot2 1 0 0
 /gps/direction 0 0 -1
 #
-/analysis/setFileName Sphere{drift}
+/analysis/setFileName ${OUTPUT_DIR}/Electronics_x${ix}_y${iy}
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -46,3 +64,10 @@
 #
 #/run/printProgress 100000
 /run/beamOn 100
+
+EOF
+
+    $EXEC $MACRO_FILE
+
+  done
+done

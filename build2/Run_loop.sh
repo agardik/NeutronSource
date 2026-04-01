@@ -1,3 +1,24 @@
+#!/bin/bash
+
+# ---- USER SETTINGS ----
+START=1
+END=3
+STEP=1
+
+EXEC=./NeutronSource         # your Geant4 executable
+MACRO_TEMPLATE=template.mac    # optional template (can skip if unused)
+OUTPUT_DIR=loopoutputs
+
+mkdir -p $OUTPUT_DIR
+
+# ---- LOOP ----
+for ((drift=$START; drift<=$END; drift+=STEP))
+do
+  echo "Running drift = $drift"
+
+  MACRO_FILE=${OUTPUT_DIR}/run_${drift}.mac
+
+  cat > $MACRO_FILE <<EOF
 #
 # Macro file for "NeutronSource.cc"
 #
@@ -10,7 +31,7 @@
 #/testhadr/phys/thermalScattering true
 /run/geometryModified
 /run/reinitializeGeometry
-/testhadr/det/readFile Sphere{drift}.gdml
+/testhadr/det/readFile Sphere${drift}.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -37,7 +58,7 @@
 /gps/pos/rot2 1 0 0
 /gps/direction 0 0 -1
 #
-/analysis/setFileName Sphere{drift}
+/analysis/setFileName Sphere${drift}
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -46,3 +67,8 @@
 #
 #/run/printProgress 100000
 /run/beamOn 100
+EOF
+
+  $EXEC $MACRO_FILE
+
+done

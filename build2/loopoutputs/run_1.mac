@@ -10,7 +10,7 @@
 #/testhadr/phys/thermalScattering true
 /run/geometryModified
 /run/reinitializeGeometry
-/testhadr/det/readFile Sphere{drift}.gdml
+/testhadr/det/readFile Sphere1.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -37,7 +37,7 @@
 /gps/pos/rot2 1 0 0
 /gps/direction 0 0 -1
 #
-/analysis/setFileName Sphere{drift}
+/analysis/setFileName Sphere1
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 

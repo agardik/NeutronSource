@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+  <define>
+    <constant name="HALFPI" value="pi/2" />
+    <constant name="PI" value="1*pi" />
+    <constant name="TWOPI" value="2*pi" />
+    <position name="center" x="0" y="0" z="0" unit="mm" />
+    <rotation name="identity" x="0" y="0" z="0" />
+  </define>
+  <materials>
+    <isotope name="iso_B10" Z="5" N="10">
+      <atom value="10.01" />
+    </isotope>
+    <isotope name="iso_B11" Z="5" N="11">
+      <atom value="11.009" />
+    </isotope>
+    <isotope name="iso_C12" Z="6" N="12">
+      <atom value="12.011" />
+    </isotope>
+    <element name="H_elem" Z="1" formula="H">
+      <atom value="1.008" />
+    </element>
+    <element name="He_elem" Z="2" formula="He">
+      <atom value="4.0026" />
+    </element>
+    <element name="C_elem" Z="6" formula="C">
+      <atom value="12.011" />
+    </element>
+    <element name="N_elem" Z="7" formula="N">
+      <atom value="14.007" />
+    </element>
+    <element name="O_elem" Z="8" formula="O">
+      <atom value="15.999" />
+    </element>
+    <element name="Mg_elem" Z="12" formula="Mg">
+      <atom value="24.305" />
+    </element>
+    <element name="Al_elem" Z="13" formula="Al">
+      <atom value="26.982" />
+    </element>
+    <element name="Si_elem" Z="14" formula="Si">
+      <atom value="28.085" />
+    </element>
+    <element name="Ar_elem" Z="18" formula="Ar">
+      <atom value="39.948" />
+    </element>
+    <element name="Cr_elem" Z="24" formula="Cr">
+      <atom value="51.996" />
+    </element>
+    <element name="Fe_elem" Z="26" formula="Fe">
+      <atom value="55.845" />
+    </element>
+    <element name="Ni_elem" Z="28" formula="Ni">
+      <atom value="58.693" />
+    </element>
+    <element name="Br_elem" Z="35" formula="Br">
+      <atom value="79.904" />
+    </element>
+    <element name="Enriched_B">
+      <fraction n="0.5" ref="iso_B10" />
+      <fraction n="0.5" ref="iso_B11" />
+    </element>
+    <element name="Carbon_Iso">
+      <fraction n="1.0" ref="iso_C12" />
+    </element>
+    <element name="Ni_element" Z="28" formula="Ni">
+      <atom value="58.6934" />
+    </element>
+    <element name="Ar_element" Z="18" formula="Ar">
+      <atom value="39.95" />
+    </element>
+    <element name="O_element" Z="8" formula="O">
+      <atom value="15.999" />
+    </element>
+    <element name="Cr_element" Z="24" formula="Cr">
+      <atom value="51.9961" />
+    </element>
+    <element name="C_element" Z="6" formula="C">
+      <atom value="12.011" />
+    </element>
+    <element name="N_element" Z="7" formula="N">
+      <atom value="14.007" />
+    </element>
+    <element name="Fe_element" Z="26" formula="Fe">
+      <atom value="55.845" />
+    </element>
+    <material name="AlMg3_Mat">
+      <D unit="g/cm3" value="2.66" />
+      <fraction n="0.97" ref="Al_elem" />
+      <fraction n="0.03" ref="Mg_elem" />
+    </material>
+    <material name="B4C_enriched">
+      <D unit="g/cm3" value="2.52" />
+      <composite n="4" ref="Enriched_B" />
+      <composite n="1" ref="Carbon_Iso" />
+    </material>
+    <material name="G4_STAINLESS-STEEL001">
+      <D unit="g/cm3" value="8.0" />
+      <composite n="74" ref="Fe_elem" />
+      <composite n="18" ref="Cr_elem" />
+      <composite n="8" ref="Ni_elem" />
+    </material>
+    <material name="PCB_H_Br">
+      <D unit="g/cm3" value="1.85" />
+      <fraction n="0.8" ref="H_elem" />
+      <fraction n="0.2" ref="Br_elem" />
+    </material>
+    <material name="PCB_SiOC">
+      <D unit="g/cm3" value="1.85" />
+      <fraction n="0.2778" ref="Si_elem" />
+      <fraction n="0.3889" ref="O_elem" />
+      <fraction n="0.3333" ref="C_elem" />
+    </material>
+    <material name="PCB_FR4">
+      <D unit="g/cm3" value="1.85" />
+      <fraction n="0.1" ref="PCB_H_Br" />
+      <fraction n="0.9" ref="PCB_SiOC" />
+    </material>
+    <material name="CO2_Mol">
+      <D unit="g/cm3" value="0.001842" />
+      <composite n="1" ref="C_elem" />
+      <composite n="2" ref="O_elem" />
+    </material>
+    <material name="HeCO2_80_20">
+      <D unit="g/cm3" value="0.000512" />
+      <fraction n="0.8" ref="He_elem" />
+      <fraction n="0.2" ref="CO2_Mol" />
+    </material>
+    <material name="ArCO2_70_30">
+      <D unit="g/cm3" value="0.001815" />
+      <fraction n="0.7" ref="Ar_elem" />
+      <fraction n="0.3" ref="CO2_Mol" />
+    </material>
+    <material name="G4_AIR001">
+      <D unit="g/cm3" value="0.00120479" />
+      <fraction n="0.000124" ref="C_elem" />
+      <fraction n="0.755268" ref="N_elem" />
+      <fraction n="0.231781" ref="O_elem" />
+      <fraction n="0.012827" ref="Ar_elem" />
+    </material>
+    <material name="G4_STAINLESS-STEEL" formula="G4_STAINLESS-STEEL">
+      <D unit="g/cm3" value="8.0" />
+      <composite n="74" ref="Fe_element" />
+      <composite n="18" ref="Cr_element" />
+      <composite n="8" ref="Ni_element" />
+    </material>
+    <material name="G4_AIR" formula="G4_AIR">
+      <D unit="g/cm3" value="0.00120479" />
+      <fraction n="0.000124" ref="C_element" />
+      <fraction n="0.755268" ref="N_element" />
+      <fraction n="0.231781" ref="O_element" />
+      <fraction n="0.012827" ref="Ar_element" />
+    </material>
+  </materials>
+  <solids>
+    <box name="WorldBox" x="200.0" y="200.0" z="200.0" lunit="cm" />
+    <box name="Cube009" x="160.0" y="165.0" z="10.0" lunit="mm" />
+    <box name="Cube007" x="210.0" y="375.0" z="6.91" lunit="mm" />
+    <box name="Cube008" x="202.0" y="380.0" z="10.0" lunit="mm" />
+    <subtraction name="Cut004">
+      <first ref="Cube007" />
+      <second ref="Cube008" />
+      <position unit="mm" name="P-Box0121" y="-6.5" z="5.945" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <subtraction name="Main_Plate">
+      <first ref="Cut004" />
+      <second ref="Cube009" />
+      <position unit="mm" name="P-Box0132" y="80.0" z="1.745" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <box name="Cube010" x="200.0" y="250.0" z="1.61" lunit="mm" />
+    <box name="Cube011" x="160.0" y="165.0" z="10.0" lunit="mm" />
+    <subtraction name="MicroMegas_Board_Main">
+      <first ref="Cube010" />
+      <second ref="Cube011" />
+      <position unit="mm" name="P-Box0154" y="22.5" z="-0.805" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <box name="Cube006" x="202.0" y="220.0" z="10.0" lunit="mm" />
+    <box name="Cube004" x="210.0" y="214.0" z="9.6" lunit="mm" />
+    <box name="Cube005" x="160.0" y="165.0" z="16.6" lunit="mm" />
+    <subtraction name="Cut002">
+      <first ref="Cube004" />
+      <second ref="Cube005" />
+      <position unit="mm" name="P-Box0096" y="-0.5" z="-3.699999999999999" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <subtraction name="Top_Lid">
+      <first ref="Cut002" />
+      <second ref="Cube006" />
+      <position unit="mm" name="P-Box0107" y="-7.0" z="-9.2" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <box name="GasVol_Box" x="160.0" y="165.0" z="16.11" lunit="mm" />
+    <box name="Cube" x="160.0" y="165.0" z="1.61" lunit="mm" />
+    <box name="Cube012" x="100.0" y="100.0" z="10.0" lunit="mm" />
+    <subtraction name="MicroMegas_Board_Inner">
+      <first ref="Cube" />
+      <second ref="Cube012" />
+      <position unit="mm" name="P-Box01710" z="0.195" />
+      <rotationref ref="identity" />
+    </subtraction>
+    <box name="Al_Plate" x="120.0" y="120.0" z="0.1" lunit="mm" />
+    <box name="B4C" x="100.0" y="100.0" z="0.001" lunit="mm" />
+    <box name="Mesh_SS" x="100.0" y="100.0" z="0.04" lunit="mm" />
+    <box name="AlMg3_Anode" x="100.0" y="100.0" z="0.5" lunit="mm" />
+    <box name="Cube1" x="9.5" y="11.0" z="2.0" lunit="mm" />
+    <box name="Cube001" x="120.0" y="200.0" z="10.0" lunit="mm" />
+    <box name="Cube002" x="116.0" y="196.0" z="10.0" lunit="mm" />
+    <subtraction name="Lid">
+      <first ref="Cube001" />
+      <second ref="Cube002" />
+      <position name="P-Box0022" unit="mm" z="-2.0" />
+      <rotationref ref="identity" />
+    </subtraction>
+  </solids>
+  <structure>
+    <volume name="LV_Main_Plate">
+      <materialref ref="AlMg3_Mat" />
+      <solidref ref="Main_Plate" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc00" />
+    </volume>
+    <volume name="LV_MicroMegas_Board_Main">
+      <materialref ref="PCB_FR4" />
+      <solidref ref="MicroMegas_Board_Main" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc00" />
+    </volume>
+    <volume name="LV_Top_Lid">
+      <materialref ref="AlMg3_Mat" />
+      <solidref ref="Top_Lid" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc00" />
+    </volume>
+    <volume name="LV_MicroMegas_Board_Inner">
+      <materialref ref="PCB_FR4" />
+      <solidref ref="MicroMegas_Board_Inner" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc00" />
+    </volume>
+    <volume name="LV_Al_Plate">
+      <materialref ref="AlMg3_Mat" />
+      <solidref ref="Al_Plate" />
+      <auxiliary auxtype="Color" auxvalue="#dfe9f4ad" />
+    </volume>
+    <volume name="LV_B4C">
+      <materialref ref="B4C_enriched" />
+      <solidref ref="B4C" />
+      <auxiliary auxtype="Color" auxvalue="#abb3bbad" />
+    </volume>
+    <volume name="LV_Mesh_SS">
+      <materialref ref="G4_STAINLESS-STEEL" />
+      <solidref ref="Mesh_SS" />
+      <auxiliary auxtype="Color" auxvalue="#cacbcfad" />
+    </volume>
+    <volume name="LV_AlMg3_Anode">
+      <materialref ref="AlMg3_Mat" />
+      <solidref ref="AlMg3_Anode" />
+      <auxiliary auxtype="Color" auxvalue="#acb4bcad" />
+    </volume>
+    <volume name="LV_GasVol_Box">
+      <materialref ref="HeCO2_80_20" />
+      <solidref ref="GasVol_Box" />
+      <auxiliary auxtype="Color" auxvalue="#fd9d00ad" />
+      <physvol name="PV_LV_MicroMegas_Board_Inner">
+        <volumeref ref="LV_MicroMegas_Board_Inner" />
+        <position unit="mm" z="-3.05" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_Al_Plate">
+        <volumeref ref="LV_Al_Plate" />
+        <position unit="mm" z="-0.494" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_B4C">
+        <volumeref ref="LV_B4C" />
+        <position unit="mm" z="-0.5445" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_Mesh_SS">
+        <volumeref ref="LV_Mesh_SS" />
+        <position unit="mm" z="-2.265" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_AlMg3_Anode">
+        <volumeref ref="LV_AlMg3_Anode" />
+        <position unit="mm" z="-2.635" />
+        <rotationref ref="identity" />
+      </physvol>
+    </volume>
+    <volume name="LV_Electronics">
+      <materialref ref="G4_Si" />
+      <solidref ref="Cube1" />
+      <auxiliary auxtype="Color" auxvalue="#00aa0000" />
+    </volume>
+    <volume name="LV_Lid">
+      <materialref ref="AlMg3_Mat" />
+      <solidref ref="Lid" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc9e" />
+    </volume>
+    <volume name="worldVOL">
+      <materialref ref="G4_AIR" />
+      <solidref ref="WorldBox" />
+      <physvol name="PV_LV_Main_Plate">
+        <volumeref ref="LV_Main_Plate" />
+        <position unit="mm" name="P-Main_Plate3" x="100.0" y="67.5" z="-0.9450000000000003" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_MicroMegas_Board_Main">
+        <volumeref ref="LV_MicroMegas_Board_Main" />
+        <position unit="mm" name="P-MicroMegas_Board_Main5" x="100.0" y="125.0" z="0.805" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_Top_Lid">
+        <volumeref ref="LV_Top_Lid" />
+        <position unit="mm" name="P-Top_Lid8" x="100.0" y="148.0" z="7.31" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_GasVol_Box">
+        <volumeref ref="LV_GasVol_Box" />
+        <position unit="mm" x="100.0" y="147.5" z="3.855" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_Electronics">
+        <volumeref ref="LV_Electronics" />
+        <position name="P-LV_Electronics1" unit="mm" x="54.750000" y="-89.500000" z="1.0" />
+        <rotationref ref="identity" />
+      </physvol>
+      <physvol name="PV_LV_Lid">
+        <volumeref ref="LV_Lid" />
+        <position name="P-LV_Lid3" unit="mm" x="100.00000000000001" y="-59.99999999999998" z="5.0" />
+        <rotation name="R-LV_Lid1" unit="deg" z="89.99999999999999" />
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="Default" version="1.0">
+    <world ref="worldVOL" />
+  </setup>
+</gdml>
