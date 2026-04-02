@@ -6,9 +6,11 @@
 /control/verbose 2
 /run/verbose 1
 #
-/testhadr/phys/thermalScattering true
 
-/testhadr/det/readFile DetectorGeo1.gdml
+#/testhadr/phys/thermalScattering true
+/run/geometryModified
+/run/reinitializeGeometry
+/testhadr/det/readFile Sphere{drift}.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -35,7 +37,7 @@
 /gps/pos/rot2 1 0 0
 /gps/direction 0 0 -1
 #
-/analysis/setFileName NeutronSource_run0_thermalScattering_deneme_silicon_save
+/analysis/setFileName Sphere{drift}
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -43,4 +45,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 10000000
+/run/beamOn 100

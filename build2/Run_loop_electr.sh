@@ -5,10 +5,10 @@ NX=20
 NY=10
 
 EXEC=./NeutronSource
-GDML_DIR=gdml_out          # where Python generated files
+GDML_DIR="/home/kali/Software/Newtron source git/NeutronSource/gdml_out"         # where Python generated files
 OUTPUT_DIR=loopoutputs
 
-mkdir -p $OUTPUT_DIR
+mkdir -p "$OUTPUT_DIR"
 
 # ---- LOOP ----
 for ((ix=0; ix<=NX; ix++))
@@ -17,8 +17,8 @@ do
   do
     echo "Running x=${ix}, y=${iy}"
 
-    GDML_FILE=${GDML_DIR}/Electronics_x$(printf "%02d" $ix)_y$(printf "%02d" $iy).gdml
-    MACRO_FILE=${OUTPUT_DIR}/run_x${ix}_y${iy}.mac
+    GDML_FILE="${GDML_DIR}"/Electronics_x$(printf "%02d" $ix)_y$(printf "%02d" $iy).gdml
+    MACRO_FILE="${OUTPUT_DIR}"/run_x${ix}_y${iy}.mac
 
     cat > $MACRO_FILE <<EOF
 #
@@ -26,8 +26,8 @@ do
 #
 #/random/setSeeds 19577794 424238336
 
-/control/verbose 2
-/run/verbose 1
+/control/verbose 0
+/run/verbose 0
 #
 /testhadr/phys/thermalScattering true
 
@@ -55,7 +55,7 @@ do
 /gps/ene/mono 0.025 eV
 /gps/direction 0 0 -1
 #
-/analysis/setFileName ${OUTPUT_DIR}/Electronics_x${ix}_y${iy}
+/analysis/setFileName /media/sf_vm-share/Neutron source output/loopoutputs/Electronics_x${ix}_y${iy}
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 

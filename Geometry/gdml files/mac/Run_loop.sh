@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# ---- USER SETTINGS ----
+START=1
+END=3
+STEP=1
+
+EXEC=./NeutronSource         # your Geant4 executable
+MACRO_TEMPLATE=template.mac    # optional template (can skip if unused)
+OUTPUT_DIR=loopoutputs
+
+mkdir -p $OUTPUT_DIR
+
+# ---- LOOP ----
+for ((drift=$START; drift<=$END; drift+=STEP))
+do
+  echo "Running drift = $drift"
+
+  MACRO_FILE=${OUTPUT_DIR}/run_${drift}.mac
+
+  cat > $MACRO_FILE <<EOF
+#
+# Macro file for "NeutronSource.cc"
+#
+#/random/setSeeds 19577794 424238336
+
+/control/verbose 2
+/run/verbose 1
+#
+
+#/testhadr/phys/thermalScattering true
+/run/geometryModified
+/run/reinitializeGeometry
+/testhadr/det/readFile Sphere${drift}.gdml
+
+# To save the energy deposition in the slilcion slabs for dose calculations
+# Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
+# To save the particles emerging from the world volume
+# Set-> SetSiliconSlabs 0 and saveSiliconData 0 and saveFluxData 1
+#/testhadr/det/SetSiliconSlabs 1
+#/stepping/saveSiliconData 1
+#/stepping/saveFluxData 0
+#
+/run/initialize
+#
+# Set a very high time threshold to allow all decays to happen
+#/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
+#
+/gps/position 100 150 20 mm
+/gps/pos/type Plane
+/gps/pos/shape Rectangle
+/gps/pos/halfx 0.015 mm
+/gps/pos/halfy 50 mm
+/gps/particle neutron
+/gps/ene/mono 0.025 eV
+/gps/pos/rot1 0 0 1
+/gps/pos/rot2 0 1 0
+/gps/pos/rot2 1 0 0
+/gps/direction 0 0 -1
+#
+/analysis/setFileName Sphere${drift}
+/analysis/h1/set 4 100  0. 10.  MeV #gammas
+/analysis/h1/set 6  60  0. 12.  MeV #neutrons
+
+#
+/tracking/verbose 0
+#
+#/run/printProgress 100000
+/run/beamOn 100
+EOF
+
+  $EXEC $MACRO_FILE
+
+done

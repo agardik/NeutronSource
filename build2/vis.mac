@@ -7,7 +7,7 @@
 /control/verbose 2
 /run/verbose 2
 #
-/testhadr/det/readFile Electronics_Lid.gdml
+/testhadr/det/readFile /home/kali/Software/Newtron source git/NeutronSource/gdml_out/Electronics_x00_y00.gdml
 #
 #
 # To save the energy deposition in the slilcion slabs for dose calculations

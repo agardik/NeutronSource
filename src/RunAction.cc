@@ -206,8 +206,9 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleDColumn("StopFull");
   analysisManager->CreateNtupleDColumn("MeandEdx");
   analysisManager->CreateNtupleDColumn("StopPower");
-  analysisManager->CreateNtupleSColumn("fPVatVertexname");
   analysisManager->CreateNtupleSColumn("fCreatorProcessName");
+  analysisManager->CreateNtupleSColumn("fPVatVertexname");
+
 
   analysisManager->FinishNtuple(7);
 
@@ -228,8 +229,9 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleDColumn("StopFull");
   analysisManager->CreateNtupleDColumn("MeandEdx");
   analysisManager->CreateNtupleDColumn("StopPower");
-  analysisManager->CreateNtupleSColumn("fPVatVertexname");
   analysisManager->CreateNtupleSColumn("fCreatorProcessName");
+  analysisManager->CreateNtupleSColumn("fPVatVertexname");
+
 
   analysisManager->FinishNtuple(8);
 }

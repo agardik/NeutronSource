@@ -322,7 +322,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
 
   G4double energy = track->GetKineticEnergy();
 
-  if (fParticleName == "neutron" && track->GetParentID() == 0 && track->GetCurrentStepNumber() == 1)
+  if (fParticleName == "neutron" && track->GetParentID() == 0 && track->GetCurrentStepNumber() == 1 && 0==1)
   {
       analysisManager->FillNtupleIColumn(0, 0, evt);
       analysisManager->FillNtupleSColumn(0, 1, fParticleName);
@@ -348,7 +348,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     G4double edepStep = preKineticEnergy1 - postKineticEnergy1;
 
   // If the particle is interacted with the enriched boron slab.
-  if (thePostPVname == "PV_LV_Main_Plate" && fParticleName != "neutron" && thePrePVname == "PV_LV_Main_Plate") {
+  if (thePostPVname == "PV_LV_Main_Plate" && fParticleName != "neutron" && thePrePVname == "PV_LV_Main_Plate" && 0==1) {
     // position of the photon created inside the detector
     analysisManager->FillNtupleIColumn(1, 0, evt);
     analysisManager->FillNtupleSColumn(1, 1, fParticleName);

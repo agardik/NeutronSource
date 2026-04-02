@@ -205,7 +205,7 @@
     <box name="B4C" x="100.0" y="100.0" z="0.001" lunit="mm" />
     <box name="Mesh_SS" x="100.0" y="100.0" z="0.04" lunit="mm" />
     <box name="AlMg3_Anode" x="100.0" y="100.0" z="0.5" lunit="mm" />
-    <box name="Cube1" x="9.5" y="11.0" z="2.0" lunit="mm" />
+    <box name="Cube1" x="9" y="10.0" z="2.0" lunit="mm" />
     <box name="Cube001" x="120.0" y="200.0" z="10.0" lunit="mm" />
     <box name="Cube002" x="116.0" y="196.0" z="10.0" lunit="mm" />
     <subtraction name="Lid">

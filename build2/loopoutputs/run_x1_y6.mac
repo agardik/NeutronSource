@@ -1,0 +1,44 @@
+#
+# Macro file for "NeutronSource.cc"
+#
+#/random/setSeeds 19577794 424238336
+
+/control/verbose 0
+/run/verbose 0
+#
+/testhadr/phys/thermalScattering true
+
+/testhadr/det/readFile /home/kali/Software/Newtron source git/NeutronSource/gdml_out/Electronics_x01_y06.gdml
+
+# To save the energy deposition in the slilcion slabs for dose calculations
+# Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
+# To save the particles emerging from the world volume
+# Set-> SetSiliconSlabs 0 and saveSiliconData 0 and saveFluxData 1
+#/testhadr/det/SetSiliconSlabs 1
+#/stepping/saveSiliconData 1
+#/stepping/saveFluxData 0
+#
+/run/initialize
+#
+# Set a very high time threshold to allow all decays to happen
+#/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
+#
+/gps/position 100 150 20 mm
+/gps/pos/type Plane
+/gps/pos/shape Rectangle
+/gps/pos/halfx 15 mm
+/gps/pos/halfy 15 mm
+/gps/particle neutron
+/gps/ene/mono 0.025 eV
+/gps/direction 0 0 -1
+#
+/analysis/setFileName /media/sf_vm-share/Neutron source output/loopoutputs/Electronics_x1_y6
+/analysis/h1/set 4 100  0. 10.  MeV #gammas
+/analysis/h1/set 6  60  0. 12.  MeV #neutrons
+
+#
+/tracking/verbose 0
+#
+#/run/printProgress 100000
+/run/beamOn 100
+
