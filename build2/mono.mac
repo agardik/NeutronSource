@@ -8,7 +8,7 @@
 #
 /testhadr/phys/thermalScattering true
 
-/testhadr/det/readFile Electronics_Lid.gdml
+/testhadr/det/readFile Electronics_x00_y00.gdml
 
 # To save the energy deposition in the slilcion slabs for dose calculations
 # Set-> SetSiliconSlabs 1 and saveSiliconData 1 and saveFluxData 0
@@ -32,7 +32,7 @@
 /gps/ene/mono 0.025 eV
 /gps/direction 0 0 -1
 #
-/analysis/setFileName /media/sf_vm-share/Neutron source output/rootoutput/Electronicstest
+/analysis/setFileName /media/sf_vm-share/Neutron source output/rootoutput/Electronics_x00_y00
 /analysis/h1/set 4 100  0. 10.  MeV #gammas
 /analysis/h1/set 6  60  0. 12.  MeV #neutrons
 
@@ -40,4 +40,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 10000000
+/run/beamOn 100000000

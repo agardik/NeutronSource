@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ---- USER SETTINGS ----
-NX=20
-NY=10
+NX=8
+NY=5
 
 EXEC=./NeutronSource
 GDML_DIR="/home/kali/Software/Newtron source git/NeutronSource/gdml_out"         # where Python generated files

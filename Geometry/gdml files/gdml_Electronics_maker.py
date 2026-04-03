@@ -12,16 +12,16 @@ INPUT_FILE = "/home/kali/Software/Newtron source git/NeutronSource/Geometry/gdml
 OUTPUT_DIR = "gdml_out"
 
 # Initial position from your GDML
-X_START = 9.75
-Y_START = -109.5
+X_START = 13.75
+Y_START = -107.5
 
 # Step sizes (mm)
-DX = 9.0
-DY = 10.0
+DX = 21.5
+DY = 19.0
 
 # Number of steps
-NX = 20+1   # x steps
-NY = 10+1   # y steps
+NX = 8+1   # x steps
+NY = 5+1   # y steps
 
 # =========================
 # FUNCTIONS

@@ -205,13 +205,13 @@
     <box name="B4C" x="100.0" y="100.0" z="0.001" lunit="mm" />
     <box name="Mesh_SS" x="100.0" y="100.0" z="0.04" lunit="mm" />
     <box name="AlMg3_Anode" x="100.0" y="100.0" z="0.5" lunit="mm" />
-    <box name="Cube1" x="9" y="10.0" z="2.0" lunit="mm" />
+    <box name="Cube1" x="21.5" y="19.0" z="2.0" lunit="mm" />
     <box name="Cube001" x="120.0" y="200.0" z="10.0" lunit="mm" />
     <box name="Cube002" x="116.0" y="196.0" z="10.0" lunit="mm" />
     <subtraction name="Lid">
       <first ref="Cube001" />
       <second ref="Cube002" />
-      <position name="P-Box0022" unit="mm" z="-2.0" />
+      <position unit="mm" name="P-Box0022" z="-2.0" />
       <rotationref ref="identity" />
     </subtraction>
   </solids>
@@ -239,27 +239,27 @@
     <volume name="LV_Al_Plate">
       <materialref ref="AlMg3_Mat" />
       <solidref ref="Al_Plate" />
-      <auxiliary auxtype="Color" auxvalue="#dfe9f4ad" />
+      <auxiliary auxtype="Color" auxvalue="#dee8f3ad" />
     </volume>
     <volume name="LV_B4C">
       <materialref ref="B4C_enriched" />
       <solidref ref="B4C" />
-      <auxiliary auxtype="Color" auxvalue="#abb3bbad" />
+      <auxiliary auxtype="Color" auxvalue="#aab2baad" />
     </volume>
     <volume name="LV_Mesh_SS">
       <materialref ref="G4_STAINLESS-STEEL" />
       <solidref ref="Mesh_SS" />
-      <auxiliary auxtype="Color" auxvalue="#cacbcfad" />
+      <auxiliary auxtype="Color" auxvalue="#c9cacead" />
     </volume>
     <volume name="LV_AlMg3_Anode">
       <materialref ref="AlMg3_Mat" />
       <solidref ref="AlMg3_Anode" />
-      <auxiliary auxtype="Color" auxvalue="#acb4bcad" />
+      <auxiliary auxtype="Color" auxvalue="#abb3bbad" />
     </volume>
     <volume name="LV_GasVol_Box">
       <materialref ref="HeCO2_80_20" />
       <solidref ref="GasVol_Box" />
-      <auxiliary auxtype="Color" auxvalue="#fd9d00ad" />
+      <auxiliary auxtype="Color" auxvalue="#fc9c00ad" />
       <physvol name="PV_LV_MicroMegas_Board_Inner">
         <volumeref ref="LV_MicroMegas_Board_Inner" />
         <position unit="mm" z="-3.05" />
@@ -289,12 +289,12 @@
     <volume name="LV_Electronics">
       <materialref ref="G4_Si" />
       <solidref ref="Cube1" />
-      <auxiliary auxtype="Color" auxvalue="#00aa0000" />
+      <auxiliary auxtype="Color" auxvalue="#00a900ad" />
     </volume>
     <volume name="LV_Lid">
       <materialref ref="AlMg3_Mat" />
       <solidref ref="Lid" />
-      <auxiliary auxtype="Color" auxvalue="#cccccc9e" />
+      <auxiliary auxtype="Color" auxvalue="#cccccc00" />
     </volume>
     <volume name="worldVOL">
       <materialref ref="G4_AIR" />
@@ -321,13 +321,13 @@
       </physvol>
       <physvol name="PV_LV_Electronics">
         <volumeref ref="LV_Electronics" />
-        <position name="P-LV_Electronics1" unit="mm" x="54.750000" y="-99.500000" z="1.0" />
+        <position unit="mm" name="P-LV_Electronics1" x="121.250000" y="-88.500000" z="1.0" />
         <rotationref ref="identity" />
       </physvol>
       <physvol name="PV_LV_Lid">
         <volumeref ref="LV_Lid" />
-        <position name="P-LV_Lid3" unit="mm" x="100.00000000000001" y="-59.99999999999998" z="5.0" />
-        <rotation name="R-LV_Lid1" unit="deg" z="89.99999999999999" />
+        <position unit="mm" name="P-LV_Lid3" x="100.00000000000001" y="-59.99999999999998" z="5.0" />
+        <rotation unit="degree" name="R-LV_Lid1" z="90.00000000000001" />
       </physvol>
     </volume>
   </structure>

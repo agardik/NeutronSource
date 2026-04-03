@@ -98,9 +98,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct() {
     // Get a volume in the gdml file
     G4LogicalVolume *LVgas = fParser.GetVolume("LV_GasVol_Box"); // Gas_Volume as an example
     // Set small step limit for gas volume
-    LVgas->SetUserLimits(
-    new G4UserLimits(0.05*mm)
-    );
+    //LVgas->SetUserLimits(new G4UserLimits(0.05*mm));
 
     // READING GDML FILES OPTION: 2nd Boolean argument "Validate".
     // Flag to "false" disables check with the Schema when reading GDML file.
