@@ -7,15 +7,7 @@
 /control/verbose 2
 /run/verbose 2
 #
-/testhadr/det/setNbOfAbsor  6
-/testhadr/det/setAbsor 1 AlMg3  0.02 cm
-/testhadr/det/setAbsor 2 Alu  0.01 cm
-/testhadr/det/setAbsor 3 B4C_enriched  0.0001 cm
-/testhadr/det/setAbsor 4 SSteel  0.004 cm
-/testhadr/det/setAbsor 5 AlMg3  0.05 cm
-/testhadr/det/setAbsor 6 AlMg3  0.02 cm
-/testhadr/det/setSizeY 100 mm
-/testhadr/det/setSizeZ 60 mm
+/testhadr/det/readFile ElectronicsFixed_Lid.gdml
 #
 #
 # To save the energy deposition in the slilcion slabs for dose calculations
@@ -69,8 +61,9 @@
 #/vis/scene/add/hits
 #
 # To draw only gammas:
-#/vis/filtering/trajectories/create/particleFilter
-#/vis/filtering/trajectories/particleFilter-0/add gamma
+/vis/filtering/trajectories/create/particleFilter
+/vis/filtering/trajectories/particleFilter-0/add alpha
+/vis/filtering/trajectories/particleFilter-0/add neutron
 #
 # To invert the above, drawing all particles except gammas,
 # keep the above two lines but also add:

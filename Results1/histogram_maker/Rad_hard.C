@@ -3,7 +3,7 @@ void plotSphere3D_pretty() {
     // -------------------------
     // Open file & get tree
     // -------------------------
-    TFile *f = TFile::Open("/media/sf_vm-share/Neutron source output/rootoutput/testoutput.root");
+    TFile *f = TFile::Open("combine_sphere.root");
     if (!f || f->IsZombie()) {
         Error("plotSphere3D_pretty", "Cannot open file!");
         return;

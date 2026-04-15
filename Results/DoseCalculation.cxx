@@ -414,16 +414,22 @@ public:
     // 1 Gy = 100 rad
     //************************************************************************************//
     Double_t TID_Total = 0.;
+    Double_t TEnergy=0.;
     Double_t TID_electron = 0.;
+    Double_t Energy_electron = 0.;
     Double_t TID_gamma = 0.;
+    Double_t Energy_gamma = 0.;
     Double_t TID_proton = 0.;
+    Double_t Energy_proton = 0.;
     Double_t TID_nucleus = 0.;
+    Double_t Energy_nucleus = 0.;
     //************************************************************************************//
     // Total TID
     //************************************************************************************//
     for (long unsigned int j = 0; j < v_evt.size(); j++) {
       TID_Total =
           TID_Total + v_edepStep[j] * (Joule_conversion / (mass)) * 100.;
+          TEnergy = TEnergy + v_edepStep[j];
     }
     //************************************************************************************//
     // TID e+ end e+
@@ -454,11 +460,13 @@ public:
     for (long unsigned int j = 0; j < v_evt.size(); j++) {
       if (v_fParticleName[j] == "e-" && v_fCreatorProcessName[j] != "compt" &&
           v_fCreatorProcessName[j] != "phot") {
+        Energy_electron = Energy_electron + v_edepStep[j];
         TID_electron = TID_electron + v_edepStep[j] *
                                           (Joule_conversion / (mass)) *
                                           100.; // in rad
       }
       if (v_fParticleName[j] == "e+") {
+        Energy_electron = Energy_electron + v_edepStep[j];
         TID_electron = TID_electron + v_edepStep[j] *
                                           (Joule_conversion / (mass)) *
                                           100.; // in rad
@@ -479,11 +487,13 @@ public:
 
     for (long unsigned int j = 0; j < v_evt.size(); j++) {
       if (v_fParticleName[j] == "gamma") {
+        Energy_gamma = Energy_gamma + v_edepStep[j];
         TID_gamma =
             TID_gamma + v_edepStep[j] * (Joule_conversion / (mass)) * 100.;
       }
       if (v_fParticleName[j] == "e-" && (v_fCreatorProcessName[j] == "compt" ||
                                          v_fCreatorProcessName[j] == "phot")) {
+        Energy_gamma = Energy_gamma + v_edepStep[j];
         TID_gamma = TID_gamma + v_edepStep[j] * (Joule_conversion / (mass)) *
                                     100.; // in rad
       }
@@ -501,12 +511,14 @@ public:
 
     for (long unsigned int j = 0; j < v_evt.size(); j++) {
       if (v_fParticleName[j] == "proton") {
+        Energy_proton = Energy_proton + v_edepStep[j];
         TID_proton =
             TID_proton + v_edepStep[j] * (Joule_conversion / (mass)) * 100.;
       }
       if (v_fParticleName[j] == "Si28" || v_fParticleName[j] == "Si29" ||
           v_fParticleName[j] == "Si30" || v_fParticleName[j] == "Si31" ||
           v_fParticleName[j] == "P31") {
+        Energy_nucleus = Energy_nucleus + v_edepStep[j];
         TID_nucleus =
             TID_nucleus + v_edepStep[j] * (Joule_conversion / (mass)) * 100.;
       }
@@ -516,15 +528,25 @@ public:
     //************************************************************************************//
     std::cout << "Total TID in the " << histtitle.c_str()
               << " slab: " << TID_Total * scale * 1E6 << " urad" << std::endl;
+    std::cout << "Total TID Energy in the " << histtitle.c_str()
+              << " slab: " << TEnergy * scale << " MeV" << std::endl;
     std::cout << "Total TID e-&e+ in the " << histtitle.c_str()
               << " slab: " << TID_electron * scale * 1E6 << " urad"
               << std::endl;
+    std::cout << "Total TID Energy e-&e+ in the " << histtitle.c_str()
+              << " slab: " << Energy_electron * scale << " MeV" << std::endl;
     std::cout << "Total TID gamma in the " << histtitle.c_str()
               << " slab: " << TID_gamma * scale * 1E6 << " urad" << std::endl;
+    std::cout << "Total TID Energy gamma in the " << histtitle.c_str()
+              << " slab: " << Energy_gamma * scale << " MeV" << std::endl;
     std::cout << "Total TID proton in the " << histtitle.c_str()
               << " slab: " << TID_proton * scale * 1E6 << " urad" << std::endl;
+    std::cout << "Total TID Energy proton in the " << histtitle.c_str()
+              << " slab: " << Energy_proton * scale << " MeV" << std::endl;
     std::cout << "Total TID nucleus in the " << histtitle.c_str()
               << " slab: " << TID_nucleus * scale * 1E6 << " urad" << std::endl;
+    std::cout << "Total TID Energy nucleus in the " << histtitle.c_str()
+              << " slab: " << Energy_nucleus * scale << " MeV" << std::endl;
     //************************************************************************************//
 
     //************************************************************************************//
@@ -541,6 +563,11 @@ public:
     outFile << "TID gamma (urad): " << TID_gamma * scale * 1E6 << "\n";
     outFile << "TID proton (urad): " << TID_proton * scale * 1E6 << "\n";
     outFile << "TID nucleus (urad): " << TID_nucleus * scale * 1E6 << "\n";
+    outFile << "Total Energy (MeV): " << TEnergy * scale << "\n";
+    outFile << "Total Energy e-&e+ (MeV): " << Energy_electron * scale << "\n";
+    outFile << "Total Energy gamma (MeV): " << Energy_gamma * scale << "\n";
+    outFile << "Total Energy proton (MeV): " << Energy_proton * scale << "\n";
+    outFile << "Total Energy nucleus (MeV): " << Energy_nucleus * scale << "\n";
     outFile.close();
     //************************************************************************************//
   } // End of Anlyze function

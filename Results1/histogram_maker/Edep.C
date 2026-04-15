@@ -8,7 +8,7 @@
 void plot_total_edep()
 {
     // Open ROOT file
-    TFile *file = TFile::Open("Electronics8.root");
+    TFile *file = TFile::Open("Electronics_Full.root");
 
     // Get tree
     TTree *tree = (TTree*)file->Get("Electronics");
@@ -65,4 +65,8 @@ void plot_total_edep()
     std::cout << "Total events processed: " << eventEdep.size() << std::endl;
 
     std::cout << "Total Edep in tree = " << totalEdep << std::endl;
+
+    std::cout << "Histogram entries = " << hEdep->GetEntries() << std::endl;
+std::cout << "Histogram integral = " << hEdep->Integral() << std::endl;
+std::cout << "Histogram integral (width) = " << hEdep->Integral("width") << std::endl;
 }

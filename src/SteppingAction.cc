@@ -371,6 +371,69 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
   // If the particle is interacted with the sphere.
   ProcessVolume(aStep, "PV_LV_Sphere", 2, edepStep, 0);
 
+  // ===================== PARTICLE ENTERING SPHERE ===================== //
+  if (thePrePV != nullptr && thePostPV != nullptr) {
+
+      G4String preName  = thePrePV->GetName();
+      G4String postName = thePostPV->GetName();
+
+      //  ENTRY CONDITION: outside → inside sphere
+      if (postName == "PV_LV_Sphere" && preName != "PV_LV_Sphere") {
+
+          G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+          G4int evt = G4RunManager::GetRunManager()
+                          ->GetCurrentEvent()->GetEventID();
+
+          G4Track* track = aStep->GetTrack();
+
+          G4int part_parent_ID = track->GetParentID();
+          G4int part_ID        = track->GetTrackID();
+          G4int stepNumber     = track->GetCurrentStepNumber();
+
+          //  ENERGY AT ENTRY
+          G4double energyEntry =
+              aStep->GetPostStepPoint()->GetKineticEnergy() / MeV;
+
+          // Position at entry
+          G4ThreeVector pos =
+              aStep->GetPostStepPoint()->GetPosition();
+
+          // Creator process
+          G4String creatorProcessName = "NoCreator";
+          if (track->GetCreatorProcess()) {
+              creatorProcessName =
+                  track->GetCreatorProcess()->GetProcessName();
+          }
+
+          // Vertex volume
+          const G4LogicalVolume* PVatVertex =
+              track->GetLogicalVolumeAtVertex();
+
+          G4String PVatVertexname =
+              PVatVertex ? PVatVertex->GetName() : "None";
+
+          // ===================== FILL NTUPLE ===================== //
+
+      analysisManager->FillNtupleIColumn(6, 0, evt);
+      analysisManager->FillNtupleSColumn(6, 1, fParticleName);
+      analysisManager->FillNtupleIColumn(6, 2, part_parent_ID);
+      analysisManager->FillNtupleIColumn(6, 3, part_ID);
+      analysisManager->FillNtupleIColumn(6, 4, StepNumberr);
+      analysisManager->FillNtupleDColumn(6, 5, posParticle[0] / mm);
+      analysisManager->FillNtupleDColumn(6, 6, posParticle[1] / mm);
+      analysisManager->FillNtupleDColumn(6, 7, posParticle[2] / mm);
+      analysisManager->FillNtupleDColumn(
+          6, 8, energyEntry);
+      analysisManager->FillNtupleSColumn(6, 9, interactionType);
+      analysisManager->FillNtupleSColumn(6, 10, targetIsotope);
+      analysisManager->FillNtupleSColumn(6, 11, creatorProcessName);
+      analysisManager->FillNtupleSColumn(6, 12, PVatVertexname);
+
+      analysisManager->AddNtupleRow(6);
+      }
+  }
+
   
 
   // if (!step->GetTrack()->GetNextVolume())

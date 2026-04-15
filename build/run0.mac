@@ -6,7 +6,7 @@
 /control/verbose 2
 /run/verbose 1
 #
-#/testhadr/phys/thermalScattering true
+/testhadr/phys/thermalScattering true
 
 /testhadr/det/setNbOfAbsor  6
 /testhadr/det/setAbsor 1 AlMg3  0.02 cm
@@ -34,8 +34,8 @@
 /gps/position -1 0 0 mm
 /gps/pos/type Plane
 /gps/pos/shape Rectangle
-/gps/pos/halfx 0.0015 mm
-/gps/pos/halfy 0.0030 mm
+/gps/pos/halfx 15 mm
+/gps/pos/halfy 30 mm
 /gps/particle neutron
 /gps/ene/mono 0.025 eV
 /gps/pos/rot1 0 0 1
@@ -50,4 +50,4 @@
 /tracking/verbose 0
 #
 #/run/printProgress 100000
-/run/beamOn 100
+/run/beamOn 1000

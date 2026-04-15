@@ -12,7 +12,7 @@
 void foreignParticles() {
 
     // Open file
-    TFile *f = TFile::Open("/media/sf_vm-share/Neutron source output/rootoutput/Electronics8.root");
+    TFile *f = TFile::Open("Electronics_Full.root");
     if (!f || f->IsZombie()) {
         std::cerr << "Error opening file!" << std::endl;
         return;
@@ -36,7 +36,7 @@ void foreignParticles() {
     tree->SetBranchAddress("fParticleID", &fParticleID);
     tree->SetBranchAddress("fParentID", &fParentID);
     tree->SetBranchAddress("fParticleName", fParticleName);
-    tree->SetBranchAddress("fCreatorProcessName", fPVatVertexname);
+    tree->SetBranchAddress("fPVatVertexname", fPVatVertexname);
 
     // Unique particles per event (considering parent ID to avoid counting multiple steps of the same particle)
     std::set<std::tuple<int,int,int>> uniqueParticles;

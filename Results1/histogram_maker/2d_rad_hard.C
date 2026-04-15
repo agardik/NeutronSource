@@ -1,34 +1,42 @@
 void plotXY_Edep2D() {
 
     // Open file
-    TFile *f = new TFile("/media/sf_vm-share/Neutron source output/rootoutput/Electronics8.root");
+    TFile *f = new TFile("Electronics.root");
     TTree *t = (TTree*)f->Get("Electronics");
 
+    // Remove ROOT stats box
+    gStyle->SetOptStat(0);
+
     // Canvas
-    TCanvas *c1 = new TCanvas("c1", "Edep XY Map", 900, 700);
+    TCanvas *c1 = new TCanvas("c1", "Energy Deposition XY Map", 900, 700);
     c1->SetRightMargin(0.15);
 
-    // Better color palette
-    gStyle->SetPalette(kBird);   // nice blue→red gradient
+    // Color palette
+    gStyle->SetPalette(kBird);
     gStyle->SetNumberContours(100);
 
-    // Create 2D histogram
-    TH2D *h2 = new TH2D("h2", "Energy Deposition Map;X;Y",
-                        500, -100, 300,
-                        500, -150, 100);
+    // Create 2D histogram with units
+    TH2D *h2 = new TH2D("h2",
+        "Energy Deposition in Electronics;X [mm];Y [mm]",
+        20, -30, 230,
+        10, -140, 20);
 
-    // Fill with weight = Edep
-    t->Draw("fY:fX>>h2", "Edep",  "colz");
+    // Fill histogram (Edep as weight)
+    t->Draw("fY:fX>>h2", "Edep", "goff");
 
-    // Draw with color
-    h2->Draw("colz");
-
-    // Optional: smooth a bit
+    // Optional smoothing
     h2->Smooth();
 
-    // Grid + cosmetics
+    // Draw with color scale
+    h2->Draw("colz");
+
+    // Label Z axis (energy)
+    h2->GetZaxis()->SetTitle("Deposited Energy [MeV]");
+
+    // Cosmetics
     gPad->SetGrid();
+
     c1->Update();
 }
 
- plotXY_Edep2D()
+ plotXY_Edep2D();
