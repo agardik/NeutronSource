@@ -52,6 +52,9 @@
 #include "G4VisAttributes.hh"
 #include "G4UserLimits.hh"
 #include "G4GDMLParser.hh"
+#include "SensitiveDetector.hh"
+#include "G4SDManager.hh"
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::DetectorConstruction() {
@@ -140,6 +143,59 @@ G4VPhysicalVolume *DetectorConstruction::Construct() {
     return ConstructVolumes();
   }
 }
+
+void DetectorConstruction::ConstructSDandField()
+{
+    G4LogicalVolumeStore* lvStore = G4LogicalVolumeStore::GetInstance();
+ 
+    // Helper lambda to avoid repeating the registration boilerplate
+    auto registerSD = [&](const G4String& lvName,
+                          const G4String& sdName,
+                          const G4String& collectionName,
+                          G4bool excludeNeutrons)
+    {
+        G4LogicalVolume* lv = lvStore->GetVolume(lvName, false);
+ 
+        if (lv)
+        {
+            auto* sd = new SensitiveDetector(sdName, collectionName, excludeNeutrons);
+            G4SDManager::GetSDMpointer()->AddNewDetector(sd);
+            lv->SetSensitiveDetector(sd);
+            G4cout << "[SD] " << sdName << " registered on: " << lvName << G4endl;
+        }
+        else
+        {
+            G4cerr << "[SD] WARNING: " << lvName << " not found in LVStore. "
+                   << "SD not registered. Check your GDML volume name." << G4endl;
+        }
+    };
+ 
+    // ------------------------------------------------------------------
+    // GAS VOLUME
+    // excludeNeutrons=true mirrors NeutronFlag=1 in old ProcessVolume()
+    // Collection name must match EventAction: GetCollectionID("GasHitsCollection")
+    // ------------------------------------------------------------------
+    //registerSD("LV_GasVol_Box", "GasSD", "GasHitsCollection", true);
+ 
+    // ------------------------------------------------------------------
+    // ELECTRONICS VOLUME
+    // excludeNeutrons=false — all charged particles recorded
+    // Collection name must match EventAction: GetCollectionID("ElectronicsHitsCollection")
+    // ------------------------------------------------------------------
+    registerSD("LV_Electronics", "ElectronicsSD", "ElectronicsHitsCollection", false);
+ 
+    // ------------------------------------------------------------------
+    // SPHERE VOLUME
+    // excludeNeutrons=false — all charged particles recorded
+    // Collection name must match EventAction: GetCollectionID("SphereHitsCollection")
+    // ------------------------------------------------------------------
+    registerSD("LV_Sphere", "SphereSD", "SphereHitsCollection", false);
+}
+ 
+// ===========================================================================
+// IMPORTANT: The volume names above ("LV_Electronics", "LV_Sphere") are the
+// LOGICAL volume names from your GDML file — NOT the physical volume names.
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 //

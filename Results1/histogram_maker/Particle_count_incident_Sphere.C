@@ -12,14 +12,14 @@
 void foreignParticles() {
 
     // Open file
-    TFile *f = TFile::Open("/media/sf_vm-share/Neutron source output/rootoutput/Sphere1.root");
+    TFile *f = TFile::Open("Centered_Sphere_5.root");
     if (!f || f->IsZombie()) {
         std::cerr << "Error opening file!" << std::endl;
         return;
     }
 
     // Get Electronics tree
-    TTree *tree = (TTree*)f->Get("Sphere");
+    TTree *tree = (TTree*)f->Get("Particles_Exit_World");
     if (!tree) {
         std::cerr << "Tree 'Sphere' not found!" << std::endl;
         return;

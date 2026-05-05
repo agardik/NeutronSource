@@ -54,6 +54,9 @@ class EventAction : public G4UserEventAction
   private:
     G4double fTotalEnergyDeposit = 0.;
     G4double fTotalEnergyFlow = 0.;
+    G4int fGasHCID         = -1;
+    G4int fElectronicsHCID = -1;
+    G4int fSphereHCID      = -1;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

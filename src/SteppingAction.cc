@@ -365,7 +365,7 @@ void SteppingAction::UserSteppingAction(const G4Step *aStep) {
     analysisManager->AddNtupleRow(1);
   }
   // If the particle is interacted with the helium gas.
-  //ProcessVolume(aStep, "PV_LV_GasVol_Box", 7, edepStep, 1);
+  ProcessVolume(aStep, "PV_LV_GasVol_Box", 7, edepStep, 1);
   // If the particle is interacted with the electronics.
   ProcessVolume(aStep, "PV_LV_Electronics", 8, edepStep, 0);
   // If the particle is interacted with the sphere.

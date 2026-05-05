@@ -4,6 +4,7 @@
 #include <TCanvas.h>
 #include <map>
 #include <iostream>
+#include <string>
 
 void plot_total_edep()
 {
@@ -11,11 +12,12 @@ void plot_total_edep()
     TFile *file = TFile::Open("Centered_Sphere_1.root");
 
     // Get tree
-    TTree *tree = (TTree*)file->Get("HeliumEdep");
+    TTree *tree = (TTree*)file->Get("Hits");
 
     // Variables
     Int_t fEvent;
     Double_t Edep;
+    char fParticleName[50];
 
     // Threshold to ignore zero depositions
     double threshold = 1e-9;
@@ -23,10 +25,10 @@ void plot_total_edep()
     // Set branches
     tree->SetBranchAddress("fEvent", &fEvent);
     tree->SetBranchAddress("Edep", &Edep);
+    tree->SetBranchAddress("fParticleName", fParticleName); // <-- add this
 
     // Map to accumulate total Edep per event
     std::map<int,double> eventEdep;
-
 
     // Running total
     double totalEdep = 0.0;
@@ -37,6 +39,12 @@ void plot_total_edep()
     {
         tree->GetEntry(i);
 
+        // Check particle is alpha
+        if(!fParticleName) continue;
+
+        // Depending on your simulation, this might be "alpha", "He4", etc.
+        if(std::string(fParticleName) != "alpha") continue;
+
         if(Edep > threshold)
         {
             eventEdep[fEvent] += Edep;
@@ -46,7 +54,7 @@ void plot_total_edep()
 
     // Create histogram
     TH1D *hEdep = new TH1D("hEdep",
-                           "Total Energy Deposition per Event;Total Edep;Counts",
+                           "Total Energy Deposition per Event (alphas only);Total Edep;Counts",
                            500,0,2);
 
     // Fill histogram
@@ -60,13 +68,11 @@ void plot_total_edep()
     TCanvas *c1 = new TCanvas("c1","Total Edep",800,600);
     hEdep->Draw();
 
-    c1->SaveAs("total_edep_histogram.png");
+    c1->SaveAs("total_edep_histogram_alpha.png");
 
     std::cout << "Total events processed: " << eventEdep.size() << std::endl;
-
-    std::cout << "Total Edep in tree = " << totalEdep << std::endl;
-
+    std::cout << "Total Edep (alphas only) = " << totalEdep << std::endl;
     std::cout << "Histogram entries = " << hEdep->GetEntries() << std::endl;
-std::cout << "Histogram integral = " << hEdep->Integral() << std::endl;
-std::cout << "Histogram integral (width) = " << hEdep->Integral("width") << std::endl;
+    std::cout << "Histogram integral = " << hEdep->Integral() << std::endl;
+    std::cout << "Histogram integral (width) = " << hEdep->Integral("width") << std::endl;
 }

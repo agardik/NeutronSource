@@ -12,7 +12,7 @@
 void foreignParticles() {
 
     // Open file
-    TFile *f = TFile::Open("Electronics_Full.root");
+    TFile *f = TFile::Open("Electronics_x0_y0.root");
     if (!f || f->IsZombie()) {
         std::cerr << "Error opening file!" << std::endl;
         return;

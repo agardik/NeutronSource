@@ -1,0 +1,90 @@
+#include <TFile.h>
+#include <TTree.h>
+#include <TH2F.h>
+#include <TCanvas.h>
+
+#include <set>
+#include <tuple>
+#include <string>
+#include <iostream>
+#include <sstream>
+
+void comptonElectrons2D() {
+
+    const int NX = 9;
+    const int NY = 6;
+
+    TH2F *h2 = new TH2F("h2","Gamma Map;X index;Y index",
+                       NX, 0, NX,
+                       NY, 0, NY);
+
+    for (int ix = 0; ix < NX; ix++) {
+        for (int iy = 0; iy < NY; iy++) {
+
+            std::stringstream fname;
+            fname << "Electronics_x" << ix << "_y" << iy << ".root";
+
+            TFile *f = TFile::Open(fname.str().c_str());
+            if (!f || f->IsZombie()) {
+                std::cerr << "Cannot open " << fname.str() << std::endl;
+                continue;
+            }
+
+            TTree *tree = (TTree*)f->Get("Electronics");
+            if (!tree) {
+                std::cerr << "Tree missing in " << fname.str() << std::endl;
+                f->Close();
+                continue;
+            }
+
+            // Branches
+            Int_t fEvent, fParticleID, fParentID;
+            Char_t fParticleName[100];
+            Char_t fCreatorProcess[100];
+
+            tree->SetBranchAddress("fEvent", &fEvent);
+            tree->SetBranchAddress("fParticleID", &fParticleID);
+            tree->SetBranchAddress("fParentID", &fParentID);
+            tree->SetBranchAddress("fParticleName", fParticleName);
+            tree->SetBranchAddress("fCreatorProcessName", fCreatorProcess);
+
+            std::set<std::tuple<int,int,int>> uniqueParticles;
+
+            int comptonCount = 0;
+
+            Long64_t nEntries = tree->GetEntries();
+
+            for (Long64_t i=0; i<nEntries; i++) {
+                tree->GetEntry(i);
+
+                std::tuple<int,int,int> key =
+                    std::make_tuple(fEvent, fParticleID, fParentID);
+
+                if (uniqueParticles.find(key) != uniqueParticles.end())
+                    continue;
+
+                uniqueParticles.insert(key);
+
+                std::string pname(fParticleName);
+                std::string creator(fCreatorProcess);
+
+                // 🔥 Count Compton electrons
+                if (pname == "e-" && creator == "compt") {
+                    comptonCount++;
+                }
+            }
+
+            h2->SetBinContent(ix+1, iy+1, comptonCount);
+
+            f->Close();
+        }
+    }
+
+    TCanvas *c = new TCanvas("c2D","Compton Electrons 2D",900,700);
+    h2->SetStats(0);
+    h2->Draw("COLZ TEXT");
+
+    c->SaveAs("gamma_flux_2D.png");
+}
+
+comptonElectrons2D();

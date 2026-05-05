@@ -1,7 +1,7 @@
 void plotXY_Edep2D() {
 
     // Open file
-    TFile *f = new TFile("Electronics.root");
+    TFile *f = new TFile("Electronics_Full.root");
     TTree *t = (TTree*)f->Get("Electronics");
 
     // Remove ROOT stats box
@@ -18,8 +18,8 @@ void plotXY_Edep2D() {
     // Create 2D histogram with units
     TH2D *h2 = new TH2D("h2",
         "Energy Deposition in Electronics;X [mm];Y [mm]",
-        20, -30, 230,
-        10, -140, 20);
+        60, -30, 230,
+        30, -140, 20);
 
     // Fill histogram (Edep as weight)
     t->Draw("fY:fX>>h2", "Edep", "goff");

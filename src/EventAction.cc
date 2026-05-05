@@ -25,10 +25,6 @@
 //
 /// \file EventAction.cc
 /// \brief Implementation of the EventAction class
-//
-//
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #include "EventAction.hh"
 #include "HistoManager.hh"
@@ -71,15 +67,91 @@ void EventAction::AddEflow(G4double Eflow) { fTotalEnergyFlow += Eflow; }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void EventAction::EndOfEventAction(const G4Event *) {
-  Run *run = static_cast<Run *>(
-      G4RunManager::GetRunManager()->GetNonConstCurrentRun());
+#include "G4SDManager.hh"
+#include "SensitiveDetector.hh"
 
-  run->AddEdep(fTotalEnergyDeposit);
-  run->AddEflow(fTotalEnergyFlow);
+void EventAction::EndOfEventAction(const G4Event* event)
+{
+    Run* run = static_cast<Run*>(
+        G4RunManager::GetRunManager()->GetNonConstCurrentRun());
 
-  G4AnalysisManager::Instance()->FillH1(1, fTotalEnergyDeposit);
-  G4AnalysisManager::Instance()->FillH1(3, fTotalEnergyFlow);
+    run->AddEdep(fTotalEnergyDeposit);
+    run->AddEflow(fTotalEnergyFlow);
+
+    auto analysisManager = G4AnalysisManager::Instance();
+
+    analysisManager->FillH1(1, fTotalEnergyDeposit);
+    analysisManager->FillH1(3, fTotalEnergyFlow);
+
+    // ==========================
+    // GET HITS COLLECTIONS
+    // IDs are cached after the first event — avoids repeated SDManager
+    // lookups. These are member variables (defined in EventAction.hh),
+    // NOT static locals, to avoid the MT data race on first initialization.
+    // ==========================
+    auto* hce = event->GetHCofThisEvent();
+    if (!hce) return;
+
+    auto* sdMan = G4SDManager::GetSDMpointer();
+
+    // Use G4HCtable::GetCollectionID(G4String) with "SDname/HCname" format.
+    // This returns -1 silently if the collection was never registered
+    // (i.e. the SD volume was not found in the GDML), unlike
+    // G4SDManager::GetCollectionID() which prints a warning every event.
+    auto* hcTable = sdMan->GetHCtable();
+
+    if (fGasHCID < 0)
+        fGasHCID = hcTable->GetCollectionID("GasSD/GasHitsCollection");
+    if (fElectronicsHCID < 0)
+        fElectronicsHCID = hcTable->GetCollectionID("ElectronicsSD/ElectronicsHitsCollection");
+    if (fSphereHCID < 0)
+        fSphereHCID = hcTable->GetCollectionID("SphereSD/SphereHitsCollection");
+
+    // ==========================
+    // LOOP OVER ALL THREE COLLECTIONS
+    // All hits go into ntuple 9. Use hit->GetSDName() in ROOT to filter:
+    //   tree->Draw("Edep", "SDName==\"GasSD\"")
+    // ==========================
+    for (G4int hcid : {fGasHCID, fElectronicsHCID, fSphereHCID})
+    {
+        if (hcid < 0) continue;  // collection not registered (SD not found)
+
+        auto* hc = static_cast<MyHitsCollection*>(hce->GetHC(hcid));
+        if (!hc) continue;       // volume not hit this event
+
+        for (size_t i = 0; i < hc->GetSize(); i++)
+        {
+            auto* hit = (*hc)[i];
+
+            analysisManager->FillNtupleIColumn(9, 0,  hit->GetEventID());
+            analysisManager->FillNtupleSColumn(9, 1,  hit->GetParticleName());
+            analysisManager->FillNtupleIColumn(9, 2,  hit->GetParentID());
+            analysisManager->FillNtupleIColumn(9, 3,  hit->GetTrackID());
+            analysisManager->FillNtupleIColumn(9, 4,  hit->GetStepNumber());
+
+            auto pos = hit->GetPosition();
+            analysisManager->FillNtupleDColumn(9, 5,  pos.x());
+            analysisManager->FillNtupleDColumn(9, 6,  pos.y());
+            analysisManager->FillNtupleDColumn(9, 7,  pos.z());
+
+            analysisManager->FillNtupleDColumn(9, 8,  hit->GetEdep());
+            analysisManager->FillNtupleDColumn(9, 9,  hit->GetKineticEnergy());
+
+            analysisManager->FillNtupleSColumn(9, 10, hit->GetInteractionType());
+            analysisManager->FillNtupleSColumn(9, 11, hit->GetTargetIsotope());
+            analysisManager->FillNtupleSColumn(9, 12, hit->GetCreatorProcess());
+            analysisManager->FillNtupleSColumn(9, 13, hit->GetVertexVolume());
+
+            analysisManager->FillNtupleDColumn(9, 14, hit->GetStopTable());
+            analysisManager->FillNtupleDColumn(9, 15, hit->GetStopFull());
+            analysisManager->FillNtupleDColumn(9, 16, hit->GetMeanDEDX());
+            analysisManager->FillNtupleDColumn(9, 17, hit->GetStopPower());
+            analysisManager->FillNtupleSColumn(9, 18, hit->GetVolumeName());
+            analysisManager->FillNtupleSColumn(9, 19, hit->GetSDName());
+
+            analysisManager->AddNtupleRow(9);
+        }
+    }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

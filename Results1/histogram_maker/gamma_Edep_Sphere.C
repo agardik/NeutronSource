@@ -32,7 +32,7 @@ void sphere_energy_spectra()
     // Histograms (log scale friendly)
     TH1D *h_gamma = new TH1D("h_gamma",
         "Gamma Kinetic Energy;E_{kin} [MeV];Counts",
-        200, 0, 10);
+        400, 0, 10);
 
     TH1D *h_neutron = new TH1D("h_neutron",
         "Neutron Kinetic Energy;E_{kin} [MeV];Counts",

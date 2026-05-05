@@ -12,16 +12,16 @@
 void countParticles() {
 
     // Open file
-    TFile *f = TFile::Open("testElectronics.root");
+    TFile *f = TFile::Open("Centered_Sphere_1.root");
     if (!f || f->IsZombie()) {
         std::cerr << "Error opening file!" << std::endl;
         return;
     }
 
     // Get tree
-    TTree *tree = (TTree*)f->Get("Electronics");
+    TTree *tree = (TTree*)f->Get("Sphere");
     if (!tree) {
-        std::cerr << "Tree 'Electronics' not found!" << std::endl;
+        std::cerr << "Tree 'Sphere' not found!" << std::endl;
         return;
     }
 

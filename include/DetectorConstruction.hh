@@ -58,6 +58,7 @@ public:
 
 public:
   G4VPhysicalVolume *Construct() override;
+  void ConstructSDandField() override;
 
   G4Material *MaterialWithSingleIsotope(G4String, G4String, G4double, G4int,
                                         G4int);

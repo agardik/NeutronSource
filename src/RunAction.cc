@@ -234,6 +234,36 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
 
 
   analysisManager->FinishNtuple(8);
+
+
+  analysisManager->CreateNtuple("Hits", "All detector hits");
+
+  analysisManager->CreateNtupleIColumn("fEvent");
+  analysisManager->CreateNtupleSColumn("fParticleName");
+  analysisManager->CreateNtupleIColumn("fParentID");
+  analysisManager->CreateNtupleIColumn("fTrackID");
+  analysisManager->CreateNtupleIColumn("fStepNumber");
+
+  analysisManager->CreateNtupleDColumn("fX");
+  analysisManager->CreateNtupleDColumn("fY");
+  analysisManager->CreateNtupleDColumn("fZ");
+
+  analysisManager->CreateNtupleDColumn("Edep");
+  analysisManager->CreateNtupleDColumn("fKinEnergy");
+
+  analysisManager->CreateNtupleSColumn("fInteractionType");
+  analysisManager->CreateNtupleSColumn("targetIsotope");
+  analysisManager->CreateNtupleSColumn("fCreatorProcessName");
+  analysisManager->CreateNtupleSColumn("fPVatVertexname");
+
+  analysisManager->CreateNtupleDColumn("StopTable");
+  analysisManager->CreateNtupleDColumn("StopFull");
+  analysisManager->CreateNtupleDColumn("MeandEdx");
+  analysisManager->CreateNtupleDColumn("StopPower");
+  analysisManager->CreateNtupleSColumn("fVolumeName");
+  analysisManager->CreateNtupleSColumn("fSDName");
+
+  analysisManager->FinishNtuple(9);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
