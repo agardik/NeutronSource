@@ -229,7 +229,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step,
     // ==================================
     // KILL TRACK WHEN ENTERING SD VOLUME
     // ==================================
-    step->GetTrack()->SetTrackStatus(fStopAndKill);
+    //step->GetTrack()->SetTrackStatus(fStopAndKill);
 
     return true;
 }

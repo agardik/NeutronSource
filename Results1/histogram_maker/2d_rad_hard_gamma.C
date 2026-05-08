@@ -1,7 +1,7 @@
 void plotXY_Edep2D() {
 
     // Open file
-    TFile *f = new TFile("Electronics_Top_Strip_8_test_nokill.root");
+    TFile *f = new TFile("Electronics_Top_Strip_8_test_kill.root");
     TTree *t = (TTree*)f->Get("Hits");
 
     // Remove ROOT stats box
@@ -18,11 +18,11 @@ void plotXY_Edep2D() {
     // Create 2D histogram with units
     TH2D *h2 = new TH2D("h2",
         "Energy Deposition in Electronics;X [mm];Y [mm]",
-        60, -30, 230,
-        30, -140, 20);
+        50, 0, 200,
+        30, -120, 0);
 
     // Fill histogram (Edep as weight)
-    t->Draw("fY:fX>>h2", "Edep", "goff");
+    t->Draw("fY:fX>>h2", "Edep*(fParticleName==\"gamma\")", "goff");
 
     // Optional smoothing
     h2->Smooth();

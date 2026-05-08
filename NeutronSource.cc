@@ -62,14 +62,14 @@ int main(int argc, char **argv) {
   G4SteppingVerbose::UseBestUnit(precision);
 
   // // construct the run manager
-  // auto runManager = G4RunManagerFactory::CreateRunManager();
-  // if (argc == 3) {
-  //   G4int nThreads = G4UIcommand::ConvertToInt(argv[2]);
-  //   runManager->SetNumberOfThreads(nThreads);
-  // }
+   auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::MT);
+   if (argc == 3) {
+    G4int nThreads = G4UIcommand::ConvertToInt(argv[2]);
+     runManager->SetNumberOfThreads(nThreads);
+   }
 
-  auto runManager =
-      G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
+  //auto runManager =
+      //G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 
   // set mandatory initialization classes
   DetectorConstruction *det = new DetectorConstruction;
