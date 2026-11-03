@@ -111,9 +111,16 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step,
     G4double density = material->GetDensity() / (g / cm3);
 
     // ======================
-    // POSITION (mm) — store in mm, divide at fill time
+    // POSITION (mm) — pre-step and post-step, stored in mm
     // ======================
-    G4ThreeVector pos = post->GetPosition() / mm;
+    G4ThreeVector prePos  = pre->GetPosition()  / mm;
+    G4ThreeVector postPos = post->GetPosition() / mm;
+
+    // ======================
+    // TIME (ns) — pre-step and post-step global time
+    // ======================
+    G4double preTime  = pre->GetGlobalTime()  / ns;
+    G4double postTime = post->GetGlobalTime() / ns;
 
     // ======================
     // BASIC INFO
@@ -207,7 +214,10 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step,
     hit->SetTrackID(trackID);
     hit->SetStepNumber(stepNum);
 
-    hit->SetPosition(pos);               // mm
+    hit->SetPrePosition(prePos);         // mm
+    hit->SetPostPosition(postPos);       // mm
+    hit->SetPreTime(preTime);            // ns
+    hit->SetPostTime(postTime);          // ns
 
     hit->SetInteractionType(interactionType);
     hit->SetTargetIsotope(targetIsotope);

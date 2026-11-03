@@ -11,13 +11,13 @@
 void sphere_energy_spectra()
 {
     // Open file
-    TFile *f = TFile::Open("Centered_Sphere_1.root");
+    TFile *f = TFile::Open("testoutput2.root");
     if (!f || f->IsZombie()) {
         std::cout << "Error opening file!" << std::endl;
         return;
     }
 
-    TTree *t = (TTree*)f->Get("Particles_Exit_World");
+    TTree *t = (TTree*)f->Get("Hits");
     if (!t) {
         std::cout << "Tree not found!" << std::endl;
         return;

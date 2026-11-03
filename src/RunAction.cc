@@ -244,9 +244,15 @@ RunAction::RunAction(DetectorConstruction *det, PrimaryGeneratorAction *prim)
   analysisManager->CreateNtupleIColumn("fTrackID");
   analysisManager->CreateNtupleIColumn("fStepNumber");
 
-  analysisManager->CreateNtupleDColumn("fX");
-  analysisManager->CreateNtupleDColumn("fY");
-  analysisManager->CreateNtupleDColumn("fZ");
+  analysisManager->CreateNtupleDColumn("fXpre");
+  analysisManager->CreateNtupleDColumn("fYpre");
+  analysisManager->CreateNtupleDColumn("fZpre");
+  analysisManager->CreateNtupleDColumn("fXpost");
+  analysisManager->CreateNtupleDColumn("fYpost");
+  analysisManager->CreateNtupleDColumn("fZpost");
+
+  analysisManager->CreateNtupleDColumn("fTpre");
+  analysisManager->CreateNtupleDColumn("fTpost");
 
   analysisManager->CreateNtupleDColumn("Edep");
   analysisManager->CreateNtupleDColumn("fKinEnergy");

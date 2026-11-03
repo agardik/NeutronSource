@@ -32,7 +32,10 @@ public:
     void SetTrackID(G4int v)                   { fTrackID = v; }
     void SetStepNumber(G4int v)                { fStepNumber = v; }
 
-    void SetPosition(const G4ThreeVector& v)   { fPos = v; }
+    void SetPrePosition(const G4ThreeVector& v)  { fPrePos = v; }
+    void SetPostPosition(const G4ThreeVector& v) { fPostPos = v; }
+    void SetPreTime(G4double v)                  { fPreTime = v; }
+    void SetPostTime(G4double v)                 { fPostTime = v; }
 
     void SetInteractionType(const G4String& v) { fInteractionType = v; }
     void SetTargetIsotope(const G4String& v)   { fTargetIsotope = v; }
@@ -57,8 +60,11 @@ public:
     G4int           GetTrackID()         const { return fTrackID; }
     G4int           GetStepNumber()      const { return fStepNumber; }
 
-    // --- Position ---
-    G4ThreeVector   GetPosition()        const { return fPos; }
+    // --- Position / time ---
+    G4ThreeVector   GetPrePosition()     const { return fPrePos; }
+    G4ThreeVector   GetPostPosition()    const { return fPostPos; }
+    G4double        GetPreTime()         const { return fPreTime; }
+    G4double        GetPostTime()        const { return fPostTime; }
 
     // --- Physics / process ---
     const G4String& GetInteractionType() const { return fInteractionType; }
@@ -90,7 +96,12 @@ private:
     G4int    fStepNumber   = 0;
 
     // ===== POSITION =====
-    G4ThreeVector fPos;
+    G4ThreeVector fPrePos;
+    G4ThreeVector fPostPos;
+
+    // ===== TIME =====
+    G4double fPreTime  = 0.;
+    G4double fPostTime = 0.;
 
     // ===== PHYSICS =====
     G4String fInteractionType = "";

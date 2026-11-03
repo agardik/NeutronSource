@@ -44,7 +44,7 @@ auto MassAttenuationSi = [](double E)
 // -------------------------------------------------
 
 TFile *fin = new TFile(
-    "Electronics_Top_Strip_8_test_kill.root",
+    "Electronics_Top_Strip_8_test_nokill.root",
     "READ"
 );
 
@@ -112,8 +112,8 @@ Double_t EdepComputed;
 
 const double rhoSi = 2.33; // g/cm^3
 
-// 500 micron silicon detector
-thickness_cm = 4; // cm
+// silicon detector
+thickness_cm = 3.65; // cm
 
 // -------------------------------------------------
 // Output branches

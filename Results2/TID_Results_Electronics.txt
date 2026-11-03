@@ -1,0 +1,12 @@
+TID Results for Electronics slab
+----------------------------------------
+Total TID (urad): 0.00153508
+TID e- & e+ (urad): 5.22542e-05
+TID gamma (urad): 0.00148274
+TID proton (urad): 0
+TID nucleus (urad): 8.15986e-08
+Total Energy (MeV): 437.535
+Total Energy e-&e+ (MeV): 14.8937
+Total Energy gamma (MeV): 422.618
+Total Energy proton (MeV): 0
+Total Energy nucleus (MeV): 0.0232576

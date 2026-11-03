@@ -100,8 +100,11 @@ G4VPhysicalVolume *DetectorConstruction::Construct() {
 
     // Get a volume in the gdml file
     G4LogicalVolume *LVgas = fParser.GetVolume("LV_GasVol_Box"); // Gas_Volume as an example
+    G4LogicalVolume *LVB4C = fParser.GetVolume("LV_B4C");
     // Set small step limit for gas volume
-    //LVgas->SetUserLimits(new G4UserLimits(0.05*mm));
+    LVgas->SetUserLimits(new G4UserLimits(0.1*mm));
+    // Set small step limit for B4C volume
+    LVB4C->SetUserLimits(new G4UserLimits(1*um));
 
     // READING GDML FILES OPTION: 2nd Boolean argument "Validate".
     // Flag to "false" disables check with the Schema when reading GDML file.
@@ -189,7 +192,7 @@ void DetectorConstruction::ConstructSDandField()
     // excludeNeutrons=false — all charged particles recorded
     // Collection name must match EventAction: GetCollectionID("SphereHitsCollection")
     // ------------------------------------------------------------------
-    registerSD("LV_Sphere", "SphereSD", "SphereHitsCollection", false);
+    //registerSD("LV_Sphere", "SphereSD", "SphereHitsCollection", false);
 }
  
 // ===========================================================================

@@ -129,25 +129,32 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleIColumn(9, 3,  hit->GetTrackID());
             analysisManager->FillNtupleIColumn(9, 4,  hit->GetStepNumber());
 
-            auto pos = hit->GetPosition();
-            analysisManager->FillNtupleDColumn(9, 5,  pos.x());
-            analysisManager->FillNtupleDColumn(9, 6,  pos.y());
-            analysisManager->FillNtupleDColumn(9, 7,  pos.z());
+            auto prePos  = hit->GetPrePosition();
+            auto postPos = hit->GetPostPosition();
+            analysisManager->FillNtupleDColumn(9, 5,  prePos.x());
+            analysisManager->FillNtupleDColumn(9, 6,  prePos.y());
+            analysisManager->FillNtupleDColumn(9, 7,  prePos.z());
+            analysisManager->FillNtupleDColumn(9, 8,  postPos.x());
+            analysisManager->FillNtupleDColumn(9, 9,  postPos.y());
+            analysisManager->FillNtupleDColumn(9, 10, postPos.z());
 
-            analysisManager->FillNtupleDColumn(9, 8,  hit->GetEdep());
-            analysisManager->FillNtupleDColumn(9, 9,  hit->GetKineticEnergy());
+            analysisManager->FillNtupleDColumn(9, 11, hit->GetPreTime());
+            analysisManager->FillNtupleDColumn(9, 12, hit->GetPostTime());
 
-            analysisManager->FillNtupleSColumn(9, 10, hit->GetInteractionType());
-            analysisManager->FillNtupleSColumn(9, 11, hit->GetTargetIsotope());
-            analysisManager->FillNtupleSColumn(9, 12, hit->GetCreatorProcess());
-            analysisManager->FillNtupleSColumn(9, 13, hit->GetVertexVolume());
+            analysisManager->FillNtupleDColumn(9, 13, hit->GetEdep());
+            analysisManager->FillNtupleDColumn(9, 14, hit->GetKineticEnergy());
 
-            analysisManager->FillNtupleDColumn(9, 14, hit->GetStopTable());
-            analysisManager->FillNtupleDColumn(9, 15, hit->GetStopFull());
-            analysisManager->FillNtupleDColumn(9, 16, hit->GetMeanDEDX());
-            analysisManager->FillNtupleDColumn(9, 17, hit->GetStopPower());
-            analysisManager->FillNtupleSColumn(9, 18, hit->GetVolumeName());
-            analysisManager->FillNtupleSColumn(9, 19, hit->GetSDName());
+            analysisManager->FillNtupleSColumn(9, 15, hit->GetInteractionType());
+            analysisManager->FillNtupleSColumn(9, 16, hit->GetTargetIsotope());
+            analysisManager->FillNtupleSColumn(9, 17, hit->GetCreatorProcess());
+            analysisManager->FillNtupleSColumn(9, 18, hit->GetVertexVolume());
+
+            analysisManager->FillNtupleDColumn(9, 19, hit->GetStopTable());
+            analysisManager->FillNtupleDColumn(9, 20, hit->GetStopFull());
+            analysisManager->FillNtupleDColumn(9, 21, hit->GetMeanDEDX());
+            analysisManager->FillNtupleDColumn(9, 22, hit->GetStopPower());
+            analysisManager->FillNtupleSColumn(9, 23, hit->GetVolumeName());
+            analysisManager->FillNtupleSColumn(9, 24, hit->GetSDName());
 
             analysisManager->AddNtupleRow(9);
         }

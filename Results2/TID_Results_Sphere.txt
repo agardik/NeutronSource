@@ -1,0 +1,7 @@
+TID Results for Sphere slab
+----------------------------------------
+Total TID (urad): 0.18106
+TID e- & e+ (urad): 0.0351828
+TID gamma (urad): 0.14585
+TID proton (urad): 1.80817e-05
+TID nucleus (urad): 8.97456e-06

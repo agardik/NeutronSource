@@ -33,6 +33,7 @@
 
 #include "G4VModularPhysicsList.hh"
 #include "globals.hh"
+#include "G4GenericBiasingPhysics.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -56,6 +57,7 @@ class PhysicsList : public G4VModularPhysicsList
     G4VPhysicsConstructor* fDecay = nullptr;
     G4VPhysicsConstructor* fRadioactiveDecay = nullptr;
     G4VPhysicsConstructor* fsteplimiter = nullptr;
+    G4GenericBiasingPhysics* fBiasingPhysics = nullptr;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

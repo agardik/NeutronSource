@@ -1,8 +1,8 @@
 void plotXY_Dose2D()
 {
     // Open file
-    TFile *f = new TFile("Electronics.root");
-    TTree *t = (TTree*)f->Get("Electronics");
+    TFile *f = new TFile("Electronics_Strip.root");
+    TTree *t = (TTree*)f->Get("Hits");
 
     gStyle->SetOptStat(0);
 
@@ -18,10 +18,10 @@ void plotXY_Dose2D()
     double rho = 2.33e-3;   // g/mm^3 (Si)
     double thickness = 2.0; // mm
 
-    int nx = 20, ny = 10;
+    int nx = 1, ny = 4;
 
-    double xmin = -30, xmax = 230;
-    double ymin = -140, ymax = 20;
+    double xmin = 0, xmax = 200;
+    double ymin = -120, ymax = 0;
 
     double binArea = ((xmax - xmin) / nx) * ((ymax - ymin) / ny); // mm^2
     double volume  = binArea * thickness;                          // mm^3
@@ -49,8 +49,11 @@ void plotXY_Dose2D()
     // Fill: Edep → μrad
     t->Draw("fY:fX>>h2", Form("Edep * %f", doseFactor_urad), "goff");
 
-    h2->Smooth();
+    //h2->Smooth();
     h2->Draw("colz");
+
+    // Increase Z-axis title offset (moves title further away from axis)
+    h2->GetZaxis()->SetTitleOffset(1.2);  // try 1.4–2.0 depending on taste
 
     h2->GetZaxis()->SetTitle("Dose [#murad]");
 

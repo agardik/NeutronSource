@@ -8,10 +8,10 @@
 void plot_total_edep()
 {
     // Open ROOT file
-    TFile *file = TFile::Open("Centered_Sphere_1.root");
+    TFile *file = TFile::Open("Electronics_Top_Strip_8_test_kill.root");
 
     // Get tree
-    TTree *tree = (TTree*)file->Get("HeliumEdep");
+    TTree *tree = (TTree*)file->Get("Hits");
 
     // Variables
     Int_t fEvent;

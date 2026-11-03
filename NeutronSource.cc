@@ -63,6 +63,7 @@ int main(int argc, char **argv) {
 
   // // construct the run manager
    auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::MT);
+   runManager->SetNumberOfThreads(6); // Set number of threads for multithreading
    if (argc == 3) {
     G4int nThreads = G4UIcommand::ConvertToInt(argv[2]);
      runManager->SetNumberOfThreads(nThreads);

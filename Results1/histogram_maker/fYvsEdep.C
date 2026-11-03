@@ -6,17 +6,17 @@
 #include <iostream>
 #include <fstream>
 
-void plotFX_Edep_and_exportCSV() {
+void plotFY_Edep_and_exportCSV() {
 
     // Open ROOT file
-    TFile *f = new TFile("Electronics.root");
+    TFile *f = new TFile("Electronics_Strip.root");
     if (!f || f->IsZombie()) {
         std::cout << "Error opening file!" << std::endl;
         return;
     }
 
     // Get tree
-    TTree *t = (TTree*)f->Get("Electronics");
+    TTree *t = (TTree*)f->Get("Hits");
     if (!t) {
         std::cout << "Error: TTree not found!" << std::endl;
         return;
@@ -26,28 +26,28 @@ void plotFX_Edep_and_exportCSV() {
     gStyle->SetOptStat(0);
 
     // Canvas
-    TCanvas *c1 = new TCanvas("c1", "Edep vs X", 900, 700);
+    TCanvas *c1 = new TCanvas("c1", "Edep vs Y", 900, 700);
 
     // Histogram (Y axis with energy weighting)
     TH1D *h1 = new TH1D("h1",
-        "Energy Deposition vs X;X [mm];Deposited Energy [MeV]",
-        100, -30, 230);
+        "Energy Deposition vs Y;Y [mm];Deposited Energy [MeV]",
+        100, -120, 0);
 
     // Fill histogram (Edep as weight)
-    t->Draw("fX>>h1", "Edep", "goff");
+    t->Draw("fY>>h1", "Edep", "goff");
 
     // Draw
     h1->Draw("hist");
     gPad->SetGrid();
 
     // Save plot
-    c1->SaveAs("FX_Edep.png");
+    c1->SaveAs("FY_Edep.png");
 
     // ---- Export histogram to CSV ----
-    std::ofstream out("FX_Edep_histogram.csv");
+    std::ofstream out("FY_Edep_histogram.csv");
 
     // Header
-    out << "BinCenter_X[mm],Edep[MeV]\n";
+    out << "BinCenter_Y[mm],Edep[MeV]\n";
 
     // Loop over bins
     for (int i = 1; i <= h1->GetNbinsX(); i++) {
@@ -59,9 +59,9 @@ void plotFX_Edep_and_exportCSV() {
 
     out.close();
 
-    std::cout << "CSV file 'FX_Edep_histogram.csv' created." << std::endl;
+    std::cout << "CSV file 'FY_Edep_histogram.csv' created." << std::endl;
 
     f->Close();
 }
 
-plotFX_Edep_and_exportCSV();
+plotFY_Edep_and_exportCSV();

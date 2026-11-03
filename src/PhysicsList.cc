@@ -59,6 +59,7 @@
 #include "G4UnitsTable.hh"
 #include "G4StepLimiter.hh"
 #include "G4StepLimiterPhysics.hh"
+#include "G4GenericBiasingPhysics.hh"
 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -125,6 +126,11 @@ PhysicsList::PhysicsList()
   // Step limiter
   fsteplimiter = new G4StepLimiterPhysics();
   RegisterPhysics(fsteplimiter);
+
+    // PhysicsList.cc constructor, at the very end:
+  fBiasingPhysics = new G4GenericBiasingPhysics();
+  fBiasingPhysics->Bias("neutron");   // tell it which particle(s) to instrument
+  RegisterPhysics(fBiasingPhysics);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

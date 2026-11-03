@@ -8,13 +8,13 @@
 void sphere_energy_spectra()
 {
     // Open file
-    TFile *f = TFile::Open("Centered_Sphere_1.root");
+    TFile *f = TFile::Open("Electronics_Top_Strip_8_test_nokill.root");
     if (!f || f->IsZombie()) {
         std::cout << "Error opening file!" << std::endl;
         return;
     }
 
-    TTree *t = (TTree*)f->Get("Particles_Exit_World");
+    TTree *t = (TTree*)f->Get("Hits");
     if (!t) {
         std::cout << "Tree not found!" << std::endl;
         return;
@@ -32,7 +32,7 @@ void sphere_energy_spectra()
     // Histograms (log scale friendly)
     TH1D *h_gamma = new TH1D("h_gamma",
         "Gamma Kinetic Energy;E_{kin} [MeV];Counts",
-        400, 0, 10);
+        50, 0, 1);
 
     TH1D *h_neutron = new TH1D("h_neutron",
         "Neutron Kinetic Energy;E_{kin} [MeV];Counts",
@@ -65,6 +65,31 @@ void sphere_energy_spectra()
             h_neutron_edep->Fill(Edep);
         }
     }
+
+    // =====================================================
+// Save gamma kinetic energy histogram to CSV
+// =====================================================
+
+std::ofstream csvFile("gamma_kinetic_energy_histogram.csv");
+
+csvFile << "BinCenter_MeV,Counts\n";
+
+for (int i = 1; i <= h_gamma->GetNbinsX(); i++)
+{
+    double binCenter = h_gamma->GetBinCenter(i);
+    double counts    = h_gamma->GetBinContent(i);
+
+    csvFile << binCenter
+            << ","
+            << counts
+            << "\n";
+}
+
+csvFile.close();
+
+std::cout << "Saved gamma histogram to "
+          << "gamma_kinetic_energy_histogram.csv"
+          << std::endl;
 
     // Style
     gStyle->SetOptStat(0);
